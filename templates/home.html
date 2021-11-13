@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advising Portal</title>
+    <style>
+        body{
+            font-size: 2em;
+            background-color:powderblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Home Page</h1>
+     <ul>
+        {% if user.is_authenticated %}
+        <li>Hello {{user.username}}</li>
+        <li><a href="accounts/logout">Logout</a></li>
+        {% else %}
+        <li><a href="accounts/register">Register</a></li>
+        <li><a href="accounts/login">Login</a></li>
+        {% endif %}
+        </ul>
+</body>
+</html>
