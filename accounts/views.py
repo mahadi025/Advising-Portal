@@ -51,3 +51,6 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('home')
+
+def cgpa(request):
+    return render(request,"cgpa calculator.html")
