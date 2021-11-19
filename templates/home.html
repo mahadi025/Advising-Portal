@@ -17,7 +17,8 @@
     <h1>Home Page</h1>
      <ul>
         {% if user.is_authenticated %}
-        <li>Hello {{user.username}}</li>
+        <li>Hello {{user.first_name}}</li>
+        <li><img src="{{user.img}}" alt="Profile Pic"></li>
         <li><a href="accounts/logout">Logout</a></li>
         {% else %}
         <li><a href="accounts/register">Register</a></li>

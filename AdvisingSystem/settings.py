@@ -81,7 +81,10 @@ DATABASES = {
         'NAME': 'AdvisingSystem',
         'USER': 'root',
         'PASSWORD': '159753',
-        'HOST': 'localhost'
+        'HOST': 'localhost',
+        'OPTIONS': {
+         "init_command": "SET foreign_key_checks = 0;"
+    },
     }
 }
 
