@@ -5,46 +5,48 @@ from django.contrib.auth.models import (
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, studentId, first_name, last_name, email, password=None):
-        """
-        Creates and saves a User with the given email and password.
-        """
-        if not email:
-            raise ValueError('Users must have an email address')
+    def create_user(self, studentId, first_name, last_name, email,img, password=None):
         if not studentId:
             raise ValueError('Users must have an Student Id')
         user = self.model(
             email=self.normalize_email(email),
             studentId=studentId,
-            # first_name=first_name,
-            # last_name=last_name
+            first_name=first_name,
+            last_name=last_name,
+            img=img
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_staffuser(self, email, username, password):
+    def create_staffuser(self, studentId, email=None, first_name=None, last_name=None,img=None, password=None):
         """
         Creates and saves a staff user with the given email and password.
         """
         user = self.create_user(
-            email,
-            password=password,
-            username=username
+            studentId=studentId,
+            first_name=first_name,
+            last_name=last_name,
+            img=img,
+            email=email,
+            password=password
         )
         user.staff = True
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, username, password):
+    def create_superuser(self, studentId, email=None, first_name=None, last_name=None,img=None, password=None):
         """
         Creates and saves a superuser with the given email and password.
         """
         user = self.create_user(
-            email,
-            username=username,
-            password=password,
+            studentId=studentId,
+            first_name=first_name,
+            last_name=last_name,
+            img=img,
+            email=email,
+            password=password
         )
         user.staff = True
         user.admin = True
@@ -58,13 +60,13 @@ class User(AbstractBaseUser):
     admin = models.BooleanField(default=False) # a superuser
     img= models.ImageField(upload_to='pics',null=True,blank=True)
     studentId=models.CharField(max_length=13,unique=True,null=False)
-    first_name=models.CharField(max_length=30,null=True)
-    last_name=models.CharField(max_length=30,null=True)
+    first_name=models.CharField(max_length=30,null=True,blank=True)
+    last_name=models.CharField(max_length=30,null=True,blank=True)
 
     # notice the absence of a "Password field", that is built in.
 
     USERNAME_FIELD = 'studentId'
-    REQUIRED_FIELDS = [] # Email & Password are required by default.
+    REQUIRED_FIELDS = [] 
 
     def get_full_name(self):
         # The user is identified by their email address

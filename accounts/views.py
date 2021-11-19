@@ -11,18 +11,19 @@ def register(request):
         studentId = request.POST['studentId']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
+        img=request.POST['img']
         email = request.POST['email']
 
         if password1 == password2:
-            # if User.objects.filter(username=username).exists():
-            #     messages.info(request, 'User name already taken')
-            #     return redirect('register')
+            if User.objects.filter(studentId=studentId).exists():
+                messages.info(request, 'Student Id already exists')
+                return redirect('register')
             if User.objects.filter(email=email).exists():
                 messages.info(
                     request, 'This email is already register with an account')
                 return redirect('register')
             else:
-                user = User.objects.create_user(password=password1,email=email,studentId=studentId,first_name=first_name,last_name=last_name)
+                user = User.objects.create_user(password=password1,email=email,studentId=studentId,first_name=first_name,last_name=last_name,img=img)
                 user.save()
                 messages.info(request, 'User Created')
                 return redirect('home')
