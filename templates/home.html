@@ -15,7 +15,7 @@
         <ul id="header-option">
             {% if user.is_authenticated %}
                 {% if user.first_name or user.last_name is not null%}
-                <li>Hello {{user.first_name}}</li>
+                    <li>Hello {{user.first_name}}</li>
                 {% endif%}
                 <li><a href="accounts/logout">Log Out</a></li>
             {% else %}
