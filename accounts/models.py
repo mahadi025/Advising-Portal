@@ -5,7 +5,7 @@ from django.contrib.auth.models import (
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, studentId, first_name, last_name, email,img, password=None):
+    def create_user(self, studentId, first_name, last_name, email, img=None, password=None):
         if not studentId:
             raise ValueError('Users must have an Student Id')
         user = self.model(
@@ -20,7 +20,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_staffuser(self, studentId, email=None, first_name=None, last_name=None,img=None, password=None):
+    def create_staffuser(self, studentId, img=None, email=None, first_name=None, last_name=None, password=None):
         """
         Creates and saves a staff user with the given email and password.
         """
@@ -28,15 +28,15 @@ class UserManager(BaseUserManager):
             studentId=studentId,
             first_name=first_name,
             last_name=last_name,
-            img=img,
             email=email,
-            password=password
+            password=password,
+            img=img
         )
         user.staff = True
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, studentId, email=None, first_name=None, last_name=None,img=None, password=None):
+    def create_superuser(self, studentId, img, email=None, first_name=None, last_name=None, password=None):
         """
         Creates and saves a superuser with the given email and password.
         """
@@ -44,9 +44,9 @@ class UserManager(BaseUserManager):
             studentId=studentId,
             first_name=first_name,
             last_name=last_name,
-            img=img,
             email=email,
-            password=password
+            password=password,
+            img=img
         )
         user.staff = True
         user.admin = True
@@ -58,7 +58,7 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
     admin = models.BooleanField(default=False) # a superuser
-    img= models.ImageField(upload_to='pics',null=True,blank=True)
+    img= models.ImageField(upload_to='pics',null=True,blank=True,default=0)
     studentId=models.CharField(max_length=13,unique=True,null=False)
     first_name=models.CharField(max_length=30,null=True,blank=True)
     last_name=models.CharField(max_length=30,null=True,blank=True)

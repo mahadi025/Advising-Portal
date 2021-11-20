@@ -1,5 +1,5 @@
-{% load static %}
-{% static "images" as baseURL %}
+{% comment %} {% load static %} {% endcomment %}
+{% comment %} {% static "images" as baseURL %} {% endcomment %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,19 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advising Portal</title>
-    <style>
-        body{
-            {% comment %} font-size: 2em;
-            background-color:powderblue; {% endcomment %}
-        }
-    </style>
 </head>
 <body>
     <h1>Home Page</h1>
      <ul>
         {% if user.is_authenticated %}
         <li>Hello {{user.first_name}}</li>
-        <li><img src="{{user.img.url}}" alt="Profile Pic"/></li>
         <li><a href="accounts/logout">Logout</a></li>
         {% else %}
         <li><a href="accounts/register">Register</a></li>
@@ -27,5 +20,14 @@
         {% endif %}
         <li><a href="accounts/cgpa">CGPA</a></li>
         </ul>
+        <div>
+            {% if user.is_authenticated %}
+                {% if user.img.url is not '0' %}
+                    <img src="{{user.img.url}}" alt="{{user.img.url}}"/>
+                {% else %}
+                    <h1>Upload Pic in admin panel</h1>
+                {% endif %}
+            {% endif %}
+        </div>
 </body>
 </html>

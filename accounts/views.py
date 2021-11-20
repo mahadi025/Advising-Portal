@@ -11,7 +11,7 @@ def register(request):
         studentId = request.POST['studentId']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
-        img=request.POST['img']
+        # img=request.POST['image']
         email = request.POST['email']
 
         if password1 == password2:
@@ -23,7 +23,7 @@ def register(request):
                     request, 'This email is already register with an account')
                 return redirect('register')
             else:
-                user = User.objects.create_user(password=password1,email=email,studentId=studentId,first_name=first_name,last_name=last_name,img=img)
+                user = User.objects.create_user(password=password1,email=email,studentId=studentId,first_name=first_name,last_name=last_name)
                 user.save()
                 messages.info(request, 'User Created')
                 return redirect('home')
