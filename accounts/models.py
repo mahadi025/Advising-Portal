@@ -36,7 +36,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, studentId, img, email=None, first_name=None, last_name=None, password=None):
+    def create_superuser(self, studentId, email=None, first_name=None, last_name=None, password=None,img=None):
         """
         Creates and saves a superuser with the given email and password.
         """
@@ -56,14 +56,18 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     email = models.EmailField(verbose_name='email address',max_length=255,unique=True)
     is_active = models.BooleanField(default=True)
-    staff = models.BooleanField(default=False) # a admin user; non super-user
-    admin = models.BooleanField(default=False) # a superuser
+    staff = models.BooleanField(default=False)
+    admin = models.BooleanField(default=False)
     img= models.ImageField(upload_to='pics',null=True,blank=True,default=0)
     studentId=models.CharField(max_length=13,unique=True,null=False)
     first_name=models.CharField(max_length=30,null=True,blank=True)
     last_name=models.CharField(max_length=30,null=True,blank=True)
-
-    # notice the absence of a "Password field", that is built in.
+    admitted_semester=models.CharField(max_length=30,null=True,blank=True)
+    advisor=models.CharField(max_length=30,null=True,blank=True)
+    blood_group=models.CharField(max_length=3,null=True,blank=True)
+    present_address=models.CharField(max_length=50,null=True,blank=True)
+    phone_number=models.CharField(max_length=14,null=True,blank=True)
+    department=models.CharField(max_length=5,null=True,blank=True)
 
     USERNAME_FIELD = 'studentId'
     REQUIRED_FIELDS = [] 

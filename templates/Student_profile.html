@@ -13,48 +13,52 @@
         <br>
      <h3 id="profile-header">PROFILE</h3> 
     </div>
-
-
-
+    {% if user.img.url is not '0' %}
     <div id="img-profile">
-        <img src="">
+        <img src="{{user.img.url}}">
     </div>
-
-
-
+        {% else %}
+        <div id="img-profile">
+            <img src="" alt="">
+            </div> 
+    {% endif %}
     <div id="table">
     <table id="info">
         <tr>
-            <th>Name:</th>
-            <td></td>
+            <th>First Name:</th>
+            <td>{{user.first_name}}</td>
+        </tr>
+        <tr>
+            <th>Last Name:</th>
+            <td>{{user.last_name}}</td>
         </tr>
         <tr>
             <th>Student ID:</th>
-            <td></td>
+            <td>{{user.studentId}}</td>
         </tr>
         <tr>
             <th>Admitted Semester:</th>
-            <td></td>
+            <td>{{user.admitted_semester}}</td>
         </tr>
         <tr>
             <th>Advisor:</th>
-            <td></td>
+            <td>{{user.advisor}}</td>
         </tr>
         <tr>
             <th>Blood Group:</th>
-            <td></td>
+            <td>{{user.blood_group}}</td>
         </tr>
         <tr>
             <th>Present Adress:</th>
-            <td></td>
+            <td>{{user.present_address}}</td>
         </tr>
         <tr>
             <th>Phone Number:</th>
-            <td></td>
+            <td>{{user.phone_number}}</td>
         </tr>
         <tr>
             <th>E-mail:</th>
-            <td></td>
+            <td>{{user.email}}</td>
         </tr>
     </table>
 </div>

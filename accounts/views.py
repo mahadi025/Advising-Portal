@@ -11,7 +11,7 @@ def register(request):
         studentId = request.POST['studentId']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
-        # img=request.POST['image']
+        # img=request.POST['img']
         email = request.POST['email']
 
         if password1 == password2:
@@ -37,7 +37,6 @@ def register(request):
 def login(request):
     if request.method == 'POST':
         studentId=request.POST['studentId']
-        # email = request.POST['username']
         password = request.POST['password']
         user=auth.authenticate(password=password,studentId=studentId)
 
