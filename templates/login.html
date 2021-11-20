@@ -20,7 +20,7 @@
 			width: 350px;
 			margin-top: auto;
 			margin-bottom: auto;
-			background: #74cfbf;
+			background: #2cd46c;
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -29,7 +29,8 @@
 			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			border-radius: 5px;
+			border-radius: 25px;
+        
 
 		}
 
@@ -44,8 +45,9 @@
 
 		.login_btn {
 			width: 100%;
-			background: #33ccff !important;
+			background: #3385ff !important;
 			color: white !important;
+            border-radius: 25px;
 		}
 		.login_btn:focus {
 			box-shadow: none !important;
@@ -58,7 +60,7 @@
 			background: #f7ba5b !important;
 			color: white !important;
 			border: 0 !important;
-			border-radius: 0.25rem 0 0 0.25rem !important;
+			border-radius: 0.80rem 0rem 0rem 0.80rem !important;
 		}
 		.input_user,
 		.input_pass:focus {
@@ -109,7 +111,7 @@
 		
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						{% comment %} Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a> {% endcomment %}
+						Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
 					</div>
 			
 				</div>
