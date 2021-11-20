@@ -1,33 +1,39 @@
-{% comment %} {% load static %} {% endcomment %}
-{% comment %} {% static "images" as baseURL %} {% endcomment %}
+{%load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    
     <title>Advising Portal</title>
 </head>
 <body>
-    <h1>Home Page</h1>
-     <ul>
-        {% if user.is_authenticated %}
-        <li>Hello {{user.first_name}}</li>
-        <li><a href="accounts/logout">Logout</a></li>
-        {% else %}
-        <li><a href="accounts/register">Register</a></li>
-        <li><a href="accounts/login">Login</a></li>
-        {% endif %}
-        <li><a href="accounts/cgpa">CGPA</a></li>
-        </ul>
-        <div>
+    <div id="header">
+        <Button id="sidebar-button" onclick="slide()"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAAVElEQVRoge3WwQ2AUAhEQb6xcK0ci5AEQmYq2L29CAAanMx8ukdUOJmZ3SMqXN0DqjgyzR0Rb/cIAKCIjJ9mTTQ6Mo2MB4BNZPw0a6LRkWlkPAB/fId1GBOc3m2dAAAAAElFTkSuQmCC" height="30px" width="30px"></Button>
+        <ul id="header-option">
             {% if user.is_authenticated %}
-                {% if user.img.url is not '0' %}
-                    <img src="{{user.img.url}}" alt="{{user.img.url}}"/>
-                {% else %}
-                    <h1>Upload Pic in admin panel</h1>
-                {% endif %}
+                <li><a href="accounts/logout">Log Out</a></li>
+                <li>Hello {{user.first_name}}</li>
+            {% else %}
+                <li><a href="accounts/register">Register</a></li>
+                <li><a href="accounts/login">Login</a></li>
             {% endif %}
-        </div>
+        </ul>
+    </div>
+    <h1 id="msg">WELCOME TO ADVISING PORTAL</h1>
+    <div id="sidebar" >
+    
+       <ul id="menu">
+           <li> <a id="close" onclick="inside()">&times;</li><a></li>
+           <li><a href=#>Advising</a></li>
+           <li><a href="#">Grade Report</a></li>
+           <li><a href="accounts/cgpa">CGPA Calculator</a></li>
+           <li><a href="#">Profile</a></li>
+       </ul>
+    </div>
+    <script src="{% static 'js/home.js' %}"></script>
+    
 </body>
 </html>
