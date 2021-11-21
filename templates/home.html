@@ -17,10 +17,10 @@
                 {% if user.first_name or user.last_name is not null%}
                     <li>Hello {{user.first_name}}</li>
                 {% endif%}
-                <li><a href="accounts/logout">Log Out</a></li>
+                <li><a href="accounts/logout/">Log Out</a></li>
             {% else %}
-                <li><a href="accounts/register">Register</a></li>
-                <li><a href="accounts/login">Login</a></li>
+                <li><a href="accounts/register/">Register</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
             {% endif %}
         </ul>
     </div>
@@ -33,7 +33,7 @@
            <li><a href="#">Grade Report</a></li>
            <li><a href="accounts/cgpa">CGPA Calculator</a></li>
             {% if user.is_authenticated %}
-           <li><a href="accounts/profile">Profile</a></li>
+           <li><a href="{% url 'profile' %}">Profile</a></li>
            {% endif %}
        </ul>
     </div>

@@ -13,6 +13,9 @@
         <br>
      <h3 id="profile-header">PROFILE</h3> 
     </div>
+    <div id="header">
+        <a id="profile-header" href="{% url 'home' %}">back to Home</a>
+        </div>
     {% if user.img.url is not '0' %}
     <div id="img-profile">
         <img src="{{user.img.url}}">
