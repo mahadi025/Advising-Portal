@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth
 from django.contrib import messages
-from .models import Student
+from .models import *
 from .forms import StudentFrom
 
 
@@ -46,9 +46,8 @@ def register(request):
 #         studentId = request.POST["studentId"]
 #         password = request.POST["password"]
 #         user = auth.authenticate(password=password, studentId=studentId)
-
-#         if user is not None:
-#             auth.login(request, user)
+#         if Student.objects.filter(studentId=studentId,password1=password):
+#             # auth.login(request, user)
 #             return redirect("home")
 #         else:
 #             messages.info(request, "Invalid credentials")
@@ -58,8 +57,17 @@ def register(request):
 
 def login(request):
     if request.method == "POST":
+        form = StudentFrom(request.POST)
         studentId=request.POST["studentId"]
         password =request.POST["password"]
+        if Student.objects.filter(studentId=studentId,password1=password).exists():
+            print('Login Successful')
+            context={'form':form}
+            return render(request,'home.html',context)
+        else:
+            return redirect('login')
+    else:
+        return render(request, "login.html")
 
 def logout(request):
     auth.logout(request)
@@ -79,7 +87,21 @@ def studentRegister(request):
     if request.method == "POST":
         form = StudentFrom(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect("login")
+            password1=form.cleaned_data["password1"]
+            password2=form.cleaned_data["password2"]
+            studentId=form.cleaned_data["studentId"]
+            email=form.cleaned_data['email']
+            if password1==password2:
+                form.save()
+                return redirect("home")
+            else:
+                messages.info(request, "Password did not match")
+                return redirect("studentRegister")
+                
     context = {"form": form}
     return render(request, "studentRegister.html", context)
+
+def offered_courses(request):
+    courses=Course.objects.all()
+    context = {"courses": courses}
+    return render(request, "Offered_courses.html", context)

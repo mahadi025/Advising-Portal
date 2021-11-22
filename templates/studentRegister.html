@@ -122,6 +122,9 @@
 				</div>
 				<div>
                     {{form.errors}}
+					{% for message in messages %}
+        				<p id="message">{{message}}</p>
+        			{% endfor %}
       			</div>
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">

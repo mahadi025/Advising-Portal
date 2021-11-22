@@ -1,0 +1,55 @@
+body{
+    margin:0%;
+    padding: 0%;
+}
+#header{
+    height:80px;
+    background-color: #C70039;
+}
+#OfferedCourse-header{
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bolder;
+    margin-top: 0%;
+    margin-left: 2%;
+    font-size: 30px;
+}
+#heading{
+        color: grey;
+        display: inline-block;
+        margin-left: 38%;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        
+}
+table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
+    border-radius: 5px;
+
+    
+
+
+    
+}
+#Courses th,td{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    
+    color: white;
+    
+   
+}
+th{
+   width: 10%;
+   height: 50px;
+   background: linear-gradient(180deg,#0010A0,#0A83C1); 
+
+}
+td{
+    text-align: center;
+    background-color:#61B5C3; 
+}
+#Courses{
+    margin-left: 22%;
+    margin-top: 2%;
+    
+}
