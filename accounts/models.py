@@ -1,95 +1,123 @@
+# # This is an auto-generated Django model module.
+# # You'll have to do the following manually to clean this up:
+# #   * Rearrange models' order
+# #   * Make sure each model has one field with primary_key=True
+# #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
+# #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
+# # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
-from mirage import fields
+
+class Classroom(models.Model):
+    building = models.CharField(max_length=15)
+    room_number = models.CharField(max_length=7)
+    capacity = models.DecimalField(max_digits=4, decimal_places=0, blank=True, null=True)
+
+    class Meta:
+        unique_together = (('building', 'room_number'),)
+    def __str__(self):
+        return self.building+' '+self.room_number
+    
 class Department(models.Model):
-    dept_name = models.CharField(max_length=5,null=True,blank=True)
-    building=models.CharField(max_length=20,null=True, blank=True)
+    dept_name = models.CharField(primary_key=True, max_length=20)
+    building = models.CharField(max_length=15, blank=True, null=True)
+    budget = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
+
     def __str__(self):
         return self.dept_name
+        
+class Instructor(models.Model):
+    instructor_id = models.CharField(primary_key=True, max_length=13)
+    name = models.CharField(max_length=20)
+    dept_name = models.ForeignKey(Department, models.CASCADE, db_column='i_dept_name', blank=True, null=True)
+    salary = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
-class ClassRoom(models.Model):
-    building=models.CharField(max_length=20,null=True, blank=True)
-    room_number=models.CharField(max_length=7,null=True, blank=True)
-    capacity=models.IntegerField(2,null=True,blank=True)
+    def __str__(self):
+        return self.name+'('+self.dept_name.dept_name+')'
+
+class Student(models.Model):
+    student_id = models.CharField(primary_key=True, max_length=13) 
+    name = models.CharField(max_length=20)
+    dept_name = models.ForeignKey(Department, models.CASCADE, db_column='dept_name', blank=True, null=True)
+    tot_cred = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+class Advisor(models.Model):
+    s = models.OneToOneField('Student', models.CASCADE, db_column='s_ID', primary_key=True)  # Field name made lowercase.
+    i = models.ForeignKey('Instructor', models.CASCADE, db_column='i_ID', blank=True, null=True)  # Field name made lowercase.
+
+    def __str__(self):
+        return self.i.name
 
 
 class Course(models.Model):
-    course_id=models.CharField(max_length=7,null=True, blank=True)
-    title=models.CharField(max_length=50,null=True, blank=True)
-    credits=models.FloatField(max_length=2,null=True,blank=True)
-    department=models.ForeignKey(Department, null=True, blank=True,on_delete=models.SET_NULL)
+    course_id = models.CharField(primary_key=True, max_length=8)
+    title = models.CharField(max_length=50, blank=True, null=True)
+    dept_name = models.ForeignKey('Department', models.CASCADE, db_column='dept_name', blank=True, null=True)
+    credits = models.DecimalField(max_digits=2, decimal_places=1, blank=True, null=True)
+
     def __str__(self):
         return self.course_id
-    
+
+
 class Section(models.Model):
-    semester_choice={
-        ('Spring','Spring'),
+    sem_list={
+        ('Summer','Summer'),
         ('Fall','Fall'),
-        ('Summer','Summer')
+        ('Spring','Spring')
     }
-    courseId=models.ForeignKey(Course, null=True,blank=True,on_delete=models.SET_NULL)
-    sec_id=models.IntegerField(null=True, blank=True)
-    semester=models.CharField(max_length=6,null=True,blank=True,choices=semester_choice)
-    year=models.IntegerField(null=True, blank=True)
-    building=models.CharField(max_length=20,null=True,blank=True)
-    roomNumber=models.ForeignKey(ClassRoom, null=True, blank=True,on_delete=models.SET_NULL)
+    course = models.ForeignKey(Course, models.CASCADE,db_column='course_id')
+    sec_id = models.CharField(max_length=8)
+    semester = models.CharField(max_length=6,choices=sem_list)
+    year = models.DecimalField(max_digits=4, decimal_places=0)
+    classroom = models.ForeignKey(Classroom, models.CASCADE)
+    time_slot_id = models.CharField(max_length=4, blank=True, null=True)
+    class Meta:
+        unique_together = (('course', 'sec_id', 'semester', 'year'),)
+    def __str__(self):
+        return self.course.course_id+'('+self.sec_id+')'+'('+self.semester+')'
  
-class Student(models.Model):
-    blood_group_list = {
-        ("A+", "A+"),
-        ("A-", "A-"),
-        ("B+", "B+"),
-        ("B+", "B-"),
-        ("O+", "O+"),
-        ("O-", "O-"),
-        ("AB+", "AB+"),
-        ("AB-", "AB-"),
-    }
-    department_list = {
-        ("CSE", "CSE"),
-        ("EEE", "EEE"),
-        ("BBA", "BBA"),
-        ("ICE", "ICE"),
-        ("ENG", "ENG"),
-    }
-    first_name = models.CharField(max_length=30, null=True, blank=True)
-    last_name = models.CharField(max_length=30, null=True, blank=True)
-    # img= models.ImageField(upload_to='pics',null=True,blank=True,default=0)
-    password1 = fields.EncryptedCharField()
-    password2 = fields.EncryptedCharField()
-    student_id = models.CharField(max_length=13, unique=True, null=False)
-    # admitted_semester=models.CharField(max_length=30,null=True,blank=True)
-    # advisor=models.CharField(max_length=30,null=True,blank=True)
-    # blood_group=models.CharField(max_length=3,null=True,blank=True,choices=blood_group_list)
-    # present_address=models.CharField(max_length=50,null=True,blank=True)
-    # phone_number=models.CharField(max_length=14,null=True,blank=True)
-    department=models.ForeignKey(Department, null=True, blank=True,on_delete=models.SET_NULL)
-    email = models.EmailField(verbose_name="email address", max_length=255, unique=True)
-    def __str__(self):
-        return self.student_id 
-    
+class Teaches(models.Model):
+    teaches_id = models.ForeignKey(Instructor, models.CASCADE, db_column='instructor_id')  
+    # course = models.ForeignKey(Section, models.DO_NOTHING,db_column='course',related_name='teaches_course')
+    # sec = models.ForeignKey(Section, models.DO_NOTHING,db_column='sec_id',related_name='teaches_sec')
+    # semester = models.ForeignKey(Section, models.DO_NOTHING, db_column='semester',related_name='teaches_semester')
+    # year = models.ForeignKey(Section, models.DO_NOTHING, db_column='year',related_name='teaches_year')
+    section = models.ForeignKey(Section, models.CASCADE,null=True,blank=True)
+
+    # class Meta:
+    #     unique_together = (('id', 'course', 'sec', 'semester', 'year'),) 
+
 class Takes(models.Model):
-    grade_list={
-        ('A+','A+'),
-        ('A','A'),
-        ('A-','A-'),
-        ('B+','B+'),
-        ('B','B'),
-        ('B-','B-'),
-        ('C+','C+'),
-        ('C','C'),
-        ('C-','C-'),
-        ('D+','D+'),
-        ('D','D'),
-        ('F','F')
-    }
-    course=models.ForeignKey(Course, null=True, blank=True,on_delete=models.SET_NULL)
-    student=models.ForeignKey(Student, null=True, blank=True,on_delete=models.SET_NULL)
-    grade=models.CharField(max_length=2,null=True,blank=True,choices=grade_list)
+    takes_id = models.ForeignKey(Student, models.CASCADE, db_column='student_id')
+    # course = models.OneToOneField(Section, models.DO_NOTHING,db_column='course', related_name='takes_course')
+    # sec = models.OneToOneField(Section, models.DO_NOTHING,db_column='sec_id',related_name='takes_sec')
+    # semester = models.OneToOneField(Section, models.DO_NOTHING, db_column='semester',related_name='takes_semester')
+    # year = models.OneToOneField(Section, models.DO_NOTHING, db_column='year',related_name='takes_year')
+    section= models.ForeignKey(Section, models.CASCADE)
+    grade = models.CharField(max_length=2, blank=True, null=True)
     def __str__(self):
-        student_name=self.student.first_name+" "+self.student.last_name
-        return student_name
-    
+        return self.takes_id.name+'('+self.section.course.course_id+' sec-'+self.section.sec_id+')'
+    # class Meta:
+    #     unique_together = (('id', 'course', 'sec', 'semester', 'year'),)
+  
 class Prereq(models.Model):
-    course=models.ForeignKey(Course, null=True, blank=True,on_delete=models.SET_NULL)
+    course = models.ForeignKey(Course, models.CASCADE,related_name='CourseId')
+    prereq = models.ForeignKey(Course, models.CASCADE,related_name='PreReqId')
     def __str__(self):
-        return self.prereq_id
+        return self.course_id +' <-- '+self.prereq.course_id
+    class Meta:
+        unique_together = (('course', 'prereq'),)
+
+class TimeSlot(models.Model):
+    time_slot_id = models.CharField(max_length=10)
+    day = models.CharField(max_length=2)
+    start_hr = models.DecimalField(max_digits=2, decimal_places=0)
+    start_min = models.DecimalField(max_digits=2, decimal_places=0)
+    end_hr = models.DecimalField(max_digits=2, decimal_places=0, blank=True, null=True)
+    end_min = models.DecimalField(max_digits=2, decimal_places=0, blank=True, null=True)
+
+    class Meta:
+        unique_together = (('time_slot_id', 'day', 'start_hr', 'start_min'),)
+

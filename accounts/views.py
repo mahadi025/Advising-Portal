@@ -102,6 +102,8 @@ def studentRegister(request):
     return render(request, "studentRegister.html", context)
 
 def offered_courses(request):
+    teaches=Teaches.objects.all()
     courses=Course.objects.all()
-    context = {"courses": courses}
+    instructor=Instructor.objects.all()
+    context = {'courses': courses,'teaches':teaches,'instructors':instructor}
     return render(request, "Offered_courses.html", context)

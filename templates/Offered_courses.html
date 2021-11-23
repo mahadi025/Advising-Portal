@@ -19,14 +19,16 @@
             <th>Course</th>
             <th>Title</th>
             <th>Credits</th>
-            <th>Department</th>
+            <th>Faculty Name</th>
          </tr>
             {% for course in courses %}
             <tr>
                 <td>{{course.course_id}}</td>
                 <td>{{course.title}}</td>
                 <td>{{course.credits}}</td>
-                <td>{{course.department}}</td>
+                    {% comment %} {% if teaches.Instructor.instructor_id== %} {% endcomment %}
+                        <td>{{teaches.Instructor.instructor_id}}</td>
+                    {% comment %} {% endif %} {% endcomment %}
             </tr>
             {% endfor %}
 
