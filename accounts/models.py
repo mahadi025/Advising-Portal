@@ -27,9 +27,8 @@ class Department(models.Model):
         
 class Instructor(models.Model):
     instructor_id = models.CharField(primary_key=True, max_length=13)
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=50)
     dept_name = models.ForeignKey(Department, models.CASCADE, db_column='i_dept_name', blank=True, null=True)
-    salary = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
     def __str__(self):
         return self.name+'('+self.dept_name.dept_name+')'
@@ -41,11 +40,11 @@ class Student(models.Model):
     tot_cred = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return self.name+'('+self.student_id+')'
 
 class Advisor(models.Model):
-    s = models.OneToOneField('Student', models.CASCADE, db_column='s_ID', primary_key=True)  # Field name made lowercase.
-    i = models.ForeignKey('Instructor', models.CASCADE, db_column='i_ID', blank=True, null=True)  # Field name made lowercase.
+    s = models.OneToOneField('Student', models.CASCADE, db_column='s_ID', primary_key=True) 
+    i = models.ForeignKey('Instructor', models.CASCADE, db_column='i_ID', blank=True, null=True)
 
     def __str__(self):
         return self.i.name
@@ -60,6 +59,19 @@ class Course(models.Model):
     def __str__(self):
         return self.course_id
 
+class TimeSlot(models.Model):
+    time_slot_id = models.CharField(max_length=10)
+    day = models.CharField(max_length=2)
+    start_hr = models.DecimalField(max_digits=2, decimal_places=0)
+    start_min = models.DecimalField(max_digits=2, decimal_places=0)
+    end_hr = models.DecimalField(max_digits=2, decimal_places=0, blank=True, null=True)
+    end_min = models.DecimalField(max_digits=2, decimal_places=0, blank=True, null=True)
+
+    class Meta:
+        unique_together = (('time_slot_id', 'day', 'start_hr', 'start_min'),)
+    
+    def __str__(self):
+        return self.time_slot_id
 
 class Section(models.Model):
     sem_list={
@@ -72,11 +84,13 @@ class Section(models.Model):
     semester = models.CharField(max_length=6,choices=sem_list)
     year = models.DecimalField(max_digits=4, decimal_places=0)
     classroom = models.ForeignKey(Classroom, models.CASCADE)
-    time_slot_id = models.CharField(max_length=4, blank=True, null=True)
+    time_slot = models.ForeignKey(TimeSlot, models.DO_NOTHING,null=True,blank=True)
     class Meta:
-        unique_together = (('course', 'sec_id', 'semester', 'year'),)
+        unique_together = (('course', 'sec_id', 'semester', 'year','time_slot'),
+                           ('classroom','time_slot','semester','year'),
+                           )
     def __str__(self):
-        return self.course.course_id+'('+self.sec_id+')'+'('+self.semester+')'
+        return self.course.course_id+'('+self.sec_id+')'+'('+self.semester+ ' -'+str(self.year)+')'
  
 class Teaches(models.Model):
     teaches_id = models.ForeignKey(Instructor, models.CASCADE, db_column='instructor_id')  
@@ -84,10 +98,9 @@ class Teaches(models.Model):
     # sec = models.ForeignKey(Section, models.DO_NOTHING,db_column='sec_id',related_name='teaches_sec')
     # semester = models.ForeignKey(Section, models.DO_NOTHING, db_column='semester',related_name='teaches_semester')
     # year = models.ForeignKey(Section, models.DO_NOTHING, db_column='year',related_name='teaches_year')
-    section = models.ForeignKey(Section, models.CASCADE,null=True,blank=True)
-
-    # class Meta:
-    #     unique_together = (('id', 'course', 'sec', 'semester', 'year'),) 
+    section = models.OneToOneField(Section, models.CASCADE,null=True,blank=True)
+    def __str__(self):
+         return self.teaches_id.instructor_id+'-'+self.section.course_id+'('+self.section.sec_id+')'+'-'+self.section.semester+'-'+str(self.section.year)
 
 class Takes(models.Model):
     takes_id = models.ForeignKey(Student, models.CASCADE, db_column='student_id')
@@ -95,12 +108,10 @@ class Takes(models.Model):
     # sec = models.OneToOneField(Section, models.DO_NOTHING,db_column='sec_id',related_name='takes_sec')
     # semester = models.OneToOneField(Section, models.DO_NOTHING, db_column='semester',related_name='takes_semester')
     # year = models.OneToOneField(Section, models.DO_NOTHING, db_column='year',related_name='takes_year')
-    section= models.ForeignKey(Section, models.CASCADE)
     grade = models.CharField(max_length=2, blank=True, null=True)
+    section=models.OneToOneField(Section,models.CASCADE,null=False,blank=True,primary_key=True)
     def __str__(self):
-        return self.takes_id.name+'('+self.section.course.course_id+' sec-'+self.section.sec_id+')'
-    # class Meta:
-    #     unique_together = (('id', 'course', 'sec', 'semester', 'year'),)
+        return self.takes_id.name+'('+self.section.course.course_id+' '+self.section.semester+'-'+str(self.section.year)+')'
   
 class Prereq(models.Model):
     course = models.ForeignKey(Course, models.CASCADE,related_name='CourseId')
@@ -110,14 +121,5 @@ class Prereq(models.Model):
     class Meta:
         unique_together = (('course', 'prereq'),)
 
-class TimeSlot(models.Model):
-    time_slot_id = models.CharField(max_length=10)
-    day = models.CharField(max_length=2)
-    start_hr = models.DecimalField(max_digits=2, decimal_places=0)
-    start_min = models.DecimalField(max_digits=2, decimal_places=0)
-    end_hr = models.DecimalField(max_digits=2, decimal_places=0, blank=True, null=True)
-    end_min = models.DecimalField(max_digits=2, decimal_places=0, blank=True, null=True)
 
-    class Meta:
-        unique_together = (('time_slot_id', 'day', 'start_hr', 'start_min'),)
 

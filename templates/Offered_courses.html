@@ -19,19 +19,26 @@
             <th>Course</th>
             <th>Title</th>
             <th>Credits</th>
-            <th>Faculty Name</th>
+            <th>Classroom</th>
+            <th>Faculty</th>
          </tr>
-            {% for course in courses %}
+            {% for section in sections %}
             <tr>
-                <td>{{course.course_id}}</td>
-                <td>{{course.title}}</td>
-                <td>{{course.credits}}</td>
-                    {% comment %} {% if teaches.Instructor.instructor_id== %} {% endcomment %}
-                        <td>{{teaches.Instructor.instructor_id}}</td>
-                    {% comment %} {% endif %} {% endcomment %}
+                <td>{{section.course.course_id}}</td>
+                <td>{{section.course.title}}</td>
+                <td>{{section.course.credits}}</td>
+                <td>{{section.classroom.room_number}}</td>
+                <td></td>
             </tr>
             {% endfor %}
 
     </table>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" name="Semester" placeholder="Semester_name">
+        <input type="Submit">
+    </form>
+
 </body>
 </html>
