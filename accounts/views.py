@@ -102,7 +102,7 @@ def studentRegister(request):
     return render(request, "studentRegister.html", context)
 
 def offered_courses(request):
-    sections=Section.objects.filter(semester='Summer',year=2019)
-    teaches=Teaches.objects.filter(section=sections)
-    context = {'sections': sections,'teaches':teaches,}
+    # sections=Section.objects.filter(semester='Summer',year=2019)
+    teaches=Teaches.objects.all()
+    context = {'teaches':teaches}
     return render(request, "Offered_courses.html", context)

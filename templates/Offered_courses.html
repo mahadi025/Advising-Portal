@@ -19,16 +19,18 @@
             <th>Course</th>
             <th>Title</th>
             <th>Credits</th>
+            <th>Time</th>
             <th>Classroom</th>
             <th>Faculty</th>
          </tr>
-            {% for section in sections %}
+            {% for teach in teaches %}
             <tr>
-                <td>{{section.course.course_id}}</td>
-                <td>{{section.course.title}}</td>
-                <td>{{section.course.credits}}</td>
-                <td>{{section.classroom.room_number}}</td>
-                <td></td>
+                <td>{{teach.section.course.course_id}}</td>
+                <td>{{teach.section.course.title}}</td>
+                <td>{{teach.section.course.credits}}</td>
+                <td>{{teach.section.time_slot.day}}({{teach.section.time_slot.start_hr}}:{{teach.section.time_slot.start_min}}-{{teach.section.time_slot.end_hr}}:{{teach.section.time_slot.end_min}})</td>
+                <td>{{teach.section.classroom.building}}-{{teach.section.classroom.room_number}}</td>
+                <td>{{teach.teaches_id.instructor_id}}</td>
             </tr>
             {% endfor %}
 
