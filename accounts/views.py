@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth
 from django.contrib import messages
 from .models import *
-from .forms import StudentFrom
 
 
 def register(request):
@@ -109,8 +108,8 @@ def offered_courses(request):
     if request.method == "POST":
         semester = request.POST["semester"]
         year = request.POST["year"]
-        teaches = Teaches.objects.filter(section__semester=semester,section__year=year)
-        context = {"teaches": teaches,"semester":semester,"year":year}
-        return render(request, "Offered_courses.html", context)
+        # teaches = Teaches.objects.filter(section__semester=semester,section__year=year)
+        # context = {"teaches": teaches,"semester":semester,"year":year}
+        return render(request, "Offered_courses.html", )
     else:
         return render(request, "Offered_courses.html")

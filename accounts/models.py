@@ -20,7 +20,6 @@ class Classroom(models.Model):
 class Department(models.Model):
     dept_name = models.CharField(primary_key=True, max_length=20)
     building = models.CharField(max_length=15, blank=True, null=True)
-    budget = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
 
     def __str__(self):
         return self.dept_name
@@ -62,10 +61,10 @@ class Course(models.Model):
 class TimeSlot(models.Model):
     time_slot_id = models.CharField(max_length=10)
     day = models.CharField(max_length=2)
-    start_hr = models.DecimalField(max_digits=2, decimal_places=0)
-    start_min = models.DecimalField(max_digits=2, decimal_places=0)
-    end_hr = models.DecimalField(max_digits=2, decimal_places=0, blank=True, null=True)
-    end_min = models.DecimalField(max_digits=2, decimal_places=0, blank=True, null=True)
+    start_hr = models.CharField(max_length=2)
+    start_min = models.CharField(max_length=2)
+    end_hr = models.CharField(max_length=2)
+    end_min = models.CharField(max_length=2)
 
     class Meta:
         unique_together = (('time_slot_id', 'day', 'start_hr', 'start_min'),)
@@ -84,24 +83,26 @@ class Section(models.Model):
     semester = models.CharField(max_length=6,choices=sem_list)
     year = models.DecimalField(max_digits=4, decimal_places=0)
     classroom = models.ForeignKey(Classroom, models.CASCADE)
-    time_slot = models.ForeignKey(TimeSlot, models.DO_NOTHING,null=True,blank=True)
+    time_slot = models.ForeignKey(TimeSlot,models.CASCADE)
     class Meta:
         unique_together = (('course', 'sec_id', 'semester', 'year','time_slot'),
-                           ('classroom','time_slot','semester','year'),
+                           ('classroom','semester','year','time_slot'),
+                            ('semester','year','time_slot','course')
                            )
     def __str__(self):
         return self.course.course_id+'('+self.sec_id+')'+'('+self.semester+ ' -'+str(self.year)+')'
- 
 class Teaches(models.Model):
     teaches_id = models.ForeignKey(Instructor, models.CASCADE, db_column='instructor_id')  
     # course = models.ForeignKey(Section, models.DO_NOTHING,db_column='course',related_name='teaches_course')
     # sec = models.ForeignKey(Section, models.DO_NOTHING,db_column='sec_id',related_name='teaches_sec')
     # semester = models.ForeignKey(Section, models.DO_NOTHING, db_column='semester',related_name='teaches_semester')
     # year = models.ForeignKey(Section, models.DO_NOTHING, db_column='year',related_name='teaches_year')
-    section = models.OneToOneField(Section, models.CASCADE,null=True,blank=True)
+    section = models.OneToOneField(Section, models.CASCADE,null=True,blank=True,unique=True)
     def __str__(self):
          return self.teaches_id.instructor_id+'-'+self.section.course_id+'('+self.section.sec_id+')'+'-'+self.section.semester+'-'+str(self.section.year)
-
+    class Meta:
+        unique_together =(('teaches_id','section'))
+        
 class Takes(models.Model):
     takes_id = models.ForeignKey(Student, models.CASCADE, db_column='student_id')
     # course = models.OneToOneField(Section, models.DO_NOTHING,db_column='course', related_name='takes_course')

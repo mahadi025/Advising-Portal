@@ -40,7 +40,7 @@ table, th, td {
    
 }
 th{
-   width: 10%;
+   width: 200px;
    height: 50px;
    background: linear-gradient(180deg,#0010A0,#0A83C1); 
 
@@ -50,7 +50,7 @@ td{
     background-color:#61B5C3; 
 }
 #Courses{
-    margin-left: 22%;
+    margin-left: 19%;
     margin-top: 2%;
     
 }
@@ -64,13 +64,29 @@ td{
     border-radius: 10px;
 }
 #submit{
-    color: white;
+    color: chartreuse;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: cornflowerblue;
+    background-color: white;
     margin-left: 1%;
     height: 35px;
     width: 100px;
     border-radius: 20px;
+    border: 3px solid chartreuse;
+    
+   
+    
+}
+#submit:hover{
+    color: white;
+    background-color: chartreuse;
+    transition: 0.3s ease-in;
+    animation: anim-shadow 0.3s forwards;
+    
+}
+@keyframes anim-shadow{
+    100%{
+        box-shadow: 5px 5px 1px 1px grey;
+    }
 }
 #note{
     margin-left: 42%;
