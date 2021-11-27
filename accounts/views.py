@@ -55,19 +55,21 @@ def register(request):
 #     else:
 #         return render(request, "login.html")
 
+
 def login(request):
     if request.method == "POST":
         form = StudentFrom(request.POST)
-        studentId=request.POST["studentId"]
-        password =request.POST["password"]
-        if Student.objects.filter(studentId=studentId,password1=password).exists():
-            print('Login Successful')
-            context={'form':form}
-            return render(request,'home.html',context)
+        studentId = request.POST["studentId"]
+        password = request.POST["password"]
+        if Student.objects.filter(studentId=studentId, password1=password).exists():
+            print("Login Successful")
+            context = {"form": form}
+            return render(request, "home.html", context)
         else:
-            return redirect('login')
+            return redirect("login")
     else:
         return render(request, "login.html")
+
 
 def logout(request):
     auth.logout(request)
@@ -87,22 +89,28 @@ def studentRegister(request):
     if request.method == "POST":
         form = StudentFrom(request.POST)
         if form.is_valid():
-            password1=form.cleaned_data["password1"]
-            password2=form.cleaned_data["password2"]
-            studentId=form.cleaned_data["studentId"]
-            email=form.cleaned_data['email']
-            if password1==password2:
+            password1 = form.cleaned_data["password1"]
+            password2 = form.cleaned_data["password2"]
+            studentId = form.cleaned_data["studentId"]
+            email = form.cleaned_data["email"]
+            if password1 == password2:
                 form.save()
                 return redirect("home")
             else:
                 messages.info(request, "Password did not match")
                 return redirect("studentRegister")
-                
+
     context = {"form": form}
     return render(request, "studentRegister.html", context)
 
+
 def offered_courses(request):
     # sections=Section.objects.filter(semester='Summer',year=2019)
-    teaches=Teaches.objects.all()
-    context = {'teaches':teaches}
-    return render(request, "Offered_courses.html", context)
+    if request.method == "POST":
+        semester = request.POST["semester"]
+        year = request.POST["year"]
+        teaches = Teaches.objects.filter(section__semester=semester,section__year=year)
+        context = {"teaches": teaches,"semester":semester,"year":year}
+        return render(request, "Offered_courses.html", context)
+    else:
+        return render(request, "Offered_courses.html")
