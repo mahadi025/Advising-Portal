@@ -6,6 +6,7 @@
 # #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django.db.models import constraints, fields
 
 class Classroom(models.Model):
     building = models.CharField(max_length=15)
@@ -94,26 +95,23 @@ class Section(models.Model):
                            )
     def __str__(self):
         return self.course.course_id+'('+self.sec_id+')'+'('+self.semester+ ' -'+str(self.year)+')'
-# class Teaches(models.Model):
-#     teaches_id = models.ForeignKey(Instructor, models.CASCADE, db_column='instructor_id')  
-#     # course = models.ForeignKey(Section, models.DO_NOTHING,db_column='course',related_name='teaches_course')
-#     # sec = models.ForeignKey(Section, models.DO_NOTHING,db_column='sec_id',related_name='teaches_sec')
-#     # semester = models.ForeignKey(Section, models.DO_NOTHING, db_column='semester',related_name='teaches_semester')
-#     # year = models.ForeignKey(Section, models.DO_NOTHING, db_column='year',related_name='teaches_year')
-#     section = models.OneToOneField(Section, models.CASCADE,null=True,blank=True,unique=True)
-#     def __str__(self):
-#          return self.teaches_id.instructor_id+'-'+self.section.course_id+'('+self.section.sec_id+')'+'-'+self.section.semester+'-'+str(self.section.year)
-#     class Meta:
-#         unique_together =(('teaches_id','section'))
         
 class Takes(models.Model):
     takes_id = models.ForeignKey(Student, models.CASCADE, db_column='student_id')
-    # course = models.OneToOneField(Section, models.DO_NOTHING,db_column='course', related_name='takes_course')
-    # sec = models.OneToOneField(Section, models.DO_NOTHING,db_column='sec_id',related_name='takes_sec')
-    # semester = models.OneToOneField(Section, models.DO_NOTHING, db_column='semester',related_name='takes_semester')
-    # year = models.OneToOneField(Section, models.DO_NOTHING, db_column='year',related_name='takes_year')
+    course = models.ForeignKey(Section, models.DO_NOTHING,db_column='course', related_name='takes_course')
+    sec = models.ForeignKey(Section, models.DO_NOTHING,db_column='sec_id',related_name='takes_sec')
+    semester = models.ForeignKey(Section, models.DO_NOTHING, db_column='semester',related_name='takes_semester')
+    year = models.ForeignKey(Section, models.DO_NOTHING, db_column='year',related_name='takes_year')
     grade = models.CharField(max_length=2, blank=True, null=True)
-    section=models.OneToOneField(Section,models.CASCADE,null=False,blank=True,primary_key=True)
+    # section=models.OneToOneField(Section,models.CASCADE,)
+    
+    class Meta:
+        db_table='section'
+        # constraints=[
+        #      models.UniqueConstraint(fields=['',], name='unique section')
+        # ]
+        unique_together = ('course','semester', 'year')
+      
     def __str__(self):
         return self.takes_id.name+'('+self.section.course.course_id+' '+self.section.semester+'-'+str(self.section.year)+')'
   
@@ -124,6 +122,3 @@ class Prereq(models.Model):
         return self.course_id +' <-- '+self.prereq.course_id
     class Meta:
         unique_together = (('course', 'prereq'),)
-
-
-

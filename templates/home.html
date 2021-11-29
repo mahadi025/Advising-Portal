@@ -13,15 +13,10 @@
     <div id="header">
         <Button id="sidebar-button" onclick="slide()"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAAVElEQVRoge3WwQ2AUAhEQb6xcK0ci5AEQmYq2L29CAAanMx8ukdUOJmZ3SMqXN0DqjgyzR0Rb/cIAKCIjJ9mTTQ6Mo2MB4BNZPw0a6LRkWlkPAB/fId1GBOc3m2dAAAAAElFTkSuQmCC" height="30px" width="30px"></Button>
         <ul id="header-option">
-            {% comment %} {% if user.is_authenticated %} {% endcomment %}
-                {% comment %} {% if user.first_name or user.last_name is not null%} {% endcomment %}
-                    <li>Hello {{form}}</li>
-                {% comment %} {% endif%} {% endcomment %}
-                {% comment %} <li><a href="accounts/logout/">Log Out</a></li> {% endcomment %}
-            {% comment %} {% else %} {% endcomment %}
-                <li><a href="accounts/register/">Register</a></li>
-                <li><a href="{% url 'login' %}">Login</a></li>
-            {% comment %} {% endif %} {% endcomment %}
+            {% if request.user.is_authenticated %}
+                <li>Hello {{user.first_name}} {{user.last_name}}</li>
+                <li><a href="accounts/logout/">Log Out</a></li>
+            {% endif %}
         </ul>
     </div>
     <h1 id="msg">WELCOME TO ADVISING PORTAL</h1>
@@ -33,10 +28,7 @@
             <li><a href="#">Grade Report</a></li>
             <li><a href="{% url 'Offered_courses' %}">Offered Courses</a></li>
             <li><a href="accounts/cgpa">CGPA Calculator</a></li>
-            <li><a href="{% url 'studentRegister' %}">New Register</a></li>
-            {% if user.is_authenticated %}
-                <li><a href="{% url 'profile' %}">Profile</a></li>
-           {% endif %}
+            <li><a href="{% url 'profile' %}">Profile</a></li>
        </ul>
     </div>
     <script src="{% static 'js/home.js' %}"></script>
