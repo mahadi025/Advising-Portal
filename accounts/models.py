@@ -1,12 +1,5 @@
-# # This is an auto-generated Django model module.
-# # You'll have to do the following manually to clean this up:
-# #   * Rearrange models' order
-# #   * Make sure each model has one field with primary_key=True
-# #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
-# #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
-# # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
-from django.db.models import constraints, fields
+from django.contrib.auth.models import User
 
 class Classroom(models.Model):
     building = models.CharField(max_length=15)
@@ -26,7 +19,7 @@ class Department(models.Model):
         return self.dept_name
         
 class Instructor(models.Model):
-    instructor_id = models.CharField(primary_key=True, max_length=13)
+    instructorId = models.CharField(primary_key=True, max_length=13)
     name = models.CharField(max_length=50)
     dept_name = models.ForeignKey(Department, models.CASCADE, db_column='i_dept_name', blank=True, null=True)
 
@@ -34,13 +27,14 @@ class Instructor(models.Model):
         return self.name+'('+self.dept_name.dept_name+')'
 
 class Student(models.Model):
-    student_id = models.CharField(primary_key=True, max_length=13) 
+    user= models.OneToOneField(User,null=True,on_delete=models.CASCADE)
+    studentId = models.CharField(primary_key=True, max_length=13) 
     name = models.CharField(max_length=20)
     dept_name = models.ForeignKey(Department, models.CASCADE, db_column='dept_name', blank=True, null=True)
     tot_cred = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True)
 
     def __str__(self):
-        return self.name+'('+self.student_id+')'
+        return self.name+'('+self.studentId+')'
 
 class Advisor(models.Model):
     s = models.OneToOneField('Student', models.CASCADE, db_column='s_ID', primary_key=True) 
@@ -80,38 +74,30 @@ class Section(models.Model):
         ('Spring','Spring')
     }
     course = models.ForeignKey(Course, models.CASCADE,db_column='course_id')
-    sec_id = models.CharField(max_length=8)
+    secId = models.CharField(max_length=8)
     semester = models.CharField(max_length=6,choices=sem_list)
     year = models.DecimalField(max_digits=4, decimal_places=0)
     classroom = models.ForeignKey(Classroom, models.CASCADE)
-    time_slot = models.ForeignKey(TimeSlot,models.CASCADE)
+    timeSlot = models.ForeignKey(TimeSlot,models.CASCADE)
     instructor = models.ForeignKey(Instructor, models.DO_NOTHING)
     class Meta:
-        unique_together = (('course', 'sec_id', 'semester', 'year','time_slot'),
-                           ('classroom','semester','year','time_slot'),
-                            ('semester','year','time_slot','course'),
-                            ('semester','year','time_slot','instructor'),
-                            ('sec_id','course','semester', 'year')
+        unique_together = (('course', 'secId', 'semester', 'year','timeSlot'),
+                           ('classroom','semester','year','timeSlot'),
+                            ('semester','year','timeSlot','course'),
+                            ('semester','year','timeSlot','instructor'),
+                            ('secId','course','semester', 'year')
                            )
     def __str__(self):
-        return self.course.course_id+'('+self.sec_id+')'+'('+self.semester+ ' -'+str(self.year)+')'
+        return self.course.course_id+'('+self.secId+')'+'('+self.semester+ ' -'+str(self.year)+')'
         
 class Takes(models.Model):
-    takes_id = models.ForeignKey(Student, models.CASCADE, db_column='student_id')
-    course = models.ForeignKey(Section, models.DO_NOTHING,db_column='course', related_name='takes_course')
-    sec = models.ForeignKey(Section, models.DO_NOTHING,db_column='sec_id',related_name='takes_sec')
-    semester = models.ForeignKey(Section, models.DO_NOTHING, db_column='semester',related_name='takes_semester')
-    year = models.ForeignKey(Section, models.DO_NOTHING, db_column='year',related_name='takes_year')
+    takes_id = models.ForeignKey(Student, models.CASCADE, db_column='studentId')
+    # course = models.ForeignKey(Section, models.DO_NOTHING,db_column='course', related_name='takes_course')
+    # sec = models.ForeignKey(Section, models.DO_NOTHING,db_column='sec_id',related_name='takes_sec')
+    # semester = models.ForeignKey(Section, models.DO_NOTHING, db_column='semester',related_name='takes_semester')
+    # year = models.ForeignKey(Section, models.DO_NOTHING, db_column='year',related_name='takes_year')
     grade = models.CharField(max_length=2, blank=True, null=True)
-    # section=models.OneToOneField(Section,models.CASCADE,)
-    
-    class Meta:
-        db_table='section'
-        # constraints=[
-        #      models.UniqueConstraint(fields=['',], name='unique section')
-        # ]
-        unique_together = ('course','semester', 'year')
-      
+    section=models.OneToOneField(Section,models.CASCADE)      
     def __str__(self):
         return self.takes_id.name+'('+self.section.course.course_id+' '+self.section.semester+'-'+str(self.section.year)+')'
   

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth.models import Group, auth
 from django.contrib import messages
 from .models import *
@@ -64,3 +64,16 @@ def offered_courses(request):
         return render(request, "Offered_courses.html", )
     else:
         return render(request, "Offered_courses.html")
+    
+@allowed_users(allowed_roles=['student'])
+def student_grade_report(request):
+    if request.method =='POST':
+        semester=request.POST["semester"]
+        year=request.POST["year"]
+        print(semester)
+        print(year)
+        student_id=request.user.student.studentId
+        takes=Takes.objects.filter(takes_id=student_id,section__semester=semester,section__year=year).order_by('section__course')
+        contex={'takes':takes}
+        return render(request, "GradeReport.html",contex)
+    return render(request,'GradeReport.html')

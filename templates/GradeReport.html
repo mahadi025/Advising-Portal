@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/GradeReport.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Offered_courses.css' %}">
+    <title>Grade Report</title>
+</head>
+<body>
+    <div id="header">
+        <br>
+     <h3 id="GradeReport-header">Grade Report</h3> 
+    </div>
+    <h2 id="heading">Grade Report for {{request.user.username}}</h2><br>
+    <form method="post" action="">
+    {% csrf_token %}
+    <label id="frstLabel">Choose Semester:
+        <select id="semester" name="semester">
+            <option value="Spring">Spring</option>
+            <option value="Summer">Summer</option>
+            <option value="Fall">Fall</option>   
+        </select>
+    </label>
+    <label id="scndLabel">Choose year:
+        <select id="year" name="year">
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+        </select>
+    </label>
+<button id="submit">Show</button>
+</form>
+<table id="Courses">
+     <tr>
+         <th>Course</th>
+         <th>Title</th>
+         <th>Credits</th>
+         <th>Grade</th>
+     </tr>
+     {% for take in takes %}
+        <tr>
+            <td>{{take.section.course.course_id}}</td>
+            <td>{{take.section.course.title}}</td>
+            <td>{{take.section.course.credits}}</td>
+            <td>{{take.grade}}</td>
+        </tr>
+        {% endfor %}
+</table>
+
+</body>
+</html>
