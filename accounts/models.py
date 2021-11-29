@@ -29,12 +29,13 @@ class Instructor(models.Model):
 class Student(models.Model):
     user= models.OneToOneField(User,null=True,on_delete=models.CASCADE)
     studentId = models.CharField(primary_key=True, max_length=13) 
-    name = models.CharField(max_length=20)
+    firstName = models.CharField(max_length=20)
+    lastName = models.CharField(max_length=20,null=True, blank=True)
     dept_name = models.ForeignKey(Department, models.CASCADE, db_column='dept_name', blank=True, null=True)
     tot_cred = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True)
 
     def __str__(self):
-        return self.name+'('+self.studentId+')'
+        return self.firstName+str(self.lastName)+'('+self.studentId+')'
 
 class Advisor(models.Model):
     s = models.OneToOneField('Student', models.CASCADE, db_column='s_ID', primary_key=True) 

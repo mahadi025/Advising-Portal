@@ -19,6 +19,7 @@ def registerPage(request):
             student_id=form.cleaned_data['username']
             group=Group.objects.get(name='student')
             user.groups.add(group)
+            Student.objects.create(user=user, studentId=student_id,firstName=user.first_name,lastName=user.last_name)
             messages.success(request,'Account was created for '+student_id)
             return redirect('login')
 
