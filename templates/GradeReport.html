@@ -14,6 +14,9 @@
         <br>
      <h3 id="GradeReport-header">Grade Report</h3> 
     </div>
+    <div>
+        <a href="{% url 'home' %}">back to home</a>
+    </div>
     <h2 id="heading">Grade Report for {{request.user.username}}</h2><br>
     <form method="post" action="">
     {% csrf_token %}

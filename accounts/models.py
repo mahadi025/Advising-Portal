@@ -8,6 +8,7 @@ class Classroom(models.Model):
 
     class Meta:
         unique_together = (('building', 'room_number'),)
+        
     def __str__(self):
         return self.building+' '+self.room_number
     
@@ -32,6 +33,8 @@ class Student(models.Model):
     firstName = models.CharField(max_length=20)
     lastName = models.CharField(max_length=20,null=True, blank=True)
     dept_name = models.ForeignKey(Department, models.CASCADE, db_column='dept_name', blank=True, null=True)
+    img = models.ImageField(null=True,upload_to='pics',default='DefaultProfilePic.jpg')
+    email=models.EmailField(null=True, blank=True,max_length=254)
     tot_cred = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True)
 
     def __str__(self):
@@ -98,9 +101,10 @@ class Takes(models.Model):
     # semester = models.ForeignKey(Section, models.DO_NOTHING, db_column='semester',related_name='takes_semester')
     # year = models.ForeignKey(Section, models.DO_NOTHING, db_column='year',related_name='takes_year')
     grade = models.CharField(max_length=2, blank=True, null=True)
-    section=models.OneToOneField(Section,models.CASCADE)      
+    section=models.OneToOneField(Section,models.CASCADE)
+                  
     def __str__(self):
-        return self.takes_id.name+'('+self.section.course.course_id+' '+self.section.semester+'-'+str(self.section.year)+')'
+        return self.takes_id.firstName+'('+self.section.course.course_id+' '+self.section.semester+'-'+str(self.section.year)+')'
   
 class Prereq(models.Model):
     course = models.ForeignKey(Course, models.CASCADE,related_name='CourseId')

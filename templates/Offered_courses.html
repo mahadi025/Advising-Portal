@@ -26,14 +26,12 @@
         <option value="Fall">Fall</option>
         <option value="Spring">Spring</option>
   </select>
-    {% comment %} <input type="select" id="semester" name="semester"placeholder="Semester"> {% endcomment %}
     <b id="str2">*</b>&nbsp;&nbsp;&nbsp;<label for="semester">Choose a Year</label>
     <select id="year" name="year">
         <option value=2019>2019</option>
         <option value=2020>2020</option>
         <option value=2021>2021</option>
     </select>
-    {% comment %} <input type="number" id="year" name="year"placeholder="Year"> {% endcomment %}
     <button id="submit" >Submit</button>
     </form>
     <table id="Courses">
@@ -46,15 +44,15 @@
              <th>Classroom</th>
              <th>Faculty</th>
          </tr>
-         {% for teach in teaches %}
+         {% for section in sections %}
             <tr>
-                <td>{{teach.section.course.course_id}}</td>
-                <td>{{teach.section.course.title}}</td>
-                <td>{{teach.section.sec_id}}</td>
-                <td>{{teach.section.course.credits}}</td>
-                <td>{{teach.section.time_slot.day}}({{teach.section.time_slot.start_hr}}:{{teach.section.time_slot.start_min}}-{{teach.section.time_slot.end_hr}}:{{teach.section.time_slot.end_min}})</td>
-                <td>{{teach.section.classroom.building}}-{{teach.section.classroom.room_number}}</td>
-                <td>{{teach.teaches_id.instructor_id}}</td>
+                <td>{{section.course.course_id}}</td>
+                <td>{{section.course.title}}</td>
+                <td>{{section.secId}}</td>
+                <td>{{section.course.credits}}</td>
+                <td>{{section.timeSlot.day}}({{section.timeSlot.start_hr}}:{{section.timeSlot.start_min}}-{{section.timeSlot.end_hr}}:{{section.timeSlot.end_min}})</td>
+                <td>{{section.classroom.building}}-{{section.classroom.room_number}}</td>
+                <td>{{section.instructor.instructorId}}</td>
             </tr>
             {% endfor %}
     </table>

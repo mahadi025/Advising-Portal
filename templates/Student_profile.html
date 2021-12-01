@@ -16,28 +16,22 @@
     <div id="header">
         <a id="profile-header" href="{% url 'home' %}">back to Home</a>
         </div>
-    {% if user.img.url is not '0' %}
     <div id="img-profile">
-        <img src="{{user.img.url}}">
+        <img src="{{request.user.student.img.url}}" alt="">
     </div>
-        {% else %}
-        <div id="img-profile">
-            <img src="" alt="">
-            </div> 
-    {% endif %}
     <div id="table">
     <table id="info">
         <tr>
             <th>First Name:</th>
-            <td>{{user.first_name}}</td>
+            <td>{{request.user.student.firstName}}</td>
         </tr>
         <tr>
             <th>Last Name:</th>
-            <td>{{user.last_name}}</td>
+            <td>{{request.user.student.lastName}}</td>
         </tr>
         <tr>
             <th>Student ID:</th>
-            <td>{{user.username}}</td>
+            <td>{{request.user.student.studentId}}</td>
         </tr>
         <tr>
             <th>Admitted Semester:</th>
@@ -61,9 +55,12 @@
         </tr>
         <tr>
             <th>E-mail:</th>
-            <td>{{user.email}}</td>
+            <td>{{request.user.student.email}}</td>
         </tr>
     </table>
+</div>
+<div >
+    <a id="table" href="{% url 'editProfile' %}">Edit Profile</a>
 </div>
 
 </body>

@@ -3,7 +3,7 @@ from django.contrib.auth.models import Group, auth
 from django.contrib import messages
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm
+from .forms import CreateUserForm,EditStudentProfile
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
@@ -16,11 +16,7 @@ def registerPage(request):
         form=CreateUserForm(request.POST)
         if form.is_valid():
             user=form.save()
-            student_id=form.cleaned_data['username']
-            group=Group.objects.get(name='student')
-            user.groups.add(group)
-            Student.objects.create(user=user, studentId=student_id,firstName=user.first_name,lastName=user.last_name)
-            messages.success(request,'Account was created for '+student_id)
+            username=form.cleaned_data['username']
             return redirect('login')
 
     contex={'form':form}
@@ -62,7 +58,9 @@ def offered_courses(request):
         year = request.POST["year"]
         # teaches = Teaches.objects.filter(section__semester=semester,section__year=year)
         # context = {"teaches": teaches,"semester":semester,"year":year}
-        return render(request, "Offered_courses.html", )
+        sections = Section.objects.filter(semester=semester,year=year)
+        contex={'sections':sections,'semester':semester,'year':year}
+        return render(request, "Offered_courses.html", contex)
     else:
         return render(request, "Offered_courses.html")
     
@@ -78,3 +76,18 @@ def student_grade_report(request):
         contex={'takes':takes}
         return render(request, "GradeReport.html",contex)
     return render(request,'GradeReport.html')
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['student','instructor','advisor'])
+def editProfile(request):
+    student=request.user.student
+    form=EditStudentProfile(instance=student)
+    
+    if request.method =='POST':
+        form=EditStudentProfile(request.POST,request.FILES,instance=student)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+        
+    contex={'form':form}
+    return render(request,'EditProfile.html',contex)
