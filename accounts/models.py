@@ -20,16 +20,39 @@ class Department(models.Model):
         return self.dept_name
         
 class Instructor(models.Model):
+    bloodGroupList={
+        ('AB+','AB+'),
+        ('AB-','AB-'),
+        ('A+','A+'),
+        ('A-','A-'),
+        ('B+','B+'),
+        ('O+','O+'),
+        ('O-','O-'),
+    }
     user= models.OneToOneField(User,null=True,on_delete=models.CASCADE)
     instructorId = models.CharField(primary_key=True, max_length=13)
     firstName = models.CharField(max_length=50)
     lastName = models.CharField(max_length=20,null=True, blank=True)
     dept_name = models.ForeignKey(Department, models.CASCADE, db_column='i_dept_name', blank=True, null=True)
-
+    img = models.ImageField(null=True,upload_to='pics',default='DefaultProfilePic.jpg')
+    email=models.EmailField(null=True, blank=True,max_length=254)
+    bloodGroup= models.CharField(max_length=3,null=True, blank=True,choices=bloodGroupList)
+    presentAddress = models.CharField(max_length=60,null=True,blank=True)
+    phoneNumber = models.CharField(max_length=14,null=True,blank=True)
+    
     def __str__(self):
         return self.firstName+'('+self.instructorId+')'
 
 class Student(models.Model):
+    bloodGroupList={
+        ('AB+','AB+'),
+        ('AB-','AB-'),
+        ('A+','A+'),
+        ('A-','A-'),
+        ('B+','B+'),
+        ('O+','O+'),
+        ('O-','O-'),
+    }
     user= models.OneToOneField(User,null=True,on_delete=models.CASCADE)
     studentId = models.CharField(primary_key=True, max_length=13) 
     firstName = models.CharField(max_length=20)
@@ -38,6 +61,9 @@ class Student(models.Model):
     img = models.ImageField(null=True,upload_to='pics',default='DefaultProfilePic.jpg')
     email=models.EmailField(null=True, blank=True,max_length=254)
     tot_cred = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True)
+    bloodGroup= models.CharField(max_length=3,null=True, blank=True,choices=bloodGroupList)
+    presentAddress = models.CharField(max_length=60,null=True,blank=True)
+    phoneNumber = models.CharField(max_length=14,null=True,blank=True)
 
     def __str__(self):
         return self.firstName+str(self.lastName)+'('+self.studentId+')'

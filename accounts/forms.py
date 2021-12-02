@@ -9,11 +9,15 @@ class CreateUserForm(UserCreationForm):
         model = User
         fields =['username', 'first_name', 'last_name','email','password1','password2']
 
-
-
 class EditStudentProfile(ModelForm):
     class Meta:
         model = Student
-        fields = ['img','firstName','lastName','email']
-        # exclude = ['user']
+        fields = ['img', 'phoneNumber', 'presentAddress','bloodGroup']
+
+class EditInstructorProfile(ModelForm):
+    class Meta:
+        model = Instructor
+        fields = ['img', 'phoneNumber', 'presentAddress','bloodGroup','dept_name']
+
+
         

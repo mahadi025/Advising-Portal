@@ -34,24 +34,20 @@
             <td>{{request.user.student.studentId}}</td>
         </tr>
         <tr>
-            <th>Admitted Semester:</th>
-            <td>{{user.admitted_semester}}</td>
-        </tr>
-        <tr>
             <th>Advisor:</th>
             <td>{{user.advisor}}</td>
         </tr>
         <tr>
             <th>Blood Group:</th>
-            <td>{{user.blood_group}}</td>
+            <td>{{request.user.student.bloodGroup}}</td>
         </tr>
         <tr>
             <th>Present Adress:</th>
-            <td>{{user.present_address}}</td>
+            <td>{{request.user.student.presentAddress}}</td>
         </tr>
         <tr>
             <th>Phone Number:</th>
-            <td>{{user.phone_number}}</td>
+            <td>{{request.user.student.phoneNumber}}</td>
         </tr>
         <tr>
             <th>E-mail:</th>
@@ -60,7 +56,7 @@
     </table>
 </div>
 <div>
-    <a id="table" href="{% url 'editProfile' %}">Edit Profile</a>
+    <a id="table" href="{% url 'editStudentProfile' %}">Edit Profile</a>
 </div>
 
 </body>

@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Student_profile.css' %}">
+    <title>Profile</title>
+</head>
+<body>
+    <div id="header">
+        <br>
+     <h3 id="profile-header">PROFILE</h3> 
+    </div>
+    <div>
+        <a href="{% url 'home' %}">back to home</a>
+    </div>
+    <div id="img-profile">
+        <img src="{{request.user.instructor.img.url}}" alt="">
+    </div>
+    <div id="table">
+    <table id="info">
+        <tr>
+            <th>First Name:</th>
+            <td>{{request.user.instructor.firstName}}</td>
+        </tr>
+        <tr>
+            <th>Last Name:</th>
+            <td>{{request.user.instructor.lastName}}</td>
+        </tr>
+        <tr>
+            <th>Instructor Initial:</th>
+            <td>{{request.user.instructor.instructorId}}</td>
+        </tr>
+        <tr>
+            <th>Department:</th>
+            <td>{{request.user.instructor.dept_name}}</td>
+        </tr>
+        <tr>
+            <th>Blood Group:</th>
+            <td>{{request.user.instructor.bloodGroup}}</td>
+        </tr>
+        {% if request.user.instructor.presentAddress is not None %}
+        <tr>
+            <th>Present Adress:</th>
+            <td>{{request.user.instructor.presentAddress}}</td>
+        </tr>
+        {% endif %}
+        {% if request.user.instructor.phoneNumber is not None %}
+        <tr>
+            <th>Phone Number:</th>
+            <td>{{request.user.instructor.phoneNumber}}</td>
+        </tr>
+        {% endif %}
+        <tr>
+            <th>E-mail:</th>
+            <td>{{request.user.instructor.email}}</td>
+        </tr>
+    </table>
+</div>
+<div>
+    <a id="table" href="{% url 'editInstructorProfile' %}">Edit Profile</a>
+</div>
+
+</body>
+</html>
