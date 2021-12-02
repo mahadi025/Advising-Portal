@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
-    
     <title>Advising Portal</title>
 </head>
 <body>
@@ -14,7 +13,11 @@
         <Button id="sidebar-button" onclick="slide()"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAAVElEQVRoge3WwQ2AUAhEQb6xcK0ci5AEQmYq2L29CAAanMx8ukdUOJmZ3SMqXN0DqjgyzR0Rb/cIAKCIjJ9mTTQ6Mo2MB4BNZPw0a6LRkWlkPAB/fId1GBOc3m2dAAAAAElFTkSuQmCC" height="30px" width="30px"></Button>
         <ul id="header-option">
             {% if request.user.is_authenticated %}
-                <li>Hello {{user.first_name}} {{user.last_name}}</li>
+                {% if not request.user.is_superuser %}
+                <li>Hello {{request.user.student.firstName}} {{request.user.student.lastName}}({{request.user.student.studentId}})</li>
+                {% else %}
+                    <li>Hello Admin {{request.user.first_Name}}</li>
+                {% endif %}
                 <li><a href="accounts/logout/">Log Out</a></li>
             {% endif %}
         </ul>

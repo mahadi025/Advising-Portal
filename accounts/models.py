@@ -20,12 +20,14 @@ class Department(models.Model):
         return self.dept_name
         
 class Instructor(models.Model):
+    user= models.OneToOneField(User,null=True,on_delete=models.CASCADE)
     instructorId = models.CharField(primary_key=True, max_length=13)
-    name = models.CharField(max_length=50)
+    firstName = models.CharField(max_length=50)
+    lastName = models.CharField(max_length=20,null=True, blank=True)
     dept_name = models.ForeignKey(Department, models.CASCADE, db_column='i_dept_name', blank=True, null=True)
 
     def __str__(self):
-        return self.name+'('+self.dept_name.dept_name+')'
+        return self.firstName+'('+self.instructorId+')'
 
 class Student(models.Model):
     user= models.OneToOneField(User,null=True,on_delete=models.CASCADE)
@@ -104,7 +106,7 @@ class Takes(models.Model):
     section=models.OneToOneField(Section,models.CASCADE)
                   
     def __str__(self):
-        return self.takes_id.firstName+'('+self.section.course.course_id+' '+self.section.semester+'-'+str(self.section.year)+')'
+        return self.takes_id.firstName+'('+self.sectioncourse.course_id+' '+self.section.semester+'-'+str(self.section.year)+')'
   
 class Prereq(models.Model):
     course = models.ForeignKey(Course, models.CASCADE,related_name='CourseId')

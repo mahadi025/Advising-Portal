@@ -13,9 +13,9 @@
         <br>
      <h3 id="profile-header">PROFILE</h3> 
     </div>
-    <div id="header">
-        <a id="profile-header" href="{% url 'home' %}">back to Home</a>
-        </div>
+    <div>
+        <a href="{% url 'home' %}">back to home</a>
+    </div>
     <div id="img-profile">
         <img src="{{request.user.student.img.url}}" alt="">
     </div>
@@ -59,7 +59,7 @@
         </tr>
     </table>
 </div>
-<div >
+<div>
     <a id="table" href="{% url 'editProfile' %}">Edit Profile</a>
 </div>
 

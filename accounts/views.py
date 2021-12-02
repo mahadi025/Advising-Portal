@@ -22,6 +22,16 @@ def registerPage(request):
     contex={'form':form}
     return render(request,'register.html',contex)
 
+def instructorRegisterPage(request):
+    form=CreateUserForm()
+    if request.method == 'POST':
+        form=CreateUserForm(request.POST)
+        if form.is_valid():
+            user=form.save()
+            return redirect('login')
+    contex={'form':form}
+    return render(request,'InstructorRegister.html',contex)
+
 @unauthenticated_user
 def loginPage(request):
     if request.method == 'POST':
@@ -46,19 +56,16 @@ def profile(request):
     return render(request, "Student_profile.html")
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['student'])
+@allowed_users(allowed_roles=['student','admin'])
 def cgpa(request):
     return render(request, "cgpa calculator.html")
 
 @login_required(login_url='login')
 def offered_courses(request):
-    # sections=Section.objects.filter(semester='Summer',year=2019)
     if request.method == "POST":
         semester = request.POST["semester"]
         year = request.POST["year"]
-        # teaches = Teaches.objects.filter(section__semester=semester,section__year=year)
-        # context = {"teaches": teaches,"semester":semester,"year":year}
-        sections = Section.objects.filter(semester=semester,year=year)
+        sections = Section.objects.filter(semester=semester,year=year).order_by('course')
         contex={'sections':sections,'semester':semester,'year':year}
         return render(request, "Offered_courses.html", contex)
     else:
@@ -78,7 +85,7 @@ def student_grade_report(request):
     return render(request,'GradeReport.html')
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['student','instructor','advisor'])
+@allowed_users(allowed_roles=['student','instructor','advisor',])
 def editProfile(request):
     student=request.user.student
     form=EditStudentProfile(instance=student)
