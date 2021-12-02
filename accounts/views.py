@@ -91,8 +91,6 @@ def student_grade_report(request):
     if request.method =='POST':
         semester=request.POST["semester"]
         year=request.POST["year"]
-        print(semester)
-        print(year)
         student_id=request.user.student.studentId
         takes=Takes.objects.filter(takes_id=student_id,section__semester=semester,section__year=year).order_by('section__course')
         contex={'takes':takes}
