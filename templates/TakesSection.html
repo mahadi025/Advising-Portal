@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/Offered_courses.css' %}">
-    <title>Offered Courses</title>
+    <title>Advised Courses</title>
 </head>
 <body>
     <div id="header">
@@ -36,21 +36,21 @@
     </form>
     <table id="Courses">
          <tr>
+             <th>Student Id</th>
              <th>Course</th>
              <th>Section</th>
-             <th>Credits</th>
-             <th>Time Slot</th>
-             <th>Classroom</th>
-             <th>Faculty</th>
+             <th>Grade</th>
          </tr>
-         {% for section in sections %}
+         {% for take in takes %}
             <tr>
-                <td>{{section.course.course_id}}</td>
-                <td>{{section.secId}}</td>
-                <td>{{section.course.credits}}</td>
-                <td>{{section.timeSlot.day}}({{section.timeSlot.start_hr}}:{{section.timeSlot.start_min}}-{{section.timeSlot.end_hr}}:{{section.timeSlot.end_min}})</td>
-                <td>{{section.classroom.building}}-{{section.classroom.room_number}}</td>
-                <td>{{section.instructor.instructorId}}</td>
+                <td>{{take.takes_id.studentId}}</td>
+                <td>{{take.section.course.course_id}}</td>
+                <td>{{take.section.secId}}</td>
+                {% if take.grade is not None %}
+                    <td>{{take.grade}}</td>
+                {% else %}
+                    <td></td>
+                {% endif %}
             </tr>
             {% endfor %}
     </table>

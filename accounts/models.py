@@ -73,7 +73,7 @@ class Advisor(models.Model):
     i = models.ForeignKey('Instructor', models.CASCADE, db_column='i_ID', blank=True, null=True)
 
     def __str__(self):
-        return self.i.name
+        return self.i.instructorId
 
 
 class Course(models.Model):
@@ -123,16 +123,26 @@ class Section(models.Model):
         return self.course.course_id+'('+self.secId+')'+'('+self.semester+ ' -'+str(self.year)+')'
         
 class Takes(models.Model):
+    grade_list={
+        ('A+','A+'),
+        ('A','A'),
+        ('A-','A-'),
+        ('B+','B+'),
+        ('B','B'),
+        ('B-','B-'),
+        ('C+','C+'),
+        ('C','C'),
+        ('C-','C-'),
+        ('D+','D+'),
+        ('D','D'),
+        ('F','F'),
+    }
     takes_id = models.ForeignKey(Student, models.CASCADE, db_column='studentId')
-    # course = models.ForeignKey(Section, models.DO_NOTHING,db_column='course', related_name='takes_course')
-    # sec = models.ForeignKey(Section, models.DO_NOTHING,db_column='sec_id',related_name='takes_sec')
-    # semester = models.ForeignKey(Section, models.DO_NOTHING, db_column='semester',related_name='takes_semester')
-    # year = models.ForeignKey(Section, models.DO_NOTHING, db_column='year',related_name='takes_year')
-    grade = models.CharField(max_length=2, blank=True, null=True)
+    grade = models.CharField(max_length=2, blank=True, null=True,choices=grade_list)
     section=models.OneToOneField(Section,models.CASCADE)
                   
     def __str__(self):
-        return self.takes_id.firstName+'('+self.sectioncourse.course_id+' '+self.section.semester+'-'+str(self.section.year)+')'
+        return self.takes_id.firstName+'('+self.section.course_id+' '+self.section.semester+'-'+str(self.section.year)+')'
   
 class Prereq(models.Model):
     course = models.ForeignKey(Course, models.CASCADE,related_name='CourseId')

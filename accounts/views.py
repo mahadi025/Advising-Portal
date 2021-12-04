@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user,allowed_users
-
+from .termGPA import calculate
 @unauthenticated_user
 def studentRegisterPage(request):    
     form=CreateUserForm()    
@@ -64,13 +64,15 @@ def profile(request):
     if group=='instructor':
         return render(request,"InstructorProfile.html")
     else:
-        return render(request, "StudentProfile.html")
+        advisor=Advisor.objects.get(s__studentId=request.user.username)
+        contex={'advisor':advisor}
+        return render(request, "StudentProfile.html",contex)
 
 def instructorprofile(request):
     return render(request,'InstructorProfile.html')
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['student','admin'])
+@allowed_users(allowed_roles=['student','instructor'])
 def cgpa(request):
     return render(request, "cgpa calculator.html")
 
@@ -93,7 +95,9 @@ def student_grade_report(request):
         year=request.POST["year"]
         student_id=request.user.student.studentId
         takes=Takes.objects.filter(takes_id=student_id,section__semester=semester,section__year=year).order_by('section__course')
-        contex={'takes':takes}
+
+        termCGPA=calculate(username=student_id,year=year,semester=semester)
+        contex={'takes':takes,'termCGPA':termCGPA}
         return render(request, "GradeReport.html",contex)
     return render(request,'GradeReport.html')
 
@@ -111,6 +115,7 @@ def editStudentProfile(request):
     contex={'form':form}
     return render(request,'EditStudentProfile.html',contex)
 
+
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['instructor'])
 def editInstructorProfile(request):
@@ -124,7 +129,8 @@ def editInstructorProfile(request):
     contex={'form':form}
     return render(request,'EditInstructorProfile.html',contex)
 
-
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['instructor'])
 def section(request):
     if request.method == 'POST':
         semester = request.POST["semester"]
@@ -133,4 +139,17 @@ def section(request):
         contex={'sections':sections}
         return render(request,'Section.html',contex)
     return render(request,'Section.html')
-        
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['instructor'])
+def takes(request):
+    if request.method =='POST':
+        group=request.user.groups.all()[0].name
+        if group=='instructor':
+            semester = request.POST["semester"]
+            year = request.POST["year"]
+            user=request.user
+            takes=Takes.objects.filter(section__instructor=user.username,section__year=year,section__semester=semester)
+            contex={'takes':takes}
+            return render(request, 'TakesSection.html',contex)
+    return render(request,'TakesSection.html')    

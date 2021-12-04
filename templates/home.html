@@ -35,6 +35,7 @@
             <li><a href="{% url 'profile' %}">Profile</a></li>
             {% if request.user.instructor %}
             <li><a href="{% url 'section' %}">Section</a></li>
+            <li><a href="{% url 'takesSection' %}">Student List</a></li>
             {% endif %}
        </ul>
     </div>
