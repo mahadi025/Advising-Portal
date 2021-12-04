@@ -137,12 +137,15 @@ class Takes(models.Model):
         ('D','D'),
         ('F','F'),
     }
-    takes_id = models.ForeignKey(Student, models.CASCADE, db_column='studentId')
+    takes_id = models.ForeignKey(Student, models.CASCADE)
     grade = models.CharField(max_length=2, blank=True, null=True,choices=grade_list)
-    section=models.OneToOneField(Section,models.CASCADE)
+    section=models.ForeignKey(Section,models.CASCADE)
+    
+    class Meta:
+        unique_together =(('takes_id','section'),)
                   
     def __str__(self):
-        return self.takes_id.firstName+'('+self.section.course_id+' '+self.section.semester+'-'+str(self.section.year)+')'
+        return self.takes_id.studentId+'('+self.section.course_id+' '+self.section.semester+'-'+str(self.section.year)+')'
   
 class Prereq(models.Model):
     course = models.ForeignKey(Course, models.CASCADE,related_name='CourseId')

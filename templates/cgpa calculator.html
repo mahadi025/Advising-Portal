@@ -11,8 +11,10 @@
 </head>
 <body>
     <h2 id="header">CGPA CALCULATOR</h2>
+    <div>
+        <a href="{% url 'home' %}">back to home</a>
+    </div>
     <div id="container">
-
         <table id="tbl">
             
             <tr>
@@ -33,9 +35,6 @@
         <button id="AddSubject" onclick="add('tbody')">Add Subject</button>
         <button id="Count" onclick="count('tbody')">Count</button>
         <p id="CGPAtxt">CGPA: <p id="CGPAcount"></p></p><br>
-    </div>
-    <div>
-        <a href="{% url 'home' %}">Home</a>
     </div>
     <script src="{% static 'js/cgpa calculator.js' %}"></script>
 </body>

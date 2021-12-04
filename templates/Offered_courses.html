@@ -34,6 +34,7 @@
     </select>
     <button id="submit" >Submit</button>
     </form>
+    {% if request.method == "POST" %}
     <table id="Courses">
          <tr>
              <th>Course</th>
@@ -54,5 +55,6 @@
             </tr>
             {% endfor %}
     </table>
+    {% endif %}
 </body>
 </html>
