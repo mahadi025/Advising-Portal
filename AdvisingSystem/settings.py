@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
-    'portal'
+    'portal.apps.PortalConfig',
 ]
 
 MIDDLEWARE = [
@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'AdvisingSystem',
         'USER': 'root',
-        'PASSWORD': '159753',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'OPTIONS': {
          "init_command": "SET foreign_key_checks = 0;"

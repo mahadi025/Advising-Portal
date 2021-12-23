@@ -23,9 +23,9 @@
     
        <ul id="menu">
             <li> <a id="close" onclick="inside()">&times;</li><a></li>
-            <li><a href=#>Advising</a></li>
             {% if request.user.student %}
                 <li><a href="{% url 'grade_report' %}">Grade Report</a></li>
+                <li><a href="{% url 'takes' %}">Advising</a></li>
             {% endif %}
             <li><a href="{% url 'Offered_courses' %}">Offered Courses</a></li>
             {% if request.user.is_superuser %}
@@ -34,8 +34,9 @@
             <li><a href="{% url 'cgpa' %}">CGPA Calculator</a></li>
             <li><a href="{% url 'profile' %}">Profile</a></li>
             {% if request.user.instructor %}
-            <li><a href="{% url 'section' %}">Sections</a></li>
-            <li><a href="{% url 'takesSection' %}">Student List for {{request.user.username}}</a></li>
+                <li><a href="{% url 'section' %}">Sections</a></li>
+                <li><a href="{% url 'takesSection' %}">Student List for {{request.user.username}}</a></li>
+                <li><a href="{% url 'takes' %}">Advising</a></li>
             {% endif %}
        </ul>
     </div>

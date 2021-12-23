@@ -21,6 +21,9 @@ def calculate(username,semester,year):
     for take in takes:
         gp+=float(Grade.get((take.grade)))*float((take.section.course.credits))
         totalCredits+=float((take.section.course.credits))
-    result=gp/totalCredits
-    result = "{:.2f}".format(result)
+    if totalCredits!=0:
+        result=gp/totalCredits
+        result = "{:.2f}".format(result)
+    else:
+        result=0.0
     return result

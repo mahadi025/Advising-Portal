@@ -66,7 +66,7 @@ class Student(models.Model):
     phoneNumber = models.CharField(max_length=14,null=True,blank=True)
 
     def __str__(self):
-        return self.firstName+str(self.lastName)+'('+self.studentId+')'
+        return self.firstName+' '+str(self.lastName)+'('+self.studentId+')'
 
 class Advisor(models.Model):
     s = models.OneToOneField('Student', models.CASCADE, db_column='s_ID', primary_key=True) 

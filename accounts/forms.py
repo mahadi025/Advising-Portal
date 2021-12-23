@@ -3,6 +3,7 @@ from .models import *
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,login,logout
 
 class CreateUserForm(UserCreationForm):
     class Meta:
@@ -18,6 +19,9 @@ class EditInstructorProfile(ModelForm):
     class Meta:
         model = Instructor
         fields = ['img', 'phoneNumber', 'presentAddress','bloodGroup','dept_name']
-
-
+        
+class AdvisingForm(ModelForm):
+    class Meta:
+        model=Takes
+        fields=['takes_id','section',]        
         

@@ -1,14 +1,15 @@
-from django.shortcuts import render, redirect,get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group, auth
 from django.contrib import messages
 from .models import *
-from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm,EditStudentProfile,EditInstructorProfile
+from .forms import CreateUserForm,EditStudentProfile,EditInstructorProfile,AdvisingForm
+from django.forms import inlineformset_factory
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user,allowed_users
 from .termGPA import calculate
+
 @unauthenticated_user
 def studentRegisterPage(request):    
     form=CreateUserForm()    
@@ -17,9 +18,8 @@ def studentRegisterPage(request):
         if form.is_valid():
             user=form.save()
             username=form.cleaned_data['username']
-            group=Group.objects.get(name='student')
-            user.groups.add(group)
-            Student.objects.create(user=user, studentId=username,firstName=user.first_name,lastName=user.last_name,email=user.email)
+            # Student.objects.create(user=user, studentId=username,firstName=user.first_name,lastName=user.last_name,email=user.email)
+            messages.success(request, 'Account was created for ' + username)
             return redirect('login')
 
     contex={'form':form}
@@ -31,10 +31,10 @@ def instructorRegisterPage(request):
         form=CreateUserForm(request.POST)
         if form.is_valid():
             user=form.save()
-            username=form.cleaned_data['username']
+            # username=form.cleaned_data['username']
             group=Group.objects.get(name='instructor')
             user.groups.add(group)
-            Instructor.objects.create(user=user, instructorId=username,firstName=user.first_name,lastName=user.last_name,email=user.email)
+            # Instructor.objects.create(user=user, instructorId=username,firstName=user.first_name,lastName=user.last_name,email=user.email)
             return redirect('login')
     contex={'form':form}
     return render(request,'InstructorRegister.html',contex)
@@ -64,7 +64,7 @@ def profile(request):
     if group=='instructor':
         return render(request,"InstructorProfile.html")
     else:
-        advisor=Advisor.objects.get(s__studentId=request.user.username)
+        advisor=Advisor.objects.filter(s__studentId=request.user.username).first()
         contex={'advisor':advisor}
         return render(request, "StudentProfile.html",contex)
 
@@ -153,3 +153,19 @@ def takes(request):
             contex={'takes':takes}
             return render(request, 'TakesSection.html',contex)
     return render(request,'TakesSection.html')    
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['student'])
+def advising(request):
+    semester='Fall'
+    TakesFormSet=inlineformset_factory(Student,Takes,fields=['section'],section__semester=semester)
+    # form=AdvisingForm(initial={'takes_id':request.user.username})
+    student=request.user.student
+    formset=TakesFormSet(instance=student)
+    if request.method =='POST':
+        form=AdvisingForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    contex={'formset':formset}
+    return render(request,'Takes.html',contex)
