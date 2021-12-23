@@ -39,7 +39,6 @@ class Instructor(models.Model):
     bloodGroup= models.CharField(max_length=3,null=True, blank=True,choices=bloodGroupList)
     presentAddress = models.CharField(max_length=60,null=True,blank=True)
     phoneNumber = models.CharField(max_length=14,null=True,blank=True)
-    
     def __str__(self):
         return self.firstName+'('+self.instructorId+')'
 
@@ -64,7 +63,7 @@ class Student(models.Model):
     bloodGroup= models.CharField(max_length=3,null=True, blank=True,choices=bloodGroupList)
     presentAddress = models.CharField(max_length=60,null=True,blank=True)
     phoneNumber = models.CharField(max_length=14,null=True,blank=True)
-
+    completedCourses=models.CharField(max_length=8,null=True,blank=True)
     def __str__(self):
         return self.firstName+' '+str(self.lastName)+'('+self.studentId+')'
 

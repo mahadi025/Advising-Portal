@@ -1,6 +1,6 @@
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
-from .models import Student,Instructor
+from .models import *
 from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
 from django.dispatch import receiver
@@ -20,3 +20,9 @@ def create_profile(sender,instance,created,**kwargs):
             instance.save()
         else:
             Instructor.objects.create(user=instance, instructorId=instance.username,firstName=instance.first_name,lastName=instance.last_name,email=instance.email)
+            
+@receiver(post_save,sender=Takes)
+def add_course(sender, instance,created,**kwargs):
+    if created:
+        Student.objects.update(studentId=instance.takes_id.studentId,completedCourses=instance.section.course.course_id)
+        instance.save()

@@ -113,7 +113,7 @@ insert into accounts_section (id,secId,semester,year,classroom_id,course_id,inst
 insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id) values(11,1,'Spring',2020,10,'CSE103','MIE',3);
 insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id) values(12,1,'Fall',2020,10,'CSE103','MIE',3);
 insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id) values(13,2,'Summer',2020,1,'CSE103','MMSU',1);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id) values(14,2,'Spring',20120,1,'CSE103','MMSU',1);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id) values(14,2,'Spring',2020,1,'CSE103','MMSU',1);
 insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id) values(15,2,'Fall',2020,1,'CSE103','MMSU',1);
 insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id) values(16,3,'Summer',2020,1,'CSE103','OVI',2);
 insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id) values(17,3,'Spring',2020,1,'CSE103','OVI',2);
@@ -130,4 +130,4 @@ insert into accounts_section (id,secId,semester,year,classroom_id,course_id,inst
 insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id) values(27,3,'Fall',2021,1,'CSE103','OVI',2);
 
 --CSE 106
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id) values(1,3,'Summer',2019,10,'CSE106','MIE',);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id) values(1,3,'Summer',2019,10,'CSE106','MIE',5);

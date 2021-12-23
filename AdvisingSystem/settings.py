@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'AdvisingSystem',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': '159753',
         'HOST': 'localhost',
         'OPTIONS': {
          "init_command": "SET foreign_key_checks = 0;"
