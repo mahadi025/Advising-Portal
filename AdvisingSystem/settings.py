@@ -81,6 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'AdvisingSystem',
         'USER': 'root',
+        # 'USER':'postgres',
         'PASSWORD': '159753',
         'HOST': 'localhost',
         'OPTIONS': {

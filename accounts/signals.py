@@ -24,5 +24,9 @@ def create_profile(sender,instance,created,**kwargs):
 @receiver(post_save,sender=Takes)
 def add_course(sender, instance,created,**kwargs):
     if created:
-        Student.objects.update(studentId=instance.takes_id.studentId,completedCourses=instance.section.course.course_id)
+        student=Student.objects.get(studentId=instance.takes_id.studentId)
+        print(student)
+        student.completedCourses.append(instance.section.course.course_id)
+        print(student.completedCourses)
+        student.save()
         instance.save()

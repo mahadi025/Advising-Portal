@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.contrib.postgres.fields import ArrayField
+from django.db.models import IntegerField, Model
+from django_mysql.models import ListCharField
 class Classroom(models.Model):
     building = models.CharField(max_length=15)
     room_number = models.CharField(max_length=7)
@@ -63,7 +65,7 @@ class Student(models.Model):
     bloodGroup= models.CharField(max_length=3,null=True, blank=True,choices=bloodGroupList)
     presentAddress = models.CharField(max_length=60,null=True,blank=True)
     phoneNumber = models.CharField(max_length=14,null=True,blank=True)
-    completedCourses=models.CharField(max_length=8,null=True,blank=True)
+    completedCourses=ListCharField(base_field=models.CharField(max_length=8),size=10,max_length=(10*9))
     def __str__(self):
         return self.firstName+' '+str(self.lastName)+'('+self.studentId+')'
 
