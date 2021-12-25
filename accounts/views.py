@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group, auth
 from django.contrib import messages
 from .models import *
-from .forms import CreateUserForm,EditStudentProfile,EditInstructorProfile,AdvisingForm
+from .forms import *
 from django.forms import inlineformset_factory
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
@@ -154,18 +154,18 @@ def takes(request):
             return render(request, 'TakesSection.html',contex)
     return render(request,'TakesSection.html')    
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['student'])
-def advising(request):
-    semester='Fall'
-    TakesFormSet=inlineformset_factory(Student,Takes,fields=['section'],section__semester=semester)
-    # form=AdvisingForm(initial={'takes_id':request.user.username})
-    student=request.user.student
-    formset=TakesFormSet(instance=student)
-    if request.method =='POST':
-        form=AdvisingForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    contex={'formset':formset}
-    return render(request,'Takes.html',contex)
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['student'])
+# def advising(request):
+#     semester='Fall'
+#     TakesFormSet=inlineformset_factory(Student,Takes,fields=['section'],section__semester=semester)
+#     # form=AdvisingForm(initial={'takes_id':request.user.username})
+#     student=request.user.student
+#     formset=TakesFormSet(instance=student)
+#     if request.method =='POST':
+#         form=AdvisingForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('home')
+#     contex={'formset':formset}
+#     return render(request,'Takes.html',contex)

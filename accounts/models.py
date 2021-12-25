@@ -3,10 +3,10 @@ from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
 from django.db.models import IntegerField, Model
 from django_mysql.models import ListCharField
+from decimal import Decimal
 class Classroom(models.Model):
     building = models.CharField(max_length=15)
     room_number = models.CharField(max_length=7)
-    capacity = models.DecimalField(max_digits=4, decimal_places=0, blank=True, null=True)
 
     class Meta:
         unique_together = (('building', 'room_number'),)
@@ -61,11 +61,11 @@ class Student(models.Model):
     dept_name = models.ForeignKey(Department, models.CASCADE, db_column='dept_name', blank=True, null=True)
     img = models.ImageField(null=True,upload_to='pics',default='DefaultProfilePic.jpg')
     email=models.EmailField(null=True, blank=True,max_length=254)
-    tot_cred = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True)
+    tot_cred = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True,default=0.0,editable=True)
     bloodGroup= models.CharField(max_length=3,null=True, blank=True,choices=bloodGroupList)
     presentAddress = models.CharField(max_length=60,null=True,blank=True)
     phoneNumber = models.CharField(max_length=14,null=True,blank=True)
-    completedCourses=ListCharField(base_field=models.CharField(max_length=8),size=10,max_length=(10*9))
+    completedCourses=ListCharField(base_field=models.CharField(max_length=8),size=10,max_length=(10*9),null=True,blank=True,default="")
     def __str__(self):
         return self.firstName+' '+str(self.lastName)+'('+self.studentId+')'
 
@@ -112,6 +112,7 @@ class Section(models.Model):
     year = models.DecimalField(max_digits=4, decimal_places=0)
     classroom = models.ForeignKey(Classroom, models.CASCADE)
     timeSlot = models.ForeignKey(TimeSlot,models.CASCADE)
+    capacity= models.DecimalField(max_digits=2,null=True,blank=True,decimal_places=0)
     instructor = models.ForeignKey(Instructor, models.DO_NOTHING)
     class Meta:
         unique_together = (('course', 'secId', 'semester', 'year','timeSlot'),
@@ -149,9 +150,9 @@ class Takes(models.Model):
         return self.takes_id.studentId+'('+self.section.course_id+' '+self.section.semester+'-'+str(self.section.year)+')'
   
 class Prereq(models.Model):
-    course = models.ForeignKey(Course, models.CASCADE,related_name='CourseId')
-    prereq = models.ForeignKey(Course, models.CASCADE,related_name='PreReqId')
+    course = models.OneToOneField(Course, models.CASCADE)
+    prereqCourse =models.CharField(max_length=8,null=True, blank=True)
     def __str__(self):
-        return self.course_id +' <-- '+self.prereq.course_id
+        return self.course_id +' <-- '+self.prereqCourse
     class Meta:
-        unique_together = (('course', 'prereq'),)
+        unique_together = (('course', 'prereqCourse'),)

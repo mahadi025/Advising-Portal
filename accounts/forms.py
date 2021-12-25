@@ -20,8 +20,8 @@ class EditInstructorProfile(ModelForm):
         model = Instructor
         fields = ['img', 'phoneNumber', 'presentAddress','bloodGroup','dept_name']
         
-class AdvisingForm(ModelForm):
-    class Meta:
-        model=Takes
-        fields=['takes_id','section',]        
+# class AdvisingForm(ModelForm):
+#     class Meta:
+#         model=Takes
+#         fields=['takes_id','section',]        
         

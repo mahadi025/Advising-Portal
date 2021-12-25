@@ -44,9 +44,11 @@
          </tr>
          {% for take in takes %}
             <tr>
-                <td>{{take.takes_id.studentId}}</td>
-                <td>{{take.section.course.course_id}}</td>
-                <td>{{take.section.secId}}</td>
+                {% if take.section.course.credits  %}
+                    <td>{{take.takes_id.studentId}}</td>
+                    <td>{{take.section.course.course_id}}</td>
+                    <td>{{take.section.secId}}</td>
+                {% endif %}
                 {% if take.grade is not None %}
                     <td>{{take.grade}}</td>
                 {% else %}

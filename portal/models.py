@@ -4,12 +4,11 @@ from accounts .models import Student,Course,Section
 
 class AdvisingStudent(models.Model):
     student = models.OneToOneField(Student,on_delete=models.CASCADE)
-    completedCourses=models.ForeignKey(Course,models.CASCADE,null=True,blank=True)
-    advisingDay = models.CharField(max_length=2,null=True,blank=True)
-    startHour = models.CharField(max_length=2,null=True,blank=True)
-    startMinute = models.CharField(max_length=2,null=True,blank=True)
-    endHour = models.CharField(max_length=2,null=True,blank=True)
-    endMinute = models.CharField(max_length=2,null=True,blank=True)
+    # advisingDay = models.CharField(max_length=2,null=True,blank=True)
+    # startHour = models.CharField(max_length=2,null=True,blank=True)
+    # startMinute = models.CharField(max_length=2,null=True,blank=True)
+    # endHour = models.CharField(max_length=2,null=True,blank=True)
+    # endMinute = models.CharField(max_length=2,null=True,blank=True)
     
     def __str__(self):
         return self.student.firstName+' '+str(self.student.lastName)+'('+self.student.studentId+')'

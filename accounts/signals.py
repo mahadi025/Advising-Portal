@@ -24,9 +24,45 @@ def create_profile(sender,instance,created,**kwargs):
 @receiver(post_save,sender=Takes)
 def add_course(sender, instance,created,**kwargs):
     if created:
-        student=Student.objects.get(studentId=instance.takes_id.studentId)
-        print(student)
-        student.completedCourses.append(instance.section.course.course_id)
-        print(student.completedCourses)
-        student.save()
-        instance.save()
+        if not instance.grade=='F':
+            student=Student.objects.get(studentId=instance.takes_id.studentId)
+            course=instance.section.course.course_id
+            print("Course: "+course)
+            if Prereq.objects.filter(course=course):
+                prereq=Prereq.objects.get(course=course)
+                prereqCourse=prereq.prereqCourse
+                print("Prereq Course: "+prereqCourse)
+                if prereqCourse in student.completedCourses:
+                    print(prereqCourse+" completed")
+                    if not instance.section.course.course_id in student.completedCourses:
+                        student.completedCourses.append(instance.section.course.course_id)
+                        if student.tot_cred==0.0:
+                            student.tot_cred=instance.section.course.credits
+                        else:
+                            student.tot_cred+=instance.section.course.credits
+                        instance.section.capacity-=1
+                        instance.section.save()
+                        student.save()
+                        instance.save()
+                else:
+                    instance.delete()
+                    print(prereqCourse+" not completed")
+            else:
+                if not instance.section.course.course_id in student.completedCourses:
+                        student.completedCourses.append(instance.section.course.course_id)
+                        if student.tot_cred==0.0:
+                            student.tot_cred=instance.section.course.credits
+                        else:
+                            student.tot_cred+=instance.section.course.credits
+                        instance.section.capacity-=1
+                        instance.section.save()
+                        student.save()
+                        instance.save()
+        if instance.section.course.credits>3.0:
+            title=instance.section.course.title
+            labCourse=Course.objects.get(course_id=str(instance.section.course.course_id)+'L',title='LAB',credits=0.0)
+            section=Section.objects.get(course=labCourse,secId=instance.section.secId,year=instance.section.year,semester=instance.section.semester,
+                                        instructor=instance.section.instructor)
+            Takes.objects.create(takes_id=instance.takes_id,section=section)
+            section.save()
+            instance.save()

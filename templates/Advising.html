@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advising</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form}}
+    </form>
+    {% for course in offeredCourses%}
+        <li>{{course.course_id}} {{course.secId}} {{course.timeSlot}} {{course.timeSlot.start_hr}}:{{course.timeSlot.start_min}}-{{course.timeSlot.end_hr}}:{{course.timeSlot.end_min}} {{course.capacity}}</li>
+    {% endfor %}
+</body>
+</html>
