@@ -86,7 +86,7 @@ DATABASES = {
         'HOST': 'localhost',
         'OPTIONS': {
          "init_command": "SET foreign_key_checks = 0;"
-    },
+        },
     }
 }
 
