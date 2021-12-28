@@ -59,10 +59,12 @@
      </tr>
      {% for take in takes %}
         <tr>
-            <td>{{take.section.course.course_id}}</td>
-            <td>{{take.section.course.title}}</td>
-            <td>{{take.section.course.credits}}</td>
-            <td>{{take.grade}}</td>
+            {% if take.section.course.credits != 0 and take.section.course.grade %}}
+                <td>{{take.section.course.course_id}}</td>
+                <td>{{take.section.course.title}}</td>
+                <td>{{take.section.course.credits}}</td>
+                <td>{{take.grade}}</td>
+            {% endif %}
         </tr>
         {% endfor %}
 </table>

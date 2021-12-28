@@ -14,5 +14,24 @@
     {% for course in offeredCourses%}
         <li>{{course.course_id}} {{course.secId}} {{course.timeSlot}} {{course.timeSlot.start_hr}}:{{course.timeSlot.start_min}}-{{course.timeSlot.end_hr}}:{{course.timeSlot.end_min}} {{course.capacity}}</li>
     {% endfor %}
+    <table>
+        <tr>
+            <th>Course Id</th>
+            <th>Section</th>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Capicity</th>
+        </tr>
+        {% for course in offeredCourses%}
+            <tr>
+                <td><a href="{% url 'course' course.id%}">{{course.course.course_id}}</a></td>
+                <td>{{course.secId}}</td>
+                <td>{{course.timeSlot.day}}</td>
+                <td>{{course.timeSlot.start_hr}}:{{course.timeSlot.start_min}}-{{course.timeSlot.end_hr}}:{{course.timeSlot.end_min}}</td>
+                <td>{{course.capacity}}</td>
+                <td><a href="{% url 'advisingSlip' %}">Add</a></td>
+            </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>

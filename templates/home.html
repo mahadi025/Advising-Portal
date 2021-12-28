@@ -25,7 +25,7 @@
             <li> <a id="close" onclick="inside()">&times;</li><a></li>
             {% if request.user.student %}
                 <li><a href="{% url 'grade_report' %}">Grade Report</a></li>
-                <li><a href="{% url 'advisingSlip' %}">Advising</a></li>
+                <li><a href="{% url 'advising' %}">Advising</a></li>
             {% endif %}
             <li><a href="{% url 'Offered_courses' %}">Offered Courses</a></li>
             {% if request.user.is_superuser %}
@@ -36,7 +36,7 @@
             {% if request.user.instructor %}
                 <li><a href="{% url 'section' %}">Sections</a></li>
                 <li><a href="{% url 'takesSection' %}">Student List for {{request.user.username}}</a></li>
-                <li><a href="{% url 'advisingSlip' %}">Advising</a></li>
+                <li><a href="{% url 'advising' %}">Advising</a></li>
             {% endif %}
        </ul>
     </div>

@@ -8,3 +8,4 @@ class createAdvisingSlip(ModelForm):
     class Meta:
         model=AdvisingSlip
         fields='__all__'
+        exclude=('advisingStudent',)

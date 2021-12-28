@@ -15,7 +15,7 @@ class AdvisingStudent(models.Model):
         return self.student.firstName+' '+str(self.student.lastName)+'('+self.student.studentId+')'
     
 class AdvisingSlip(models.Model):
-    advisingStudent=models.OneToOneField(AdvisingStudent,on_delete=models.CASCADE)
+    advisingStudent=models.ForeignKey(AdvisingStudent,on_delete=models.CASCADE)
     section=models.OneToOneField(Section, on_delete=models.CASCADE)
     
     def __str__(self):

@@ -5,6 +5,8 @@ insert into accounts_department (dept_name,building) values ('ENG','Main Buildin
 insert into accounts_department (dept_name,building) values ('ECO','AB1');
 insert into accounts_department (dept_name,building) values ('SOC','Main Building');
 
+
+--Classroom
 insert into accounts_classroom (id,building,room_number) values (1,'AB1',303);
 insert into accounts_classroom (id,building,room_number) values (2,'AB1',304);
 insert into accounts_classroom (id,building,room_number) values (3,'AB1',305);
@@ -17,8 +19,20 @@ insert into accounts_classroom (id,building,room_number) values (9,'AB2',305);
 insert into accounts_classroom (id,building,room_number) values (10,'AB2',403);
 insert into accounts_classroom (id,building,room_number) values (11,'AB2',404);
 insert into accounts_classroom (id,building,room_number) values (12,'AB2',405);
+insert into accounts_classroom (id,building,room_number) values (13,'Main Building',505);
+insert into accounts_classroom (id,building,room_number) values (14,'Main Building',506);
+insert into accounts_classroom (id,building,room_number) values (15,'Main Building',507);
+insert into accounts_classroom (id,building,room_number) values (16,'Main Building',508);
+--LAB
+insert into accounts_classroom (id,building,room_number) values (17,'Main Building',611);
+insert into accounts_classroom (id,building,room_number) values (18,'Main Building',612);
+insert into accounts_classroom (id,building,room_number) values (19,'Main Building',613);
+insert into accounts_classroom (id,building,room_number) values (20,'Main Building',614);
+insert into accounts_classroom (id,building,room_number) values (21,'Main Building',615);
+insert into accounts_classroom (id,building,room_number) values (22,'Main Building',616);
 
 --Courses
+--CSE
 insert into accounts_course (course_id,title,credits,dept_name) values('CSE103','Structured Programming',4.5,'CSE');
 insert into accounts_course (course_id,title,credits,dept_name) values('CSE103L','LAB',0.0,'CSE');
 insert into accounts_course (course_id,title,credits,dept_name) values('CSE106','Discrete Mathematics',3.0,'CSE');
@@ -47,7 +61,8 @@ insert into accounts_course (course_id,title,credits,dept_name) values('CSE405L'
 insert into accounts_course (course_id,title,credits,dept_name) values('CSE407','Green Computing',3.0,'CSE');
 insert into accounts_course (course_id,title,credits,dept_name) values('CSE487','Cyber Security, Ethics and Law',3.0,'CSE');
 insert into accounts_course (course_id,title,credits,dept_name) values('CSE495','IT Project Management and Entrepreneurship',3.0,'CSE');
-
+--ENG
+insert into accounts_course (course_id,title,credits,dept_name) values('ENG101','Basic English',3.0,'ENG');
 
 
 --TimeSlot
@@ -84,68 +99,72 @@ insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_
 insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(23,'SL2H-3','S','12','20','01','20');
 insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(24,'SL2H-4','S','01','30','03','30');
 insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(25,'SL2H-5','S','03','40','05','40');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(26,'SL2H-6','S','04','50','06','50');
 --M
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(26,'ML2H-1','M','08','00','10','00');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(27,'ML2H-2','M','10','10','12','10');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(28,'ML2H-3','M','12','20','01','20');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(29,'ML2H-4','M','01','30','03','30');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(30,'ML2H-5','M','03','40','05','40');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(27,'ML2H-1','M','08','00','10','00');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(28,'ML2H-2','M','10','10','12','10');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(29,'ML2H-3','M','12','20','01','20');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(30,'ML2H-4','M','01','30','03','30');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(31,'ML2H-5','M','03','40','05','40');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(32,'ML2H-6','M','04','50','06','50');
 --T
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(31,'TL2H-1','T','08','00','10','00');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(32,'TL2H-2','T','10','10','12','10');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(33,'TL2H-3','T','12','20','01','20');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(34,'TL2H-4','T','01','30','03','30');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(35,'TL2H-5','T','03','40','05','40');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(33,'TL2H-1','T','08','00','10','00');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(34,'TL2H-2','T','10','10','12','10');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(35,'TL2H-3','T','12','20','01','20');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(36,'TL2H-4','T','01','30','03','30');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(37,'TL2H-5','T','03','40','05','40');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(38,'TL2H-6','T','04','50','06','50');
 --W
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(36,'WL2H-1','W','08','00','10','00');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(37,'WL2H-2','W','10','10','12','10');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(38,'WL2H-3','W','12','20','01','20');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(39,'WL2H-4','W','01','30','03','30');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(40,'WL2H-5','W','03','40','05','40');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(39,'WL2H-1','W','08','00','10','00');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(40,'WL2H-2','W','10','10','12','10');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(41,'WL2H-3','W','12','20','01','20');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(42,'WL2H-4','W','01','30','03','30');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(43,'WL2H-5','W','03','40','05','40');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(44,'WL2H-6','W','04','50','06','50');
 --R
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(41,'RL2H-1','R','08','00','10','00');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(42,'RL2H-2','R','10','10','12','10');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(43,'RL2H-3','R','12','20','01','20');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(44,'RL2H-4','R','01','30','03','30');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(45,'RL2H-5','R','03','40','05','40');
-
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(45,'RL2H-1','R','08','00','10','00');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(46,'RL2H-2','R','10','10','12','10');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(47,'RL2H-3','R','12','20','01','20');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(48,'RL2H-4','R','01','30','03','30');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(49,'RL2H-5','R','03','40','05','40');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(50,'RL2H-6','R','04','50','06','50');
 
 --LAB
 --3H
 --S
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(46,'SL3H-1','S','08','00','11','00');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(47,'SL3H-2','S','10','10','01','10');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(48,'SL3H-3','S','11','50','02','50');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(49,'SL3H-4','S','03','10','06','10');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(50,'SL3H-5','S','04','50','07','50');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(51,'SL3H-1','S','08','00','11','00');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(52,'SL3H-2','S','10','10','01','10');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(53,'SL3H-3','S','11','50','02','50');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(54,'SL3H-4','S','03','10','06','10');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(55,'SL3H-5','S','04','50','07','50');
 --M
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(51,'ML3H-1','M','08','00','11','00');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(52,'ML3H-2','M','10','10','01','10');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(53,'ML3H-3','M','11','50','02','50');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(54,'ML3H-4','M','03','10','06','10');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(55,'ML3H-5','M','04','50','07','50');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(56,'ML3H-1','M','08','00','11','00');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(57,'ML3H-2','M','10','10','01','10');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(58,'ML3H-3','M','11','50','02','50');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(59,'ML3H-4','M','03','10','06','10');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(60,'ML3H-5','M','04','50','07','50');
 --T
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(56,'TL3H-1','T','08','00','11','00');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(57,'TL3H-2','T','10','10','01','10');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(58,'TL3H-3','T','11','50','02','50');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(59,'TL3H-4','T','03','10','06','10');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(60,'TL3H-5','T','04','50','07','50');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(61,'TL3H-1','T','08','00','11','00');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(62,'TL3H-2','T','10','10','01','10');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(63,'TL3H-3','T','11','50','02','50');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(64,'TL3H-4','T','03','10','06','10');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(65,'TL3H-5','T','04','50','07','50');
 --W
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(61,'WL3H-1','W','08','00','11','00');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(62,'WL3H-2','W','10','10','01','10');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(63,'WL3H-3','W','11','50','02','50');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(64,'WL3H-4','W','03','10','06','10');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(65,'WL3H-5','W','04','50','07','50');
---T
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(65,'RL3H-1','R','08','00','11','00');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(66,'RL3H-2','R','10','10','01','10');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(67,'RL3H-3','R','11','50','02','50');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(68,'RL3H-4','R','03','10','06','10');
-insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(69,'RL3H-5','R','04','50','07','50');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(66,'WL3H-1','W','08','00','11','00');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(67,'WL3H-2','W','10','10','01','10');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(68,'WL3H-3','W','11','50','02','50');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(69,'WL3H-4','W','03','10','06','10');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(70,'WL3H-5','W','04','50','07','50');
+--R
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(71,'RL3H-1','R','08','00','11','00');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(72,'RL3H-2','R','10','10','01','10');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(73,'RL3H-3','R','11','50','02','50');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(74,'RL3H-4','R','03','10','06','10');
+insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(75,'RL3H-5','R','04','50','07','50');
 --section
 --CSE 103
 insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(1,1,'Summer',2019,10,'CSE103','MIE',3,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(2,1,'Summer',2019,10,'CSE103L','MIE',3,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(2,1,'Summer',2019,48,'CSE103L','MIE',3,35);
 insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(2,1,'Spring',2019,10,'CSE103','MIE',3,35);
 insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(3,1,'Fall',2019,10,'CSE103','MIE',3,35);
 insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(4,2,'Summer',2019,1,'CSE103','MMSU',1,35);
@@ -196,3 +215,9 @@ insert into accounts_section (id,secId,semester,year,classroom_id,course_id,inst
 insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(43,2,'Summer',2021,7,'CSE106','DSU',5,35);
 insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(44,2,'Spring',2021,7,'CSE106','DSU',5,35);
 insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(45,2,'Fall',2021,7,'CSE106','DSU',5,35);
+
+
+
+
+--by Anika
+
