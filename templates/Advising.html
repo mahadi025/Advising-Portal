@@ -15,18 +15,22 @@
     </div>
     <div id="header">
         <br>
-     <h3 id="Advising-header">Advising</h3> 
+     <h3 id="Advising-header">Advising</h3>
+     <a id="back" href="{% url 'home' %}" >back to home</a>
+     <p id="error">Error</p> 
     </div>
     <div id="display">
+        
         <div id="block1">
+            
             <table id="advising-courses">
                     <tr>
                         <th>Courses</th>
                         <th>Section</th>
                         <th>Credits</th>
                         <th>Time-Slot</th>
-                        <th>Max.Seat</th>
-                        <th>Enrolled</th>
+                        <th>Seat Remaining</th>
+                        {% comment %} <th>Enrolled</th> {% endcomment %}
                         <th>Pre-requisit</th>
                     </tr>
                     {% for course in offeredCourses%}
@@ -53,6 +57,7 @@
                     <th>Section</th>
                     <th>Credits</th>
                     <th>Time-Slot</th>
+                    <th>Action</th>
                 </tr>
                 {% for advisedSection in advisedSections %}
                 <tr>
@@ -62,6 +67,7 @@
                     <td>{{advisedSection.section.timeSlot.start_hr}}:{{advisedSection.section.timeSlot.start_min}}
                         -{{advisedSection.section.timeSlot.end_hr}}:{{advisedSection.section.timeSlot.end_min}}
                     </td>
+                    <td>Delete</td>
                 </tr>
                 {% endfor %}
             </table>

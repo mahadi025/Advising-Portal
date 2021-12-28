@@ -32,7 +32,9 @@
         <option value=2020>2020</option>
         <option value=2021>2021</option>
     </select>
+    
     <button id="submit" >Submit</button>
+    
     </form>
     {% if request.method == "POST" %}
     <table id="Courses">
@@ -44,11 +46,16 @@
              <th>Classroom</th>
              <th>Faculty</th>
          </tr>
+         
          {% for section in sections %}
             <tr>
                 <td>{{section.course.course_id}}</td>
                 <td>{{section.secId}}</td>
-                <td>{{section.course.credits}}</td>
+                {% if section.course.credits == 0.0 %}
+                <td></td>
+                {% else %}
+                    <td>{{section.course.credits}}</td>
+                {% endif %}
                 <td>{{section.timeSlot.day}}({{section.timeSlot.start_hr}}:{{section.timeSlot.start_min}}-{{section.timeSlot.end_hr}}:{{section.timeSlot.end_min}})</td>
                 <td>{{section.classroom.building}}-{{section.classroom.room_number}}</td>
                 <td>{{section.instructor.instructorId}}</td>

@@ -154,18 +154,15 @@ def takes(request):
             return render(request, 'TakesSection.html',contex)
     return render(request,'TakesSection.html')    
 
-# @login_required(login_url='login')
-# @allowed_users(allowed_roles=['student'])
-# def advising(request):
-#     semester='Fall'
-#     TakesFormSet=inlineformset_factory(Student,Takes,fields=['section'],section__semester=semester)
-#     # form=AdvisingForm(initial={'takes_id':request.user.username})
-#     student=request.user.student
-#     formset=TakesFormSet(instance=student)
-#     if request.method =='POST':
-#         form=AdvisingForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('home')
-#     contex={'formset':formset}
-#     return render(request,'Takes.html',contex)
+def schedule(request):
+    if request.method == "POST":
+        semester = request.POST["semester"]
+        year = 2019
+        section = Section.objects.filter(semester=semester,year=year)
+        takes=Takes.objects.filter(takes_id=request.user.student,section__semester=semester,section__year=year).order_by('section__instructor__instructorId','section__course')
+        contex={'takes':takes}
+        print(semester)
+        return render(request, "schedule.html", contex)
+    else:
+
+        return render(request, "schedule.html")
