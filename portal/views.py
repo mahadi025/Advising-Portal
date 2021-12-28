@@ -10,7 +10,12 @@ def advising(request):
         if form.is_valid:
             form.save()
         return redirect('advising')
-    contex={'form':form,'offeredCourses':offeredCourses}
+    if AdvisingStudent.objects.filter(student=request.user.student):
+        advisingStudent=AdvisingStudent.objects.get(student=request.user.student)
+    else:
+        advisingStudent=AdvisingStudent.objects.create(student=request.user.student)
+    advisedSections=AdvisingSlip.objects.filter(advisingStudent=advisingStudent)
+    contex={'form':form,'offeredCourses':offeredCourses,'advisedSections':advisedSections}
     return render(request,'advising.html',contex)
 
 def create_advisingSlip(request):

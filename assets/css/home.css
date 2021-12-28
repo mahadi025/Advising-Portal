@@ -1,6 +1,7 @@
 body{
     margin:0%;
     padding: 0%;
+    animation: transitionIn 1s;
 }
 
 
@@ -26,9 +27,11 @@ body{
     text-decoration-line: none;
     font-weight: bolder;
     
+    
 }
 #header-option  a:hover{
-    color:#12BEDA;
+    color: rgb(0, 255, 170);
+    transition: 0.3s ease-in;
 }
 #sidebar-button{
    background-color:#C70039 ;
@@ -37,21 +40,17 @@ body{
    border-radius: 10px;
    border-color:#C70039;
    box-shadow: #C70039;
+   
 
 
 }
 #sidebar{
-    background-color:#F3101E ;
-    width: 20%;
-    height: 100%;
-    top: 11%;
-    left: 0;
+    background:linear-gradient(90deg,#DA003F,#FF2323);
+    width: 19.55%;
+    height: 1000px;
     position: fixed;
     z-index: 1;
-    transition: 0.5s;
-    
-    
-
+    transition: 0.7s;
 }
 #menu{
     list-style-type: none;
@@ -73,14 +72,20 @@ body{
      color: white;
      
 }
-#menu :hover{
-    color: #12BEDA;
+#menu li a:hover{
+    
+    color: rgb(0, 255, 170);
+    transition: 0.3s ease-in;
+
+    
 }
 #msg{
     color: grey;
-    display: inline-block;
-    margin-left: 35%;
+    margin-left: 30%;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    animation: animate 4s infinite;
+    overflow: hidden;
+    white-space: nowrap;
     
 }
 #close{
@@ -91,7 +96,188 @@ body{
     padding: 0px;
     cursor: pointer;
 }
+::-webkit-scrollbar{
+    width: 15px;
+}
+::-webkit-scrollbar-track{
+    border-radius: 5px;
+    box-shadow: inset 0 0 10px rgb(0,0,0,0.25);
+}
+::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    background-color: #0e11b4;
+}
+::-webkit-scrollbar-thumb:hover{
+    background-color: #2326ff;
+}
 
+@keyframes transitionIn {
+    from{
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes animate{
+    0%{
 
+        width: 0;
+    }
+    100%{
+        width: 70%;
+    }
+}
 
-
+@media screen and (min-width:1280px) and (max-width:1281px){
+    
+    #sidebar{
+        width: 23.45%;
+    }
+}
+@media screen and (min-width:1024px) and (max-width:1025px){
+    #msg{
+        font-size: 28px;
+        margin-left: 30%;
+    }
+    #header-option li{
+        font-size: 14px;
+        margin-left: 15%;
+    }
+    #sidebar li{
+        font-size: 14px
+    }
+    #sidebar{
+        width: 29.3%;
+    }
+}
+@media screen and (min-width:768px) and (max-width:769px){
+    #msg{
+        font-size: 25px;
+        margin-left: 23%;
+    }
+    #header-option li{
+        font-size: 14px;
+        margin-left: 15%;
+    }
+    #sidebar li{
+        font-size: 14px
+    }
+    #sidebar{
+        width: 39%;
+    }
+}
+@media screen and (min-width:540px) and (max-width:541px){
+    #msg{
+        font-size: 18px;
+        margin-left: 23%;
+    }
+    #header-option li{
+        font-size: 13px;
+        margin-left: 15%;
+    }
+    #sidebar li{
+        font-size: 13px
+    }
+    #sidebar{
+        width: 55.5%;
+    }
+}
+@media screen and (min-width:414px) and (max-width:415px){
+    #msg{
+        font-size: 15px;
+        margin-left: 19%;
+    }
+    #header-option li{
+        font-size: 12px;
+        margin-left: 15%;
+    }
+    #sidebar li{
+        font-size: 12px
+    }
+    #sidebar{
+        width: 73%;
+    }
+}
+@media screen and (min-width:411px) and (max-width:412px){
+    #msg{
+        font-size: 15px;
+        margin-left: 17%;
+    }
+    #header-option li{
+        font-size: 12px;
+        margin-left: 15%;
+    }
+    #sidebar li{
+        font-size: 12px
+    }
+    #sidebar{
+        width: 73%;
+    }
+}
+@media screen and (min-width:375px)and (max-width:376px){
+    #msg{
+        font-size: 15px;
+        margin-left: 18%;
+    }
+    #header-option li{
+        font-size: 12px;
+        margin-left: 15%;
+    }
+    #sidebar li{
+        font-size: 12px
+    }
+    #sidebar{
+        width: 80%;
+    }
+}
+@media screen and (min-width:360px) and (max-width:361px){
+    #msg{
+        font-size: 15px;
+        margin-left: 19%;
+    }
+    #header-option li{
+        font-size: 12px;
+        margin-left: 15%;
+    }
+    #sidebar li{
+        font-size: 12px
+    }
+    #sidebar{
+        width: 83%;
+    }
+}
+@media screen and (min-width:320px) and (max-width:321px){
+    #msg{
+        font-size: 15px;
+        margin-left: 12%;
+    }
+    #header-option li{
+        font-size: 12px;
+        margin-left: 15%;
+    }
+    #sidebar li{
+        font-size: 12px
+    }
+    #sidebar{
+        width: 94%;
+    }
+}
+@media screen and (min-width:280px) and (max-width:281px){
+    #msg{
+        font-size: 11px;
+        margin-left: 18%;
+    }
+    #header-option li{
+        font-size:9px;
+        margin-left: 15%;
+    }
+    #sidebar li{
+        font-size: 9px
+    }
+    #sidebar{
+        width: 107%;
+    }
+}

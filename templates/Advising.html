@@ -1,37 +1,79 @@
+{%load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/Advising.css' %}" />
+    <link rel="icon" type="image/png" href="{% static 'images/graduationcap.png' %}">
     <title>Advising</title>
 </head>
-<body>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{form}}
-    </form>
-    {% for course in offeredCourses%}
-        <li>{{course.course_id}} {{course.secId}} {{course.timeSlot}} {{course.timeSlot.start_hr}}:{{course.timeSlot.start_min}}-{{course.timeSlot.end_hr}}:{{course.timeSlot.end_min}} {{course.capacity}}</li>
-    {% endfor %}
-    <table>
-        <tr>
-            <th>Course Id</th>
-            <th>Section</th>
-            <th>Day</th>
-            <th>Time</th>
-            <th>Capicity</th>
-        </tr>
-        {% for course in offeredCourses%}
-            <tr>
-                <td><a href="{% url 'course' course.id%}">{{course.course.course_id}}</a></td>
-                <td>{{course.secId}}</td>
-                <td>{{course.timeSlot.day}}</td>
-                <td>{{course.timeSlot.start_hr}}:{{course.timeSlot.start_min}}-{{course.timeSlot.end_hr}}:{{course.timeSlot.end_min}}</td>
-                <td>{{course.capacity}}</td>
-                <td><a href="{% url 'advisingSlip' %}">Add</a></td>
-            </tr>
-        {% endfor %}
-    </table>
+<body onload="setTimeout(preloader,3000)">
+    <div id="loading">
+
+    </div>
+    <div id="header">
+        <br>
+     <h3 id="Advising-header">Advising</h3> 
+    </div>
+    <div id="display">
+        <div id="block1">
+            <table id="advising-courses">
+                    <tr>
+                        <th>Courses</th>
+                        <th>Section</th>
+                        <th>Credits</th>
+                        <th>Time-Slot</th>
+                        <th>Max.Seat</th>
+                        <th>Enrolled</th>
+                        <th>Pre-requisit</th>
+                    </tr>
+                    {% for course in offeredCourses%}
+                    <tr>
+                        <td><a href="{% url 'course' course.id%}">{{course.course.course_id}}</a></td>
+                        <td>{{course.secId}}</td>
+                        <td>{{course.timeSlot.day}}</td>
+                        <td>{{course.timeSlot.start_hr}}:{{course.timeSlot.start_min}}-{{course.timeSlot.end_hr}}:{{course.timeSlot.end_min}}</td>
+                        <td>{{course.capacity}}</td>
+                    </tr>
+                   
+                    {% endfor %}
+                   
+            </table>
+        </div>
+        <div id="border">
+            
+        </div>
+        <div id="block2">
+            <h3 id="selected-courses-header">Advised Course</h3>
+            <table id="selected-courses">
+                <tr>
+                    <th>Course</th>
+                    <th>Section</th>
+                    <th>Credits</th>
+                    <th>Time-Slot</th>
+                </tr>
+                {% for advisedSection in advisedSections %}
+                <tr>
+                    <td>{{advisedSection.section.course.course_id}}</td>
+                    <td>{{advisedSection.section.secId}}</td>
+                    <td>{{advisedSection.section.course.credits}}</td>
+                    <td>{{advisedSection.section.timeSlot.start_hr}}:{{advisedSection.section.timeSlot.start_min}}
+                        -{{advisedSection.section.timeSlot.end_hr}}:{{advisedSection.section.timeSlot.end_min}}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+    <script>
+        function preloader(){
+            var preloader=document.getElementById("loading");
+            preloader.style.display="none";
+        }
+        
+    </script>
 </body>
 </html>
