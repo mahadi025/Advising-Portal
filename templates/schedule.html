@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'CSS/schedule.css' %}" />
-    <link rel="icon" type="image/png" href="{% static 'graduationcap.png' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/schedule.css' %}" >
+    <link rel="icon" type="image/png" href="{% static 'images/graduationcap.png' %}">
     <title>Schedule</title>
 </head>
 <body>
@@ -14,6 +14,7 @@
         <br>
      <h3 id="Schedule-header">Class Schedule</h3> 
     </div>
+    <a href="{% url 'home' %}">back to home</a>
     <br><br><br>
     <form method="POST">
     {% csrf_token %}
@@ -24,37 +25,46 @@
             <option value="Fall">Fall</option>   
         </select>
     </label>
+    <label id="ScndLabel">Choose year:
+        <select id="year" name="year">
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>   
+        </select>
+    </label>
     <button id="submit">Show</button>
     </form>
-    {% if request.method == "POST" %}
-        <table id="Courses">
-            <tr>
-                <th>Course</th>
-                <th>Section</th>
-                <th>Credits</th>
-                <th>Timing</th>
-                <th>Faculty Initial</th>
-                <th>Faculty Name</th>
-                <th>Faculty Email</th>
-                
-            </tr>
-            {% for take in takes %}
-                <tr>
-                    <td>{{take.section.course}}</td>
-                    <td>{{take.section.secId}}</td>
-                    {% if take.section.course.credits != 0.0%}
-                        <td>{{take.section.course.credits}}</td>
-                    {% else %}
-                        <td></td>
-                    {% endif %}
-                    <td>{{take.section.timeSlot.start_hr}}:{{take.section.timeSlot.start_min}}-{{take.section.timeSlot.end_hr}}:{{take.section.timeSlot.end_min}}</td>
-                    <td>{{take.section.instructor.instructorId}}</td>
-                    <td>{{take.section.instructor.firstName}} {{take.section.instructor.lastName}}</td>
-                    <td>{{take.section.instructor.email}}</td>
-                </tr>
-            {% endfor %}
-        {% endif %}
-           
+    <table id="Courses">
+        <tr>
+            <th>Course</th>
+            <th>Title</th>
+            <th>Credits</th>
+            <th>Section</th>
+            <th>Timing</th>
+            <th>Room No</th>
+            <th>Faculty Initial</th>
+            <th>Faculty Name</th>
+            <th>Faculty Email</th>
+            
+        </tr>
+        {% for take in takes %}
+        <tr>
+            <td>{{take.section.course.course_id}}</td>
+            <td>{{take.section.course.title}}</td>
+            {% if take.section.course.credits != 0.0%}
+                <td>{{take.section.course.credits}}</td>
+            {% else %}
+                <td></td>
+            {% endif %}
+            <td>{{take.section.secId}}</td>
+            <td>{{take.section.timeSlot.start_hr}}:{{take.section.timeSlot.start_min}}-{{take.section.timeSlot.end_hr}}:{{take.section.timeSlot.end_min}}</td>
+            <td>{{take.section.classroom}}</td>
+            <td>{{take.section.instructor.instructorId}}</td>
+            <td>{{take.section.instructor.firstName}} {{take.section.instructor.lastName}}</td>
+            <td>{{take.section.instructor.email}}</td>
+        </tr>
+        {% endfor %}   
    </table>
 
     

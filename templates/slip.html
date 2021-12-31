@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/slip.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'images/graduationcap.png' %}">
+    <title>slip</title>
+</head>
+<body>
+    <div id="sec0">
+     <div id="slip">
+         <div id="slip2">
+         <div id="sec1">
+             <img src="{% static 'images/ewu logo.png' %}" id="logo">
+             <h3 id="ewu">East West University</h3>
+        </div>
+        <h4 id="addrs">A/2, Jahurul Islam Avenue, Jahurul Islam City, Aftabnagar, Dhaka-1212</h4>
+        <h4 id="phone">Tel: 09666775577  (Hunting), Ext-224,364,365</h4>
+         
+         <div id="sec2">
+         <p id="date"><b>Date:</b><p id="d"></p></p>
+         <h3 id="heading"><u>Advising Slip</u></h3>
+         </div>
+         <br><br><br>
+         <div id="sec3">
+             <div id="name"><b>Name: {{request.user.student.firstName}} {{request.user.student.lastName}}</b></div>
+             <div id="ID"><b>Id: {{request.user.student.studentId}}</b></div>
+         </div>
+         <table id="Advised-course">
+            <tr>
+                <th>Course</th>
+                <th>Section</th>
+                <th>Credits</th>
+                <th>Time-Slot</th>
+            </tr>
+            {% for advisedSection in advisedSections %}
+            <tr>
+                <td>{{advisedSection.section.course.course_id}}</td>
+                <td>{{advisedSection.section.secId}}</td>
+                {% if advisedSection.section.course.credits == 0.0 %}
+                    <td></td>
+                {% else %}
+                <td>{{advisedSection.section.course.credits}}</td>
+                {% endif %}
+                <td>{{advisedSection.section.timeSlot.day}}{{advisedSection.section.timeSlot.start_hr}}:{{advisedSection.section.timeSlot.start_min}}
+                    -{{advisedSection.section.timeSlot.end_hr}}:{{advisedSection.section.timeSlot.end_min}}
+                </td>
+            </tr>
+            {% endfor %}    
+         </table>
+         <br><br>
+         <p id="sign">Student Signature:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ </p>
+        </div>
+     </div>
+     <div id="button-section">
+      <p onclick="generatePDF()"><img src="{% static 'images/downloadicon.png' %}" id="download" ><p>
+        <p onclick="printing()"><img src="{% static 'images/print.png' %}" id="print" ><p>
+     </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <script>
+
+             var d=document.getElementById("d");
+             var ndate=new Date()
+             d.innerHTML=ndate.getDate()+"/"+ndate.getMonth()+"/"+ndate.getFullYear()+",<br>"+ndate.getHours()+":"+ndate.getMinutes();
+             function generatePDF(){
+                 const element=document.getElementById("slip2");
+                 var opt = {
+                        margin :      [0.5,0.3,1.09,0],
+                        filename:     '{{request.user.student.studentId}}(Advising Slip)',
+                        image:        { type: 'jpeg', quality: .95 },
+                        html2canvas:  { scale: 2, },
+                        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' },
+                        };
+                           html2pdf().from(element).set(opt).save();
+             }
+             function printing(){
+                 var bkup=document.body.innerHTML;
+                 var content=document.getElementById("slip2").innerHTML;
+                 document.body.innerHTML=content;
+                window.print();
+                document.body.innerHTML=bkup
+             }
+     </script>
+
+</body>
+</html>

@@ -82,7 +82,7 @@ def offered_courses(request):
     if request.method == "POST":
         semester = request.POST["semester"]
         year = request.POST["year"]
-        sections = Section.objects.filter(semester=semester,year=year).order_by('course')
+        sections = Section.objects.filter(semester=semester,year=year).order_by('id')
         contex={'sections':sections,'semester':semester,'year':year}
         return render(request, "Offered_courses.html", contex)
     else:
@@ -157,8 +157,7 @@ def takes(request):
 def schedule(request):
     if request.method == "POST":
         semester = request.POST["semester"]
-        year = 2019
-        section = Section.objects.filter(semester=semester,year=year)
+        year = request.POST["year"]
         takes=Takes.objects.filter(takes_id=request.user.student,section__semester=semester,section__year=year).order_by('section__instructor__instructorId','section__course')
         contex={'takes':takes}
         print(semester)

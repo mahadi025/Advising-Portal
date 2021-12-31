@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'CSS/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
     <link rel="icon" type="image/png" href="{% static 'images/graduationcap.png' %}">
     <title>Advising Portal</title>
 </head>
@@ -27,7 +27,7 @@
             {% if request.user.student %}
                 <li><a href="{% url 'grade_report' %}">Grade Report</a></li>
                 <li><a href="{% url 'advising' %}">Advising</a></li>
-                <li><a href="{% url 'schedule' %}">Schedule</a></li>
+                <li><a href="{% url 'schedule' %}">Class Schedule</a></li>
             {% endif %}
             <li><a href="{% url 'Offered_courses' %}">Offered Courses</a></li>
             {% if request.user.is_superuser %}

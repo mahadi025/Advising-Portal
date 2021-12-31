@@ -34,7 +34,7 @@ body{
     background-color: rgb(243, 243, 243);
     margin-top: 8%;
     margin-left: 10%;
-    overflow: scroll;
+    overflow: auto;
     overflow-x: hidden;
     border-radius: 10px;
     box-shadow: 7px 7px 7px grey;
@@ -96,8 +96,28 @@ th{
 }
 #block2{
     max-height: 600px;
-    overflow: scroll;
+    overflow: auto;
     overflow-x: hidden;
+}
+#printslip{
+    color: chartreuse;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: white;
+    margin-left: 1%;
+    height: 35px;
+    width: 100px;
+    border-radius: 20px;
+    border: 3px solid chartreuse;
+    
+   
+    
+}
+#printslip:hover{
+    color: white;
+    background-color: chartreuse;
+    transition: 0.3s ease-in;
+    animation: anim-shadow 0.3s forwards;
+    
 }
  ::-webkit-scrollbar{
     width: 15px;
@@ -114,7 +134,11 @@ th{
     background-color: #61dd9f;
 }
 
-
+@keyframes anim-shadow{
+    100%{
+        box-shadow: 5px 5px 1px 1px grey;
+    }
+}
 @keyframes transitionIn {
     from{
         opacity: 0;
@@ -338,12 +362,4 @@ th{
         font-size: 25px;
     }
     
-}
-#back{
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: grey;
-    text-decoration: none;
-}
-#error{
-    margin-left:15px;
 }

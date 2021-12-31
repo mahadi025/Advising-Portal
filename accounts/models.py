@@ -109,7 +109,7 @@ class Section(models.Model):
         ('Fall','Fall'),
         ('Spring','Spring')
     }
-    course = models.ForeignKey(Course, models.CASCADE,db_column='course_id')
+    course = models.ForeignKey(Course, models.CASCADE)
     secId = models.CharField(max_length=8)
     semester = models.CharField(max_length=6,choices=sem_list)
     year = models.DecimalField(max_digits=4, decimal_places=0)

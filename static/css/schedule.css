@@ -18,11 +18,26 @@ body{
 }
 #frstLabel{
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin-left: 38%;
+    margin-left: 30%;
+    
+}
+#ScndLabel{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-left: 1%;
     
 }
 
 #semester{
+    margin-left: 1%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    width: 150px;
+    border: none;
+    border-bottom: 2px solid grey;
+    outline: none;
+
+    
+}
+#year{
     margin-left: 1%;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     width: 150px;
@@ -115,28 +130,41 @@ table, th, td {
 
 
 
-
-@media screen and (min-width:1024px) and (max-width:1025px){
-    #frstLabel{
-        margin-left: 30%;
-    }
-
-}
-@media screen and (min-width:768px) and (max-width:769px){
+@media screen and (min-width:1280px) and (max-width:1281px){
     #frstLabel{
         margin-left: 25%;
     }
 
 }
+@media screen and (min-width:1024px) and (max-width:1025px){
+    #frstLabel{
+        margin-left: 17%;
+    }
+
+}
+@media screen and (min-width:768px) and (max-width:769px){
+    #frstLabel{
+        margin-left: 6%;
+    }
+
+}
 @media screen and (min-width:540px) and (max-width:541px){
     #frstLabel{
-        margin-left: 15%;
+        margin-left: 5%;
     }
     #Courses{
         font-size: 10px;
     }
     #Schedule-header{
         font-size: 25px;
+    }
+    #semester{
+        width: 70px;
+        font-size: 15px;
+    }
+    #year{
+        width: 70px;
+        font-size: 15px;
     }
 
 }
@@ -146,7 +174,10 @@ table, th, td {
     }
     #frstLabel{
         font-size: 11px;
-        margin-left: 20%;
+        margin-left: 5%;
+    }
+    #ScndLabel{
+        font-size: 11px;
     }
     #submit{
         height: 20px;
@@ -154,7 +185,11 @@ table, th, td {
         width: 50px;
     }
     #semester{
-        width: 80px;
+        width: 70px;
+        font-size: 11px;
+    }
+    #year{
+        width: 70px;
         font-size: 11px;
     }
     #Schedule-header{
@@ -171,7 +206,10 @@ table, th, td {
     }
     #frstLabel{
         font-size: 10px;
-        margin-left: 20%;
+        margin-left: 5%;
+    }
+    #ScndLabel{
+        font-size: 10px;
     }
     #submit{
         height: 20px;
@@ -179,7 +217,11 @@ table, th, td {
         width: 50px;
     }
     #semester{
-        width: 80px;
+        width: 60px;
+        font-size: 10px;
+    }
+    #year{
+        width: 60px;
         font-size: 10px;
     }
     #Schedule-header{
@@ -195,8 +237,11 @@ table, th, td {
         width: 380px;
     }
     #frstLabel{
-        font-size: 12px;
-        margin-left: 17%;
+        font-size: 10px;
+        margin-left: 5%;
+    }
+    #ScndLabel{
+        font-size: 10px;
     }
     #submit{
         height: 20px;
@@ -204,8 +249,12 @@ table, th, td {
         width: 55px;
     }
     #semester{
-        width: 80px;
-        font-size: 12px;
+        width: 60px;
+        font-size: 10px;
+    }
+    #year{
+        width: 60px;
+        font-size: 10px;
     }
     #Schedule-header{
         font-size: 23px;
@@ -221,7 +270,10 @@ table, th, td {
     }
     #frstLabel{
         font-size: 10px;
-        margin-left: 15%;
+        margin-left:5%;
+    }
+    #ScndLabel{
+        font-size: 10px;
     }
     #submit{
         height: 20px;
@@ -229,7 +281,11 @@ table, th, td {
         width: 50px;
     }
     #semester{
-        width: 80px;
+        width: 60px;
+        font-size: 10px;
+    }
+    #year{
+        width: 60px;
         font-size: 10px;
     }
     #Schedule-header{
@@ -246,7 +302,10 @@ table, th, td {
     }
     #frstLabel{
         font-size: 10px;
-        margin-left: 15%;
+        margin-left: 2%;
+    }
+    #ScndLabel{
+        font-size: 10px;
     }
     #submit{
         height: 20px;
@@ -254,7 +313,11 @@ table, th, td {
         width: 50px;
     }
     #semester{
-        width: 80px;
+        width: 50px;
+        font-size: 10px;
+    }
+    #year{
+        width: 50px;
         font-size: 10px;
     }
     #Schedule-header{
@@ -270,17 +333,24 @@ table, th, td {
         width: 281px;
     }
     #frstLabel{
-        font-size: 10px;
-        margin-left: 11%;
+        font-size: 8px;
+        margin-left: 2%;
+    }
+    #ScndLabel{
+        font-size: 8px;
     }
     #submit{
-        height: 20px;
-        font-size: 8px;
-        width: 50px;
+        height: 17px;
+        font-size: 6px;
+        width: 40px;
     }
     #semester{
-        width: 80px;
-        font-size: 10px;
+        width: 50px;
+        font-size: 8px;
+    }
+    #year{
+        width: 50px;
+        font-size: 8px;
     }
     #Schedule-header{
         font-size: 20px;
