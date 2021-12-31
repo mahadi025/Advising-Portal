@@ -11,6 +11,7 @@ def create_advisingSlip(sender, instance,created,**kwargs):
         instance.semester=instance.section.semester
         instance.year=instance.section.year
         instance.course=instance.section.course.course_id
+        instance.timeSlot=instance.section.timeSlot
         advisingStudent=instance.advisingStudent  
         print(instance.section.timeSlot.day[0])
         section=instance.section

@@ -24,6 +24,7 @@ def add_course(request,pk):
     semester=section.semester
     year=section.year
     course=section.course.course_id
+    timeSlot=section.timeSlot
     advisingStudent.creditsTaken+=section.course.credits
     student=Student.objects.get(studentId=request.user.username)
     if section.capacity>0:
@@ -34,11 +35,14 @@ def add_course(request,pk):
                 print(prereqCourse+' course completed for '+course)   
                 if advisingStudent.creditsTaken<=13.5:
                     if not AdvisingSlip.objects.filter(advisingStudent=advisingStudent):
-                        AdvisingSlip.objects.create(advisingStudent=advisingStudent,section=section,semester=semester,year=year,course=course)
+                        AdvisingSlip.objects.create(advisingStudent=advisingStudent,section=section,semester=semester,year=year,course=course,timeSlot=timeSlot)
                     else:
                         if not AdvisingSlip.objects.filter(advisingStudent=advisingStudent,course=course):
-                            AdvisingSlip.objects.create(advisingStudent=advisingStudent,section=section)
-                            messages.success(request, 'Successfully added ' + course)
+                            if not AdvisingSlip.objects.filter(advisingStudent=advisingStudent,timeSlot=timeSlot):
+                                AdvisingSlip.objects.create(advisingStudent=advisingStudent,section=section)
+                                messages.success(request, 'Successfully added ' + course)
+                            else:
+                                messages.error(request,'Timeslot conflicted')
                         else:
                             messages.error(request,course+' already taken')
                 else:
@@ -48,11 +52,17 @@ def add_course(request,pk):
                 messages.error(request,prereqCourse+' not completed')
         else:
             if advisingStudent.creditsTaken<=13.5:
-                if not AdvisingSlip.objects.filter(advisingStudent=advisingStudent,course=course):
-                    AdvisingSlip.objects.create(advisingStudent=advisingStudent,section=section,semester=semester,year=year,course=course)
-                    messages.success(request, 'Successfully added ' + course)
+                if not AdvisingSlip.objects.filter(advisingStudent=advisingStudent):
+                    AdvisingSlip.objects.create(advisingStudent=advisingStudent,section=section,semester=semester,year=year,course=course,timeSlot=timeSlot)
                 else:
-                    messages.error(request,course+' already taken prereq')
+                    if not AdvisingSlip.objects.filter(advisingStudent=advisingStudent,course=course):
+                        if not AdvisingSlip.objects.filter(advisingStudent=advisingStudent,timeSlot=timeSlot):
+                            AdvisingSlip.objects.create(advisingStudent=advisingStudent,section=section)
+                            messages.success(request, 'Successfully added ' + course)
+                        else:
+                            messages.error(request,'Timeslot conflicted')
+                    else:
+                        messages.error(request,course+' already taken')
             else:
                 messages.error(request,'Maximum 13.5 credits can be taken')
     else:
