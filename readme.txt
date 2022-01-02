@@ -9,3 +9,9 @@
 9.Authorization(same page are locked for certain user) 
 10.Student list(in a section for logged in instructor)
 11.Reset Password (reset password with confirmation email)
+12.Advisng
+13.Add Course
+14.Delete Course
+15.Class schedule
+16.Print Advisng Slip
+17.Download Advisng Slip

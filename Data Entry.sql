@@ -32,12 +32,11 @@ insert into accounts_classroom (id,building,room_number) values (21,'Main Buildi
 insert into accounts_classroom (id,building,room_number) values (22,'Main Building',616);
 
 --Courses
---CSE
-insert into accounts_course (course_id,title,credits,dept_name) values('CSE103','Structured Programming',4.5,'CSE');
-insert into accounts_course (course_id,title,credits,dept_name) values('CSE103L','LAB',0.0,'CSE');
-insert into accounts_course (course_id,title,credits,dept_name) values('CSE106','Discrete Mathematics',3.0,'CSE');
-insert into accounts_course (course_id,title,credits,dept_name) values('CSE110','Object Oriented Programming',4.5,'CSE');
-insert into accounts_course (course_id,title,credits,dept_name) values('CSE110L','LAB',0.0,'CSE');
+insert into accounts_course (id,course_id,title,credits,dept_name) values(1,'CSE103','Structured Programming',4.5,'CSE');
+insert into accounts_course (id,course_id,title,credits,dept_name) values(2,'CSE103L','LAB',0.0,'CSE');
+insert into accounts_course (id,course_id,title,credits,dept_name) values(3,'CSE106','Discrete Mathematics',3.0,'CSE');
+insert into accounts_course (id,course_id,title,credits,dept_name) values(4,'CSE110','Object Oriented Programming',4.5,'CSE');
+insert into accounts_course (id,course_id,title,credits,dept_name) values(5,'CSE110L','LAB',0.0,'CSE');
 insert into accounts_course (course_id,title,credits,dept_name) values('CSE200','Computer-Aided Engineering Drawing',1.0,'CSE');
 insert into accounts_course (course_id,title,credits,dept_name) values('CSE209','Electrical Circuits',4.0,'CSE');
 insert into accounts_course (course_id,title,credits,dept_name) values('CSE209L','LAB',0.0,'CSE');
@@ -62,7 +61,16 @@ insert into accounts_course (course_id,title,credits,dept_name) values('CSE407',
 insert into accounts_course (course_id,title,credits,dept_name) values('CSE487','Cyber Security, Ethics and Law',3.0,'CSE');
 insert into accounts_course (course_id,title,credits,dept_name) values('CSE495','IT Project Management and Entrepreneurship',3.0,'CSE');
 --ENG
-insert into accounts_course (course_id,title,credits,dept_name) values('ENG101','Basic English',3.0,'ENG');
+insert into accounts_course (id,course_id,title,credits,dept_name) values(31,'ENG101','Basic English',3.0,'ENG');
+insert into accounts_course (id,course_id,title,credits,dept_name) values(32,'ENG102','Composition and Communication Skills',3.0,'ENG');
+--MPS
+insert into accounts_course (id,course_id,title,credits,dept_name) values(33,'MAT101','Differential and Integral Calculus',3.0,'MPS');
+insert into accounts_course (id,course_id,title,credits,dept_name) values(34,'MAT102','Differential Equations and Special Functions',3.0,'MPS');
+insert into accounts_course (id,course_id,title,credits,dept_name) values(35,'MAT104','Coordinate Geometry and Vector Analysis',3.0,'MPS');
+insert into accounts_course (id,course_id,title,credits,dept_name) values(36,'PHY109','Engineering Physics-I (Introductory Classical Physics)',4.0,'MPS');
+insert into accounts_course (id,course_id,title,credits,dept_name) values(37,'PHY109L','Engineering Physics-I (Introductory Classical Physics)',0.0,'MPS');
+insert into accounts_course (id,course_id,title,credits,dept_name) values(38,'CHE109','Engineering Chemistry',4.0,'MPS');
+insert into accounts_course (id,course_id,title,credits,dept_name) values(39,'CHE109L','Engineering Chemistry',0.0,'MPS');
 
 
 --TimeSlot
@@ -163,61 +171,118 @@ insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_
 insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(75,'RL3H-5','R','04','50','07','50');
 --section
 --CSE 103
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(1,1,'Summer',2019,10,'CSE103','MIE',3,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(2,1,'Summer',2019,48,'CSE103L','MIE',3,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(2,1,'Spring',2019,10,'CSE103','MIE',3,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(3,1,'Fall',2019,10,'CSE103','MIE',3,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(4,2,'Summer',2019,1,'CSE103','MMSU',1,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(5,2,'Spring',2019,1,'CSE103','MMSU',1,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(6,2,'Fall',2019,1,'CSE103','MMSU',1,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(7,3,'Summer',2019,1,'CSE103','OVI',2,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(8,3,'Spring',2019,1,'CSE103','OVI',2,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(9,3,'Fall',2019,1,'CSE103','OVI',2,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(1,1,'Spring',2021,10,1,'DAWR',9,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(2,1,'Spring',2021,20,2,'DAWR',53,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(3,2,'Spring',2021,8,1,'TJ',10,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(4,2,'Spring',2021,20,2,'TJ',65,35);
 
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(10,1,'Summer',2020,10,'CSE103','MIE',3,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(11,1,'Spring',2020,10,'CSE103','MIE',3,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(12,1,'Fall',2020,10,'CSE103','MIE',3,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(13,2,'Summer',2020,1,'CSE103','MMSU',1,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(14,2,'Spring',2020,1,'CSE103','MMSU',1,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(15,2,'Fall',2020,1,'CSE103','MMSU',1,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(16,3,'Summer',2020,1,'CSE103','OVI',2,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(17,3,'Spring',2020,1,'CSE103','OVI',2,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(18,3,'Fall',2020,1,'CSE103','OVI',2,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(5,1,'Summer',2021,10,1,'DAWR',9,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(6,1,'Summer',2021,20,2,'DAWR',53,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(7,2,'Summer',2021,8,1,'TJ',10,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(8,2,'Summer',2021,20,2,'TJ',65,35);
 
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(19,1,'Summer',2021,10,'CSE103','MIE',3,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(20,1,'Spring',2021,10,'CSE103','MIE',3,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(21,1,'Fall',2021,10,'CSE103','MIE',3,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(22,2,'Summer',2021,1,'CSE103','MMSU',1,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(23,2,'Spring',2021,1,'CSE103','MMSU',1,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(24,2,'Fall',2021,1,'CSE103','MMSU',1,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(25,3,'Summer',2021,1,'CSE103','OVI',2,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(26,3,'Spring',2021,1,'CSE103','OVI',2,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(27,3,'Fall',2021,1,'CSE103','OVI',2,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(9,1,'Fall',2021,10,1,'DAWR',9,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(10,1,'Fall',2021,20,2,'DAWR',53,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(11,2,'Fall',2021,8,1,'TJ',10,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(12,2,'Fall',2021,20,2,'TJ',65,35);
 
---CSE 106
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(28,1,'Summer',2019,10,'CSE106','MIE',4,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(29,1,'Spring',2019,10,'CSE106','MIE',4,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(30,1,'Fall',2019,10,'CSE106','MIE',4,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(31,2,'Summer',2019,7,'CSE106','DSU',5,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(32,2,'Spring',2019,7,'CSE106','DSU',5,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(33,2,'Fall',2019,7,'CSE106','DSU',5,35);
+--CSE106
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(13,1,'Spring',2021,10,3,'MHAK',2,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(14,2,'Spring',2021,8,3,'MHAK',4,35);
 
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(34,1,'Summer',2020,10,'CSE106','MIE',4,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(35,1,'Spring',2020,10,'CSE106','MIE',4,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(36,1,'Fall',2020,10,'CSE106','MIE',4,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(37,2,'Summer',2020,7,'CSE106','DSU',5,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(38,2,'Spring',2020,7,'CSE106','DSU',5,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(39,2,'Fall',2020,7,'CSE106','DSU',5,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(15,1,'Summer',2021,10,3,'MHAK',2,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(16,2,'Summer',2021,8,3,'MHAK',4,35);
 
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(40,1,'Summer',2021,10,'CSE106','MIE',4,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(41,1,'Spring',2021,10,'CSE106','MIE',4,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(42,1,'Fall',2021,10,'CSE106','MIE',4,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(43,2,'Summer',2021,7,'CSE106','DSU',5,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(44,2,'Spring',2021,7,'CSE106','DSU',5,35);
-insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,capacity) values(45,2,'Fall',2021,7,'CSE106','DSU',5,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(17,1,'Fall',2021,10,3,'MHAK',2,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(18,2,'Fall',2021,8,3,'MHAK',4,35);
+
+--CSE110
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(19,1,'Spring',2021,10,4,'MKR',13,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(20,1,'Spring',2021,20,5,'MKR',73,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(21,2,'Spring',2021,10,4,'MDH',1,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(22,2,'Spring',2021,20,5,'MDH',67,35);
+
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(23,1,'Summer',2021,10,4,'MKR',13,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(24,1,'Summer',2021,20,5,'MKR',73,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(25,2,'Summer',2021,10,4,'MDH',1,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(26,2,'Summer',2021,20,5,'MDH',67,35);
+
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(27,1,'Fall',2021,10,4,'MKR',13,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(28,1,'Fall',2021,20,5,'MKR',73,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(29,2,'Fall',2021,10,4,'MDH',1,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(30,2,'Fall',2021,20,5,'MDH',67,35);
+
+--ENG101
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(31,1,'Spring',2021,9,31,'SOS',1,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(32,2,'Spring',2021,2,31,'SOS',6,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(33,3,'Spring',2021,3,31,'SHZ',1,35);
+
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(34,1,'Summer',2021,9,31,'SOS',1,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(35,2,'Summer',2021,2,31,'SOS',6,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(36,3,'Summer',2021,3,31,'SHZ`',1,35);
+
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(37,1,'Fall',2021,9,31,'SOS',1,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(38,2,'Fall',2021,2,31,'SOS',6,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(39,3,'Fall',2021,3,31,'SHZ',1,35);
+
+--ENG102
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(40,1,'Spring',2021,11,32,'SHZ',2,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(41,2,'Spring',2021,12,32,'SHZ',3,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(42,3,'Spring',2021,9,32,'SHZ',4,35);
+
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(43,1,'Summer',2021,11,32,'SHZ',2,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(44,2,'Summer',2021,12,32,'SHZ',3,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(45,3,'Summer',2021,9,32,'SHZ',4,35);
+
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(46,1,'Fall',2021,11,32,'SOS',2,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(47,2,'Fall',2021,12,32,'SOS',3,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(48,3,'Fall',2021,9,32,'SHZ',4,35);
+
+--MAT101
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(49,1,'Spring',2021,1,33,'DSR',18,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(50,2,'Spring',2021,4,33,'DSR',8,35);
+
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(51,1,'Summer',2021,1,33,'DSR',18,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(52,2,'Summer',2021,4,33,'DSR',8,35);
+
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(53,1,'Fall',2021,1,33,'DSR',18,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(54,2,'Fall',2021,4,33,'DSR',8,35);
+
+--MAT102
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(55,1,'Spring',2021,1,34,'AP',2,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(56,2,'Spring',2021,4,34,'AP',4,35);
+
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(57,1,'Summer',2021,1,34,'AP',2,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(58,2,'Summer',2021,4,34,'AP',4,35);
+
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(59,1,'Fall',2021,1,34,'AP',2,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(60,2,'Fall',2021,4,34,'AP',4,35)
+
+--MAT104
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(61,1,'Spring',2021,5,34,'DFK',6,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(62,2,'Spring',2021,9,34,'DFK',8,35);
+
+--PHY109
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(63,1,'Spring',2021,6,36,'MAR',1,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(64,1,'Spring',2021,21,37,'MAR',45,35);
+
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(65,1,'Summer',2021,6,36,'MAR',1,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(66,1,'Summer',2021,21,37,'MAR',45,35);
+
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(67,1,'Fall',2021,6,36,'MAR',1,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(68,1,'Fall',2021,21,37,'MAR',45,35);
+
+--CHE109
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(69,1,'Spring',2021,9,38,'ZUH',7,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(70,1,'Spring',2021,18,39,'ZUH',45,35);
+
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(71,1,'Summer',2021,9,38,'ZUH',7,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(72,1,'Summer',2021,18,39,'ZUH',45,35);
+
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(73,1,'Fall',2021,9,38,'ZUH',7,35);
+insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(74,1,'Fall',2021,18,39,'ZUH',45,35);
 
 
 
 
---by Anika
-
+--PREREQ

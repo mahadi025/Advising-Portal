@@ -18,7 +18,6 @@ def studentRegisterPage(request):
         if form.is_valid():
             user=form.save()
             username=form.cleaned_data['username']
-            # Student.objects.create(user=user, studentId=username,firstName=user.first_name,lastName=user.last_name,email=user.email)
             messages.success(request, 'Account was created for ' + username)
             return redirect('login')
 
@@ -31,10 +30,8 @@ def instructorRegisterPage(request):
         form=CreateUserForm(request.POST)
         if form.is_valid():
             user=form.save()
-            # username=form.cleaned_data['username']
             group=Group.objects.get(name='instructor')
             user.groups.add(group)
-            # Instructor.objects.create(user=user, instructorId=username,firstName=user.first_name,lastName=user.last_name,email=user.email)
             return redirect('login')
     contex={'form':form}
     return render(request,'InstructorRegister.html',contex)
@@ -152,8 +149,9 @@ def takes(request):
             takes=Takes.objects.filter(section__instructor=user.username,section__year=year,section__semester=semester)
             contex={'takes':takes}
             return render(request, 'TakesSection.html',contex)
-    return render(request,'TakesSection.html')    
-
+    return render(request,'TakesSection.html')
+    
+@login_required(login_url='login')
 def schedule(request):
     if request.method == "POST":
         semester = request.POST["semester"]
@@ -163,5 +161,4 @@ def schedule(request):
         print(semester)
         return render(request, "schedule.html", contex)
     else:
-
         return render(request, "schedule.html")

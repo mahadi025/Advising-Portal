@@ -13,7 +13,6 @@ def create_advisingSlip(sender, instance,created,**kwargs):
         instance.course=instance.section.course.course_id
         instance.timeSlot=instance.section.timeSlot
         advisingStudent=instance.advisingStudent  
-        print(instance.section.timeSlot.day[0])
         section=instance.section
         takes=Takes.objects.create(takes_id=advisingStudent.student,section=section)
         print(f'Credits Taken {advisingStudent.creditsTaken}')
@@ -56,4 +55,19 @@ def delete_advisingSlip(sender,instance,**kwargs):
     elif instance.section.course.credits !=0.0:
         instance.section.capacity+=1
     instance.section.save()
+    if instance.section.course.title !='LAB':
+        day1=instance.section.timeSlot.day[0]
+        day2=instance.section.timeSlot.day[1]
+        if day1=='S' and day2=='T':
+            instance.advisingStudent.sundayClass-=1
+            instance.advisingStudent.tuesdayClass-=1
+        elif day1=='M' and day2=='W':
+            instance.advisingStudent.mondayClass-=1
+            instance.advisingStudent.wednesdayClass-=1
+        elif day1=='T' and day2=='R':
+            instance.advisingStudent.tuesdayClass-=1
+            instance.advisingStudent.thursdayClass-=1
+        elif day1=='S' and day2=='R':
+            instance.advisingStudent.sundayClass-=1
+            instance.advisingStudent.thursdayClass-=1
     instance.advisingStudent.save()

@@ -21,12 +21,11 @@
     </div>
     
     <div id="sidebar" >
-    
        <ul id="menu">
             <li> <a id="close" onclick="inside()">&times;</li><a></li>
             {% if request.user.student %}
-                <li><a href="{% url 'grade_report' %}">Grade Report</a></li>
                 <li><a href="{% url 'advising' %}">Advising</a></li>
+                <li><a href="{% url 'grade_report' %}">Grade Report</a></li>
                 <li><a href="{% url 'schedule' %}">Class Schedule</a></li>
             {% endif %}
             <li><a href="{% url 'Offered_courses' %}">Offered Courses</a></li>
@@ -38,12 +37,10 @@
             {% if request.user.instructor %}
                 <li><a href="{% url 'section' %}">Sections</a></li>
                 <li><a href="{% url 'takesSection' %}">Student List for {{request.user.username}}</a></li>
-                <li><a href="{% url 'advising' %}">Advising</a></li>
             {% endif %}
        </ul>
     </div>
     <h1 id="msg">WELCOME TO ADVISING PORTAL</h1>
     <script src="{% static 'js/home.js' %}"></script>
-    
 </body>
 </html>

@@ -5,6 +5,11 @@ from accounts .models import Student,Course,Section,TimeSlot
 class AdvisingStudent(models.Model):
     student = models.OneToOneField(Student,on_delete=models.CASCADE)
     creditsTaken=models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True,default=0.0,editable=True)
+    sundayClass=models.DecimalField(max_digits=1, decimal_places=0,null=True,blank=True,default=0.0,editable=True)
+    mondayClass=models.DecimalField(max_digits=1, decimal_places=0,null=True,blank=True,default=0.0,editable=True)
+    tuesdayClass=models.DecimalField(max_digits=1, decimal_places=0,null=True,blank=True,default=0.0,editable=True)
+    wednesdayClass=models.DecimalField(max_digits=1, decimal_places=0,null=True,blank=True,default=0.0,editable=True)
+    thursdayClass=models.DecimalField(max_digits=1, decimal_places=0,null=True,blank=True,default=0.0,editable=True)
     def __str__(self):
         return self.student.firstName+' '+str(self.student.lastName)+'('+self.student.studentId+')'
     

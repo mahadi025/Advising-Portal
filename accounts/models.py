@@ -79,7 +79,7 @@ class Advisor(models.Model):
 
 class Course(models.Model):
     course_id = models.CharField(max_length=8)
-    title = models.CharField(max_length=50, blank=True, null=True)
+    title = models.CharField(max_length=100, blank=True, null=True)
     dept_name = models.ForeignKey('Department', models.CASCADE, db_column='dept_name', blank=True, null=True)
     credits = models.DecimalField(max_digits=2, decimal_places=1, blank=True, null=True)
 
@@ -120,7 +120,6 @@ class Section(models.Model):
     class Meta:
         unique_together = (('course', 'secId', 'semester', 'year','timeSlot'),
                            ('classroom','semester','year','timeSlot'),
-                            ('semester','year','timeSlot','course'),
                             ('semester','year','timeSlot','instructor'),
                             ('secId','course','semester', 'year')
                            )
@@ -156,6 +155,6 @@ class Prereq(models.Model):
     course = models.OneToOneField(Course, models.CASCADE)
     prereqCourse =models.CharField(max_length=8,null=True, blank=True)
     def __str__(self):
-        return self.course_id +' <-- '+self.prereqCourse
+        return str(self.course_id) +' <-- '+str(self.prereqCourse)
     class Meta:
         unique_together = (('course', 'prereqCourse'),)
