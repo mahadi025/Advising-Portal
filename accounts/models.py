@@ -4,6 +4,8 @@ from django.contrib.postgres.fields import ArrayField
 from django.db.models import IntegerField, Model
 from django_mysql.models import ListCharField
 from decimal import Decimal
+
+
 class Classroom(models.Model):
     building = models.CharField(max_length=15)
     room_number = models.CharField(max_length=7)

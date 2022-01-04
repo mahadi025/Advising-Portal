@@ -42,12 +42,16 @@
             <th>Section</th>
             <th>Grade</th>
          </tr>
+         {% for take in takes %}
+         {% if take.section.course.credits != 0.0 %}
             <tr>
                 <td>{{take.takes_id.studentId}}</td>
                 <td>{{take.section.course.course_id}}</td>
                 <td>{{take.section.secId}}</td>
                 <td>{{take.grade}}</td>
             </tr>
+            {% endif %}
+            {% endfor %}
     </table>
 </body>
 </html>

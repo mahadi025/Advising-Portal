@@ -6,6 +6,7 @@ from .forms import *
 from accounts.models import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from accounts.decorators import unauthenticated_user,allowed_users
 
 @login_required(login_url='login')
 def advising(request):
@@ -21,6 +22,7 @@ def advising(request):
     return render(request,'advising.html',contex)
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['instructor'])
 def add_course(request,pk):
     if AdvisingStudent.objects.filter(student=request.user.student):
         advisingStudent=AdvisingStudent.objects.get(student=request.user.student)
@@ -98,6 +100,7 @@ def add_course(request,pk):
     return redirect('advising')
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['instructor'])
 def slipPrint(request):
     advisingStudent=AdvisingStudent.objects.get(student=request.user.student)
     advisedSections=AdvisingSlip.objects.filter(advisingStudent=advisingStudent)
@@ -106,6 +109,7 @@ def slipPrint(request):
 
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['instructor'])
 def delete_course(request,pk):
     advisingSlip=AdvisingSlip.objects.get(id=pk)
     advisingSlip.delete()
@@ -118,8 +122,10 @@ def set_studentId(studentId):
 def facultyAdvising(request):
     year=2021
     semester='Spring'
-    offeredSections=Section.objects.filter(year=year,semester=semester).order_by('id')
-        
+    instructorId=request.user.username
+    instructor=Instructor.objects.get(instructorId=instructorId)
+    print(instructor)
+    offeredSections=Section.objects.filter(year=year,semester=semester,instructor=instructor).order_by('id') 
     if request.method == 'POST':
         studentId=request.POST["studentId"]
         if Student.objects.filter(studentId=studentId):
@@ -131,9 +137,9 @@ def facultyAdvising(request):
             return render(request,'FacultyAdvising.html',contex)
         else:
             messages.error(request,'No student found')
-    
-    return render(request,'FacultyAdvising.html')
+    return render(request,'PopUp.html')
 
+@login_required(login_url='login')
 def faculty_add_course(request,pk):
     studentId=AdvisingStudentId
     student=Student.objects.get(studentId=studentId)
@@ -204,9 +210,19 @@ def faculty_add_course(request,pk):
                 messages.error(request,'You can not take more than 2 classes per day')
     else:
         messages.error(request,'No seat available for '+course+' '+section.secId)
-    return redirect('facultyAdvising')
+    advisingStudent=AdvisingStudent.objects.get(student=student)
+    advisedSections=AdvisingSlip.objects.filter(advisingStudent=advisingStudent,section__semester=semester)
+    offeredSections=Section.objects.filter(year=year,semester=semester).order_by('id') 
+    contex={'offeredSections':offeredSections,'year':year,'semester':semester,'advisedSections':advisedSections}
+    return render(request,'FacultyAdvising.html',contex)
 
+@login_required(login_url='login')
 def faculty_delete_course(request,pk):
+    year=2021
+    semester='Spring'
     advisingSlip=AdvisingSlip.objects.get(id=pk)
     advisingSlip.delete()
-    return redirect('facultyAdvising')
+    offeredSections=Section.objects.filter(year=year,semester=semester).order_by('id')
+    advisedSections=AdvisingSlip.objects.filter(id=pk)
+    contex={'offeredSections':offeredSections,'advisedSections':advisedSections,'year':year,'semester':semester}
+    return render(request,'FacultyAdvising.html',contex)

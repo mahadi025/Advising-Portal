@@ -170,12 +170,6 @@ insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_
 insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(74,'RL3H-4','R','03','10','06','10');
 insert into accounts_timeslot(id,time_slot_id,day,start_hr,start_min,end_hr,end_min) values(75,'RL3H-5','R','04','50','07','50');
 --section
-
---2019
---CSE103
-
-
---2021
 --CSE 103
 insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(1,1,'Spring',2021,10,1,'DAWR',9,35);
 insert into accounts_section (id,secId,semester,year,classroom_id,course_id,instructor_id,timeSlot_id,Capacity) values(2,1,'Spring',2021,20,2,'DAWR',53,35);

@@ -1,57 +1,56 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/FacultyAdvising.css' %}" />
+        <link rel="icon" type="image/png" href="{% static 'images/graduationcap.png' %}">
         <title></title>
     </head>
     <body>
-
-        <form action="" method="POST">
-            {% csrf_token %}
-            <input name="studentId" type="text">
-            <br>
-            <input type="Submit">
-        </form>
-
-        {% if request.method == "POST" %}
-            <table>
-                <tr>
-                    <th>Courses</th>
-                    <th>Credits</th>
-                    <th>Section</th>
-                    <th>Time-Slot</th>
-                    <th>Seat Remaining</th>
-                </tr>
-                {% for offeredSection in offeredSections%}
-                <tr>
-                    {% if offeredSection.course.credits == 0.0%}
-                        <td>{{offeredSection.course.course_id}}</td>
-                    {% else %}
-                    <td><a href="{% url 'facultyCourse' offeredSection.id %}">{{offeredSection.course.course_id}}</a></td>
-                    {% endif %}
-                    {% if offeredSection.course.credits == 0.0%}
-                        <td></td>
-                    {% else %}
-                        <td>{{offeredSection.course.credits}}</td>
-                    {% endif %}
-                    <td>{{offeredSection.secId}}</td>
-                    <td>{{offeredSection.timeSlot.day}} {{offeredSection.timeSlot.start_hr}}:{{offeredSection.timeSlot.start_min}}-{{offeredSection.timeSlot.end_hr}}:{{offeredSection.timeSlot.end_min}}</td>
-                    <td>{{offeredSection.capacity}}</td>
-                </tr>
-                {% endfor %}
-            </table>
-            {% endif %}
-            <div>
-                {% for message in messages %}
-                    <p style="margin-left: 5%; background-color: rgb(184, 17, 25); width: 50%;color: white;
-                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-                    border-radius: 5px;" >{{message}}</p>
-                {% endfor %}
-              </div>
-
-              <div>
+        <div>
+            {% for message in messages %}
+                <p id="message"style="margin-left: 5%; background-color: rgb(184, 17, 25); width: 50%;color: white;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                border-radius: 5px;" >{{message}}</p>
+            {% endfor %}
+          </div>    
+        <div id="display">
+            <div id="block1">
+                <table id="advising-courses">
+                    <tr>
+                        <th>Courses</th>
+                        <th>Credits</th>
+                        <th>Section</th>
+                        <th>Time-Slot</th>
+                        <th>Seat Remaining</th>
+                    </tr>
+                    {% for offeredSection in offeredSections%}
+                    <tr>
+                        {% if offeredSection.course.credits == 0.0%}
+                            <td>{{offeredSection.course.course_id}}</td>
+                        {% else %}
+                        <td><a href="{% url 'facultyAddCourse' offeredSection.id %}">{{offeredSection.course.course_id}}</a></td>
+                        {% endif %}
+                        {% if offeredSection.course.credits == 0.0%}
+                            <td></td>
+                        {% else %}
+                            <td>{{offeredSection.course.credits}}</td>
+                        {% endif %}
+                        <td>{{offeredSection.secId}}</td>
+                        <td>{{offeredSection.timeSlot.day}} {{offeredSection.timeSlot.start_hr}}:{{offeredSection.timeSlot.start_min}}-{{offeredSection.timeSlot.end_hr}}:{{offeredSection.timeSlot.end_min}}</td>
+                        <td>{{offeredSection.capacity}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="border">
+                
+            </div>
+            <div id="block2">
+                <h3 id="selected-courses-header">Advised Course</h3>
                 <table id="selected-courses">
                     <tr>
                         <th>Course</th>
@@ -81,6 +80,7 @@
                     {% endfor %}
     
                 </table>
-              </div>
+                <br><br>
+            </div>
     </body>
 </html>

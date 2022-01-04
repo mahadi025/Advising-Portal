@@ -11,10 +11,8 @@
 <body>
     <div id="header">
         <br>
+        <a href="{% url 'home' %}" id="back"><img src="{% static 'images/back button.png' %}" id="backbtn"></a>
      <h3 id="profile-header">PROFILE</h3> 
-    </div>
-    <div>
-        <a href="{% url 'home' %}">back to home</a>
     </div>
     <div id="img-profile">
         <img src="{{request.user.student.img.url}}" alt="">

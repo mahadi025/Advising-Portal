@@ -80,6 +80,7 @@ def offered_courses(request):
         semester = request.POST["semester"]
         year = request.POST["year"]
         sections = Section.objects.filter(semester=semester,year=year).order_by('id')
+        # sections=Section.objects.all()
         contex={'sections':sections,'semester':semester,'year':year}
         return render(request, "Offered_courses.html", contex)
     else:
