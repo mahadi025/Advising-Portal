@@ -61,13 +61,25 @@ def delete_advisingSlip(sender,instance,**kwargs):
         if day1=='S' and day2=='T':
             instance.advisingStudent.sundayClass-=1
             instance.advisingStudent.tuesdayClass-=1
+            if instance.advisingStudent.sundayClass < 0 and instance.advisingStudent.tuesdayClass < 0:
+                instance.advisingStudent.sundayClass=0
+                instance.advisingStudent.tuesdayClass=0
         elif day1=='M' and day2=='W':
             instance.advisingStudent.mondayClass-=1
             instance.advisingStudent.wednesdayClass-=1
+            if instance.advisingStudent.mondayClass < 0 and instance.advisingStudent.wednesdayClass < 0:
+                instance.advisingStudent.mondayClass=0
+                instance.advisingStudent.wednesdayClass=0
         elif day1=='T' and day2=='R':
             instance.advisingStudent.tuesdayClass-=1
             instance.advisingStudent.thursdayClass-=1
+            if instance.advisingStudent.tuesdayClass < 0 and instance.advisingStudent.thursdayClass < 0:
+                instance.advisingStudent.tuesdayClass=0
+                instance.advisingStudent.thursdayClass=0
         elif day1=='S' and day2=='R':
             instance.advisingStudent.sundayClass-=1
             instance.advisingStudent.thursdayClass-=1
+            if instance.advisingStudent.sundayClass < 0 and instance.advisingStudent.thursdayClass < 0:
+                instance.advisingStudent.sundayClass=0
+                instance.advisingStudent.thursdayClass=0
     instance.advisingStudent.save()

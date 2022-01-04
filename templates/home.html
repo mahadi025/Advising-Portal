@@ -35,6 +35,7 @@
             <li><a href="{% url 'cgpa' %}">CGPA Calculator</a></li>
             <li><a href="{% url 'profile' %}">Profile</a></li>
             {% if request.user.instructor %}
+                <li><a href="{% url 'facultyAdvising' %}">Faculty Advising</a></li>
                 <li><a href="{% url 'section' %}">Sections</a></li>
                 <li><a href="{% url 'takesSection' %}">Student List for {{request.user.username}}</a></li>
             {% endif %}

@@ -7,5 +7,4 @@ from django.contrib.auth.models import User
 class createAdvisingSlip(ModelForm):
     class Meta:
         model=AdvisingSlip
-        fields='__all__'
-        exclude=('advisingStudent',)
+        fields=['section','advisingStudent']

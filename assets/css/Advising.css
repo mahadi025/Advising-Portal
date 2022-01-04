@@ -107,10 +107,7 @@ th{
     height: 35px;
     width: 100px;
     border-radius: 20px;
-    border: 3px solid chartreuse;
-    
-   
-    
+    border: 3px solid chartreuse;    
 }
 #printslip:hover{
     color: white;

@@ -1,0 +1,593 @@
+body{
+    margin:0%;
+    padding: 0%;
+    animation: transitionIn 1s;
+    
+}
+#header{
+    height:80px;
+    background-color: #C70039;
+    display: flex;
+}
+#TakeSection-header{
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bolder;
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 30px;
+}
+#backbtn{
+    height: 40px;
+    width: 40px;
+}
+#backbtn:hover{
+    height: 50px;
+    width: 50px;
+    transition: 0.3s ease-in-out;
+}
+#back{
+    margin-top: 1.2%;
+    margin-left: 2%;
+}
+#heading{
+    color: grey;
+    display: inline-block;
+    margin-left: 37%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    animation: animate 4s;
+    overflow: hidden;
+    white-space: nowrap;
+}
+#frstLabel{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-left: 27%;
+    
+}
+#semester{
+    margin-left: 1%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    width: 150px;
+    border: none;
+    border-bottom: 1px solid grey;
+    outline: none;
+
+    
+}
+
+#scndLabel{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-left: 3%;
+}
+#year{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    border: none;
+    width: 150px;
+    margin-left: 1%;
+    border-bottom: 1px solid grey;
+    outline: none;
+}
+option {
+    
+    color: rgb(90, 89, 89);
+
+}
+#submit{
+    color: chartreuse;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: white;
+    margin-left: 1%;
+    height: 35px;
+    width: 100px;
+    border-radius: 20px;
+    border: 3px solid chartreuse;
+    font-weight: bolder;
+    
+   
+    
+}
+#submit:hover{
+    color: white;
+    background-color: chartreuse;
+    transition: 0.3s ease-in;
+    animation: anim-shadow 0.3s forwards;
+    
+}
+#Courses{
+    margin-left: 22%;
+    margin-top: 2%;
+    
+}
+th{
+    width: 200px;
+    height: 50px;
+    background: linear-gradient(180deg,#0010A0,#0A83C1); 
+ 
+ }
+ td{
+     text-align: center;
+     background-color:#61B5C3; 
+ }
+ #Courses th,td{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    
+    color: white;
+    
+   
+}
+table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
+    border-radius: 5px;
+
+}
+#note{
+    margin-left: 42%;
+}
+#text{
+    color: crimson;
+}
+
+
+@keyframes anim-shadow{
+    100%{
+        box-shadow: 5px 5px 1px 1px grey;
+    }
+}
+@keyframes transitionIn {
+    from{
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes animate{
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 60%;
+    }
+}
+
+
+::-webkit-scrollbar{
+    width: 15px;
+}
+::-webkit-scrollbar-track{
+    border-radius: 5px;
+    box-shadow: inset 0 0 10px rgb(0,0,0,0.25);
+}
+::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    background-color: #0e11b4;
+}
+::-webkit-scrollbar-thumb:hover{
+    background-color: #2326ff;
+}
+
+
+
+
+@media screen and (min-width:1060px) and (max-width:1280px){
+    #frstLabel{
+        margin-left: 25%;
+
+    }
+    #Courses{
+        margin-left: 20%;
+    }
+    
+}
+@media screen and (min-width:960px) and (max-width:1060px){
+    #frstLabel{
+        margin-left: 22%;
+
+    }
+    
+    #Courses{
+        margin-left: 14%;
+        font-size: 15px;
+    }
+    #heading{
+        margin-left: 32%;
+    }
+    
+}
+@media screen and (min-width:888px) and (max-width:960px){
+    #frstLabel{
+        margin-left: 25%;
+        font-size: 13px;
+
+    }
+    #scndLabel{
+        font-size: 13px;
+    }
+    #semester{
+        width: 70px;
+        font-size: 13px;
+    }
+    #year{
+        width: 70px;
+        font-size: 13px;
+    }
+    #submit{
+        height: 25px;
+        width: 80px;
+        font-size: 12px;
+    }
+    #Courses{
+        margin-left: 9%;
+        font-size: 12px;
+    }
+    #heading{
+        margin-left: 30%;
+        font-size: 18px;
+    }
+    #TakeSection-header{
+        font-size: 25px;
+    }
+    #header{
+        height: 70px;
+    }
+    
+}
+@media screen and (min-width:788px) and (max-width:888px){
+    #frstLabel{
+        margin-left: 24%;
+        font-size: 13px;
+
+    }
+    #scndLabel{
+        font-size: 13px;
+    }
+    #semester{
+        width: 70px;
+        font-size: 13px;
+    }
+    #year{
+        width: 70px;
+        font-size: 13px;
+    }
+    #submit{
+        height: 25px;
+        width: 80px;
+        font-size: 12px;
+    }
+    #Courses{
+        margin-left: 7%;
+        font-size: 10px;
+    }
+    #heading{
+        margin-left: 28%;
+        font-size: 18px;
+    }
+    #TakeSection-header{
+        font-size: 25px;
+    }
+    #header{
+        height: 70px;
+    }
+    th{
+        width: 185px;
+    }
+    
+}
+@media screen and (min-width:688px) and (max-width:788px){
+    #frstLabel{
+        margin-left: 24%;
+        font-size: 13px;
+
+    }
+    #scndLabel{
+        font-size: 13px;
+    }
+    #semester{
+        width: 70px;
+        font-size: 12px;
+    }
+    #year{
+        width: 70px;
+        font-size: 12px;
+    }
+    #submit{
+        height: 25px;
+        width: 80px;
+        font-size: 12px;
+    }
+    #Courses{
+        margin-left: 7%;
+        font-size: 10px;
+    }
+    #heading{
+        margin-left: 28%;
+        font-size: 16px;
+    }
+    #TakeSection-header{
+        font-size: 23px;
+    }
+    #header{
+        height: 70px;
+    }
+    th{
+        width: 155px;
+    }
+    
+}
+@media screen and (min-width:588px) and (max-width:688px){
+    #frstLabel{
+        margin-left: 16%;
+        font-size: 10px;
+
+    }
+    #scndLabel{
+        font-size: 10px;
+    }
+    #semester{
+        width: 60px;
+        font-size: 10px;
+    }
+    #year{
+        width: 60px;
+        font-size: 10px;
+    }
+    #submit{
+        height: 20px;
+        width: 70px;
+        font-size: 10px;
+    }
+    #Courses{
+        margin-left: 6%;
+        font-size: 8px;
+    }
+    #heading{
+        margin-left: 28%;
+        font-size: 14px;
+    }
+    #TakeSection-header{
+        font-size: 20px;
+    }
+    #header{
+        height: 60px;
+    }
+    th{
+        width: 135px;
+    }
+    
+}
+@media screen and (min-width:488px) and (max-width:588px){
+    #frstLabel{
+        margin-left: 15%;
+        font-size: 10px;
+
+    }
+    #scndLabel{
+        font-size: 10px;
+    }
+    #semester{
+        width: 60px;
+        font-size: 10px;
+    }
+    #year{
+        width: 60px;
+        font-size: 10px;
+    }
+    #submit{
+        height: 20px;
+        width: 70px;
+        font-size: 10px;
+    }
+    #Courses{
+        margin-left: 6%;
+        font-size: 6px;
+    }
+    #heading{
+        margin-left: 27%;
+        font-size: 14px;
+    }
+    #TakeSection-header{
+        font-size: 20px;
+    }
+    #header{
+        height: 60px;
+    }
+    th{
+        width: 115px;
+    }
+    #note{
+        margin-left: 32%;
+        font-size: 10px;
+    }
+    #text{
+       font-size: 10px;
+    }
+    #backbtn{
+        height: 30px;
+        width: 30px;
+    }
+    #backbtn:hover{
+        height: 40px;
+        width: 40px;
+        transition: 0.3s ease-in-out;
+    }
+    
+}
+@media screen and (min-width:400px) and (max-width:488px){
+    #frstLabel{
+        margin-left: 14%;
+        font-size: 8px;
+
+    }
+    #scndLabel{
+        font-size: 8px;
+    }
+    #semester{
+        width: 50px;
+        font-size: 8px;
+    }
+    #year{
+        width: 50px;
+        font-size: 8px;
+    }
+    #submit{
+        
+        height: 17px;
+        width: 50px;
+        font-size:7px;
+    }
+    #Courses{
+        margin-left: 6%;
+        font-size: 6px;
+    }
+    #heading{
+        margin-left: 27%;
+        font-size: 12px;
+    }
+    #TakeSection-header{
+        font-size: 15px;
+    }
+    #header{
+        height: 50px;
+    }
+    th{
+        width: 90px;
+        height: 30px;
+    }
+    #note{
+        margin-left: 37%;
+        font-size: 6px;
+    }
+    #text{
+       font-size: 6px;
+    }
+    #backbtn{
+        height: 20px;
+        width: 20px;
+    }
+    #backbtn:hover{
+        height: 30px;
+        width: 30px;
+        transition: 0.3s ease-in-out;
+    }
+    
+}
+@media screen and (min-width:300px) and (max-width:400px){
+    #frstLabel{
+        margin-left: 12%;
+        font-size: 7px;
+
+    }
+    #scndLabel{
+        font-size: 7px;
+    }
+    #semester{
+        width: 42px;
+        font-size: 7px;
+    }
+    #year{
+        width: 42px;
+        font-size: 7px;
+    }
+    #submit{
+        
+        height: 17px;
+        width: 50px;
+        font-size:7px;
+    }
+    #Courses{
+        margin-left: 6%;
+        font-size: 5px;
+    }
+    #heading{
+        margin-left: 30%;
+        font-size: 8px;
+    }
+    #TakeSection-header{
+        font-size: 12px;
+    }
+    #header{
+        height: 50px;
+    }
+    th{
+        width: 75px;
+        height: 20px;
+    }
+    #note{
+        margin-left: 37%;
+        font-size: 5px;
+    }
+    #text{
+       font-size: 5px;
+    }
+    #backbtn{
+        height: 20px;
+        width: 20px;
+    }
+    #backbtn:hover{
+        height: 30px;
+        width: 30px;
+        transition: 0.3s ease-in-out;
+    }
+}
+@media screen and (min-width:270px) and (max-width:300px){
+    #frstLabel{
+        margin-left: 6%;
+        font-size: 6px;
+
+    }
+    #scndLabel{
+        font-size: 6px;
+    }
+    #semester{
+        width: 40px;
+        font-size: 6px;
+    }
+    #year{
+        width: 40px;
+        font-size: 6px;
+    }
+    #submit{
+        
+        height: 15px;
+        width: 45px;
+        font-size:6px;
+    }
+    #Courses{
+        margin-left: 5%;
+        font-size: 5px;
+    }
+    #heading{
+        margin-left: 23%;
+        font-size: 8px;
+    }
+    #TakeSection-header{
+        font-size: 10px;
+    }
+    #header{
+        height: 45px;
+    }
+    th{
+        width: 55px;
+        height: 20px;
+    }
+    #note{
+        margin-left: 32%;
+        font-size: 5px;
+    }
+    #text{
+       font-size: 5px;
+    }
+    #backbtn{
+        height: 20px;
+        width: 20px;
+    }
+    #backbtn:hover{
+        height: 30px;
+        width: 30px;
+        transition: 0.3s ease-in-out;
+    }
+    
+}

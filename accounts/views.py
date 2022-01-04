@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import Group, auth
+from django.contrib.auth.models import Group
 from django.contrib import messages
 from .models import *
 from .forms import *
@@ -133,7 +133,7 @@ def section(request):
         semester = request.POST["semester"]
         year = request.POST["year"]
         sections=Section.objects.filter(instructor=request.user.instructor.instructorId,semester=semester,year=year)
-        contex={'sections':sections}
+        contex={'sections':sections,'semester':semester,'year':year}
         return render(request,'Section.html',contex)
     return render(request,'Section.html')
 
@@ -147,7 +147,7 @@ def takes(request):
             year = request.POST["year"]
             user=request.user
             takes=Takes.objects.filter(section__instructor=user.username,section__year=year,section__semester=semester)
-            contex={'takes':takes}
+            contex={'takes':takes,'semester':semester,'year':year}
             return render(request, 'TakesSection.html',contex)
     return render(request,'TakesSection.html')
     
