@@ -72,11 +72,11 @@ class Student(models.Model):
         return self.firstName+' '+str(self.lastName)+'('+self.studentId+')'
 
 class Advisor(models.Model):
-    s = models.OneToOneField('Student', models.CASCADE, db_column='s_ID', primary_key=True) 
-    i = models.ForeignKey('Instructor', models.CASCADE, db_column='i_ID', blank=True, null=True)
+    student = models.OneToOneField('Student', models.CASCADE,null=True, blank=True) 
+    instructor = models.ForeignKey('Instructor', models.CASCADE,null=True,blank=True)
 
     def __str__(self):
-        return self.i.instructorId
+        return self.instructor.instructorId
 
 
 class Course(models.Model):

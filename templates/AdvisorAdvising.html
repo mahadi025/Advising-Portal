@@ -7,11 +7,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="{% static 'css/FacultyAdvising.css' %}" />
         <link rel="icon" type="image/png" href="{% static 'images/graduationcap.png' %}">
-        <title>Faculty</title>
+        <title>Advisor</title>
     </head>
     <body>
         <div>
-            <a href="{% url 'facultyAdvising' %}">back</a>
+            <a href="{% url 'advisorAdvising' %}">back</a>
         </div>
         <div>
             {% for message in messages %}
@@ -30,12 +30,12 @@
                         <th>Time-Slot</th>
                         <th>Seat Remaining</th>
                     </tr>
-                    {% for offeredSection in offeredSections %}
+                    {% for offeredSection in offeredSections%}
                     <tr>
                         {% if offeredSection.course.credits == 0.0%}
                             <td>{{offeredSection.course.course_id}}</td>
                         {% else %}
-                        <td><a href="{% url 'facultyAddCourse' offeredSection.id %}">{{offeredSection.course.course_id}}</a></td>
+                        <td><a href="{% url 'advisorAddCourse' offeredSection.id %}">{{offeredSection.course.course_id}}</a></td>
                         {% endif %}
                         {% if offeredSection.course.credits == 0.0%}
                             <td></td>
@@ -77,7 +77,7 @@
                         {% if advisedSection.section.course.credits == 0.0 %}
                             <td></td>
                         {% else %}
-                            <td><a href="{% url 'facultyDeleteCourse' advisedSection.id %}">Delete</a></td>
+                            <td><a href="{% url 'advisorDeleteCourse' advisedSection.id %}">Delete</a></td>
                         {% endif %}
                     </tr>
                     {% endfor %}

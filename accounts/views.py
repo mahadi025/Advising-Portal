@@ -80,7 +80,6 @@ def offered_courses(request):
         semester = request.POST["semester"]
         year = request.POST["year"]
         sections = Section.objects.filter(semester=semester,year=year).order_by('id')
-        # sections=Section.objects.all()
         contex={'sections':sections,'semester':semester,'year':year}
         return render(request, "Offered_courses.html", contex)
     else:
@@ -133,8 +132,9 @@ def section(request):
     if request.method == 'POST':
         semester = request.POST["semester"]
         year = request.POST["year"]
-        sections=Section.objects.filter(instructor=request.user.instructor.instructorId,semester=semester,year=year)
-        contex={'sections':sections,'semester':semester,'year':year}
+        instructor=request.user.instructor
+        sections=Section.objects.filter(instructor=instructor,semester=semester,year=year)
+        contex={'sections':sections,'semester':semester,'year':year,'instructor':instructor}
         return render(request,'Section.html',contex)
     return render(request,'Section.html')
 

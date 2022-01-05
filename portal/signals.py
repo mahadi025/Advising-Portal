@@ -15,7 +15,6 @@ def create_advisingSlip(sender, instance,created,**kwargs):
         advisingStudent=instance.advisingStudent  
         section=instance.section
         takes=Takes.objects.create(takes_id=advisingStudent.student,section=section)
-        print(f'Credits Taken {advisingStudent.creditsTaken}')
         if section.course.credits>3.0:
             labCourse=Course.objects.get(course_id=str(instance.section.course.course_id)+'L',title='LAB',credits=0.0)
             labSection=Section.objects.get(course=labCourse,secId=instance.section.secId,year=instance.section.year,semester=instance.section.semester,

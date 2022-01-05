@@ -1,0 +1,635 @@
+body{
+    margin:0%;
+    padding: 0%;
+    animation: transitionIn 1s;
+    
+}
+#header{
+    height:80px;
+    background-color: #C70039;
+    display: flex;
+}
+#OfferedCourse-header{
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bolder;
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 30px;
+}
+#heading{
+        color: grey;
+        display: inline-block;
+        margin-left: 35%;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        animation: animate 4s;
+        overflow: hidden;
+        white-space: nowrap;
+}
+table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
+    border-radius: 5px;
+
+    
+
+
+    
+}
+#Courses th,td{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    
+    color: white;
+    
+   
+}
+th{
+   width: 200px;
+   height: 50px;
+   background: linear-gradient(180deg,#0010A0,#0A83C1); 
+
+}
+td{
+    text-align: center;
+    background-color:#61B5C3; 
+}
+#Courses{
+    margin-left: 9%;
+    margin-top: 2%;
+    
+}
+#semester{
+    
+    height: 25px;
+    border-radius: 10px;
+}
+#year{
+    height: 25px;
+    border-radius: 10px;
+}
+
+#backbtn{
+    height: 40px;
+    width: 40px;
+}
+#backbtn:hover{
+    height: 50px;
+    width: 50px;
+    transition: 0.3s ease-in-out;
+}
+#back{
+    margin-top: 1.2%;
+    margin-left: 2%;
+}
+
+#submit{
+    color: chartreuse;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: white;
+    margin-left: 1%;
+    height: 35px;
+    width: 100px;
+    border-radius: 20px;
+    border: 3px solid chartreuse;
+    
+   
+    
+}
+#submit:hover{
+    color: white;
+    background-color: chartreuse;
+    transition: 0.3s ease-in;
+    animation: anim-shadow 0.3s forwards;
+    
+}
+::-webkit-scrollbar{
+    width: 15px;
+}
+::-webkit-scrollbar-track{
+    border-radius: 5px;
+    box-shadow: inset 0 0 10px rgb(0,0,0,0.25);
+}
+::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    background-color: #0e11b4;
+}
+::-webkit-scrollbar-thumb:hover{
+    background-color: #2326ff;
+}
+
+@keyframes anim-shadow{
+    100%{
+        box-shadow: 5px 5px 1px 1px grey;
+    }
+}
+@keyframes transitionIn {
+    from{
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes animate{
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 60%;
+    }
+}
+#note{
+    margin-left: 42%;
+}
+#text{
+    color: crimson;
+}
+#str1{
+    margin-left: 34%;
+    color: #FF0101;
+}
+#str2{
+    margin-left: 1%;
+    color: #FF0101;
+}
+@media screen and (min-width:1345px) and (max-width:1438px){
+    #Courses{
+    font-size: 13px;
+        
+    }
+
+}
+@media screen and (min-width:1300px) and (max-width:1345px){
+    #Courses{
+    font-size: 12px;
+    margin-left: 9%;
+        
+    }
+    th{
+        width: 180px;
+        height: 50px;
+       
+     
+     }
+     #str1{
+        margin-left: 34%;
+    }
+
+}
+@media screen and (min-width:1170px) and (max-width:1300px){
+    #Courses{
+    font-size: 11px;
+    margin-left: 9%;
+        
+    }
+    th{
+        width: 170px;
+        height: 50px;
+       
+     
+     }
+     #str1{
+        margin-left: 32%;
+    }
+
+}
+@media screen and (min-width:1080px) and (max-width:1170px){
+    #Courses{
+    font-size: 10px;
+    margin-left: 9%;
+        
+    }
+    th{
+        width: 160px;
+        height: 50px;
+       
+     
+     }
+     #str1{
+        margin-left: 29%;
+    }
+    #note{
+        margin-left: 40%;
+    }
+    #heading{
+       margin-left: 33%;
+    }
+
+}
+@media screen and (min-width:960px) and (max-width:1080px){
+    #Courses{
+    font-size: 9px;
+    margin-left: 9%;
+        
+    }
+    th{
+        width: 140px;
+        height: 50px;
+       
+     
+     }
+     #str1{
+        margin-left: 25%;
+    }
+    #note{
+        margin-left: 38%;
+    }
+    #heading{
+       margin-left: 30%;
+    }
+    #submit{
+      height: 30px;
+      width: 80px;
+      font-size: 10px;
+    }
+
+}
+@media screen and (min-width:850px) and (max-width:960px){
+    #Courses{
+    font-size: 8px;
+    margin-left: 9%;
+        
+    }
+    th{
+        width: 125px;
+        height: 50px;
+       
+     
+     }
+     #str1{
+        margin-left: 23%;
+    }
+    #note{
+        margin-left: 37%;
+        font-size: 15px;
+    }
+    #heading{
+       margin-left: 27%;
+       font-size: 22px;
+    }
+    #submit{
+      height: 30px;
+      width: 80px;
+      font-size: 10px;
+    }
+    #text{
+        font-size: 15px;
+    }
+    #chssem{
+        font-size: 15px;
+    }
+    #chsyr{
+        font-size: 15px;
+    }
+    #header{
+        height:70px;
+    }
+    #OfferedCourse-header{
+     font-size: 25px;
+
+    }
+    
+
+}
+@media screen and (min-width:750px) and (max-width:850px){
+    #Courses{
+    font-size: 7px;
+    margin-left: 9%;
+        
+    }
+    th{
+        width: 110px;
+        height: 50px;
+       
+     
+     }
+     #str1{
+        margin-left: 21%;
+    }
+    #note{
+        margin-left: 38%;
+        font-size: 13px;
+    }
+    #heading{
+       margin-left: 29%;
+       font-size: 20px;
+    }
+    #submit{
+      height: 29px;
+      width: 79px;
+      font-size: 9px;
+    }
+    #text{
+        font-size: 13px;
+    }
+    #chssem{
+        font-size: 13px;
+    }
+    #chsyr{
+        font-size: 13px;
+    }
+    #header{
+        height:70px;
+    }
+    #OfferedCourse-header{
+     font-size: 23px;
+
+    }
+    #semester{
+        height: 20px;
+        width: 80px;
+        font-size: 10px;
+    }
+    #year{
+        height: 20px;
+        width: 80px;
+        font-size: 10px;
+    }
+
+}
+@media screen and (min-width:650px) and (max-width:750px){
+    #Courses{
+    font-size: 7px;
+    margin-left: 9%;
+        
+    }
+    th{
+        width: 100px;
+        height: 50px;
+       
+     
+     }
+     #str1{
+        margin-left: 17%;
+    }
+    #note{
+        margin-left: 38%;
+        font-size: 13px;
+    }
+    #heading{
+       margin-left: 29%;
+       font-size: 20px;
+    }
+    #submit{
+      height: 29px;
+      width: 79px;
+      font-size: 9px;
+    }
+    #text{
+        font-size: 13px;
+    }
+    #chssem{
+        font-size: 13px;
+    }
+    #chsyr{
+        font-size: 13px;
+    }
+    #header{
+        height:70px;
+    }
+    #OfferedCourse-header{
+     font-size: 23px;
+
+    }
+    #semester{
+        height: 20px;
+        width: 80px;
+        font-size: 10px;
+    }
+    #year{
+        height: 20px;
+        width: 80px;
+        font-size: 10px;
+    }
+
+}
+@media screen and (min-width:550px) and (max-width:650px){
+    #Courses{
+    font-size: 6px;
+    margin-left: 9%;
+        
+    }
+    th{
+        width: 85px;
+        height: 50px;
+       
+     
+     }
+     #str1{
+        margin-left: 13%;
+    }
+    #note{
+        margin-left: 35%;
+        font-size: 13px;
+    }
+    #heading{
+       margin-left: 22%;
+       font-size: 20px;
+    }
+    #submit{
+      height: 27px;
+      width: 75px;
+      font-size: 9px;
+    }
+    #text{
+        font-size: 12px;
+    }
+    #chssem{
+        font-size: 11px;
+    }
+    #chsyr{
+        font-size: 11px;
+    }
+    #header{
+        height:60px;
+    }
+    #OfferedCourse-header{
+     font-size: 20px;
+
+    }
+    #semester{
+        height: 20px;
+        width: 80px;
+        font-size: 10px;
+    }
+    #year{
+        height: 20px;
+        width: 80px;
+        font-size: 10px;
+    }
+
+}
+@media screen and (min-width:450px) and (max-width:550px){
+    #Courses{
+    font-size: 6px;
+    margin-left: 9%;
+        
+    }
+    th{
+        width: 55px;
+        height: 50px;
+       
+     
+     }
+     #str1{
+        margin-left: 13%;
+    }
+    #note{
+        margin-left: 37%;
+        font-size: 9px;
+    }
+    #heading{
+       margin-left: 24%;
+       font-size: 15px;
+    }
+    #submit{
+      height: 22px;
+      width: 65px;
+      font-size: 9px;
+    }
+    #text{
+        font-size: 9px;
+    }
+    #chssem{
+        font-size: 9px;
+    }
+    #chsyr{
+        font-size: 9px;
+    }
+    #header{
+        height:50px;
+        width: 550px;
+    }
+    #OfferedCourse-header{
+     font-size: 15px;
+
+    }
+    #semester{
+        height: 18px;
+        width: 70px;
+        font-size: 7px;
+    }
+    #year{
+        height: 18px;
+        width: 70px;
+        font-size: 7px;
+    }
+
+}
+@media screen and (min-width:350px) and (max-width:450px){
+    #Courses{
+    font-size: 6px;
+    margin-left: 9%;
+        
+    }
+    th{
+        width: 55px;
+        height: 40px;
+       
+     
+     }
+     #str1{
+        margin-left: 13%;
+    }
+    #note{
+        margin-left: 37%;
+        font-size: 7px;
+    }
+    #heading{
+       margin-left: 28%;
+       font-size: 12px;
+    }
+    #submit{
+      height: 20px;
+      width: 50px;
+      font-size: 7px;
+    }
+    #text{
+        font-size: 7px;
+    }
+    #chssem{
+        font-size: 7px;
+    }
+    #chsyr{
+        font-size: 7px;
+    }
+    #header{
+        height:50px;
+        width: 510px;
+    }
+    #OfferedCourse-header{
+     font-size: 13px;
+
+    }
+    #semester{
+        height: 15px;
+        width: 50px;
+        font-size: 7px;
+    }
+    #year{
+        height: 15px;
+        width: 50px;
+        font-size: 7px;
+    }
+
+}
+@media screen and (min-width:274px) and (max-width:350px){
+    #Courses{
+    font-size: 5px;
+    margin-left: 9%;
+        
+    }
+    th{
+        width: 55px;
+        height: 35px;
+       
+     
+     }
+     #str1{
+        margin-left: 11%;
+    }
+    #note{
+        margin-left: 37%;
+        font-size: 7px;
+    }
+    #heading{
+       margin-left: 28%;
+       font-size: 10px;
+    }
+    #submit{
+      height: 15px;
+      width: 30px;
+      font-size: 5px;
+      
+    }
+    #text{
+        font-size: 7px;
+    }
+    #chssem{
+        font-size: 7px;
+    }
+    #chsyr{
+        font-size: 7px;
+    }
+    #header{
+        height:50px;
+        width: 480px;
+    }
+    #OfferedCourse-header{
+     font-size: 11px;
+
+    }
+    #semester{
+        height: 13px;
+        width: 30px;
+        font-size: 3px;
+    }
+    #year{
+        height: 13px;
+        width: 30px;
+        font-size: 3px;
+    }
+
+}

@@ -5,16 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/Offered_courses.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Section.css' %}">
     <title>Section</title>
 </head>
 <body>
     <div id="header">
         <br>
-     <h3 id="OfferedCourse-header">Offered Courses</h3> 
-    </div>
-    <div>
-        <a href="{% url 'home' %}">back to home</a>
+        <a href="{% url 'home' %}" id="back"><img src="{% static 'images/back button.png' %}" id="backbtn"></a>
+     <h3 id="OfferedCourse-header">Sections for {{instructor.instructorId}}</h3> 
     </div>
      <h2 id="heading">Offered Courses For {{semester}} {{year}}</h2><br>
     <i id="note">N.B: <b id="text">Select Semester and Year first</b></i><br><br>

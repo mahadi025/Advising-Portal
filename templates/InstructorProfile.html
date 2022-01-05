@@ -5,17 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/Student_profile.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Instructor_Profile.css' %}">
     <title>Profile</title>
 </head>
 <body>
     <div id="header">
         <br>
+        <a href="{% url 'home' %}" id="back"><img src="{% static 'images/back button.png' %}" id="backbtn"></a>
      <h3 id="profile-header">PROFILE</h3> 
     </div>
-    <div>
-        <a href="{% url 'home' %}">back to home</a>
-    </div>
+
     <div id="img-profile">
         <img src="{{request.user.instructor.img.url}}" alt="">
     </div>

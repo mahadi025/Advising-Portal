@@ -26,19 +26,21 @@
             {% if request.user.student %}
                 <li><a href="{% url 'advising' %}">Advising</a></li>
                 <li><a href="{% url 'grade_report' %}">Grade Report</a></li>
+                <li><a href="{% url 'Offered_courses' %}">Offered Courses</a></li>
                 <li><a href="{% url 'schedule' %}">Class Schedule</a></li>
+                <li><a href="{% url 'cgpa' %}">CGPA Calculator</a></li>
             {% endif %}
-            <li><a href="{% url 'Offered_courses' %}">Offered Courses</a></li>
             {% if request.user.is_superuser %}
                 <li><a href="admin">Admin</a></li>
             {% endif %}
-            <li><a href="{% url 'cgpa' %}">CGPA Calculator</a></li>
-            <li><a href="{% url 'profile' %}">Profile</a></li>
             {% if request.user.instructor %}
                 <li><a href="{% url 'facultyAdvising' %}">Faculty Advising</a></li>
                 <li><a href="{% url 'section' %}">Sections</a></li>
                 <li><a href="{% url 'takesSection' %}">Student List for {{request.user.username}}</a></li>
+                <li><a href="{% url 'cgpa' %}">CGPA Calculator</a></li>
+                <li><a href="{% url 'advisorAdvising'%}">Advisor Panel </a></li>
             {% endif %}
+            <li><a href="{% url 'profile' %}">Profile</a></li>
        </ul>
     </div>
     <h1 id="msg">WELCOME TO ADVISING PORTAL</h1>
