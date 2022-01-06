@@ -1,16 +1,21 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/SelectStudent.css' %}" />
+    <link rel="icon" type="image/png" href="{% static 'images/graduationcap.png' %}">
+    <title>Select Student</title>
 </head>
 <body>
-    <div>
-        <a href="{% url 'home'%}">back to home</a>
-    </div>
-    <div>
+    <div id="header">
+        <br>
+        <a href="{% url 'home' %}" id="back"><img src="{% static 'images/back button.png' %}" id="backbtn"></a>
+     <h3 id="SelectStudent-header">Select Student</h3> 
+     </div>
+    <div id="msg">
         {% for message in messages %}
             <p id="message"style="margin-left: 5%; background-color: rgb(184, 17, 25); width: 50%;color: white;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -18,11 +23,16 @@
         {% endfor %}
       </div>    
 
-    <form action="" method="POST">
+    <form action="" method="POST" id="form">
         {% csrf_token %}
-        <input name="studentId" type="text">
+        <div id="section1">
+        <div id="section2">
+        <label for="StudentId" id="StudentId">Student Id:</label>
+        <input name="studentId" type="text" id="stdId" >
+        </div>
         <br>
-        <input type="Submit">
+        <input type="Submit" id="submit">
+       </div>
     </form>
 </body>
 </html>

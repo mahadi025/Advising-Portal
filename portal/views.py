@@ -213,20 +213,34 @@ def faculty_add_course(request,pk):
                 messages.error(request,'Student can not take more than 2 classes per day')
     else:
         messages.error(request,'No seat available for '+course+' '+section.secId)
-    advisingStudent=AdvisingStudent.objects.get(student=student)
-    advisedSections=AdvisingSlip.objects.filter(advisingStudent=advisingStudent,section__semester=semester)
-    offeredSections=Section.objects.filter(year=year,semester=semester,instructor=instructor).order_by('id')
+    section=Section.objects.get(id=pk)
+    student=Student.objects.get(studentId=AdvisingStudentId)
+    advisingStudent=AdvisingStudent.objects.filter(student=student)
+    advisedSections=AdvisingSlip.objects.filter(advisingStudent_id=advisingStudent)
+    # advisingStudent=AdvisingStudent.objects.get(advisingslip=advisingSlip)
+    # print(advisingSlip)
+    print(AdvisingStudentId)
+    # print(advisingSlip)
+    offeredSections=Section.objects.filter(year=year,semester=semester,instructor=request.user.instructor).order_by('id')
+    # advisedSections=AdvisingSlip.objects.filter(advisingStudent=advisingStudent)
     contex={'offeredSections':offeredSections,'year':year,'semester':semester,'advisedSections':advisedSections}
-    # return render(request,'FacultyAdvising.html',contex)
-    return redirect('facultyAdvising')
+    return render(request,'FacultyAdvising.html',contex)
+    # return redirect('facultyAdvising')
 
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['instructor'])
 def faculty_delete_course(request,pk):
     advisingSlip=AdvisingSlip.objects.get(id=pk)
+    advisingStudent=AdvisingStudent.objects.get(advisingslip=advisingSlip)
     advisingSlip.delete()
-    return redirect('facultyAdvising')
+    semester='Spring'
+    year=2021
+    offeredSections=Section.objects.filter(year=year,semester=semester,instructor=request.user.instructor).order_by('id')
+    advisedSections=AdvisingSlip.objects.filter(advisingStudent=advisingStudent)
+    contex={'offeredSections':offeredSections,'year':year,'semester':semester,'advisedSections':advisedSections}
+    # return redirect('facultyAdvising')
+    return render(request,'FacultyAdvising.html',contex)
 
 
 @login_required(login_url='login')
@@ -328,8 +342,7 @@ def advisor_add_course(request,pk):
     offeredSections=Section.objects.filter(year=year,semester=semester).order_by('id') 
     contex={'offeredSections':offeredSections,'year':year,'semester':semester,'advisedSections':advisedSections}
     # return render(request,'AdvisorAdvising.html',contex)
-    # return redirect('advisorAdvising')
-    return redirect(request.META['HTTP_REFERER'])
+    return redirect('advisorAdvising')
 
 
 @login_required(login_url='login')

@@ -1,0 +1,208 @@
+body{
+    margin:0%;
+    padding: 0%;
+    animation: transitionIn 0.75s;
+    
+}
+
+#header{
+    height:80px;
+    background-color: #C70039;
+    display: flex;
+}
+#backbtn{
+    height: 40px;
+    width: 40px;
+}
+#backbtn:hover{
+    height: 50px;
+    width: 50px;
+    transition: 0.3s ease-in-out;
+}
+#back{
+    margin-top: 1.2%;
+    margin-left: 2%;
+}
+#SelectStudent-header{
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bolder;
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 30px;
+}
+#form{
+    height: 150px;
+    width: 500px;
+    background-color: white;
+    margin-left: 32%;
+    margin-top: 5%;
+    border-radius: 5px;
+    box-shadow: 0px 7px 7px 7px grey;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+#stdId{
+    border: none;
+    background: none;
+    outline: none;
+    border-bottom: 2px  grey solid ;
+
+}
+#StudentId{
+    color: grey;
+}
+#section1{
+   display: flex;
+}
+#section2{
+    margin-top: 5%;
+    margin-left:12%;
+}
+#submit{
+    color: chartreuse;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: white;
+    margin-left: 3%;
+    height: 30px;
+    width: 90px;
+    border-radius: 20px;
+    border: 3px solid chartreuse;
+    margin-top: 5%;
+    
+   
+    
+}
+#submit:hover{
+    color: white;
+    background-color: chartreuse;
+    transition: 0.3s ease-in;
+    animation: anim-shadow 0.3s forwards;
+    
+}
+
+
+
+@keyframes transitionIn {
+    from{
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes anim-shadow{
+    100%{
+        box-shadow: 5px 5px 1px 1px grey;
+    }
+}
+
+@media screen and (min-width:1024px) and (max-width:1025px) {
+    #form{
+        margin-left: 25%;
+    }
+}
+@media screen and (min-width:768px) and (max-width:769px) {
+    #form{
+        margin-left: 18%;
+    }
+}
+@media screen and (min-width:540px) and (max-width:541px) {
+    #form{
+        margin-left: 8%;
+        height: 150px;
+        width: 450px;
+    }
+}
+@media screen and (min-width:414px) and (max-width:415px) {
+    #form{
+        margin-left: 8%;
+        height: 150px;
+        width: 350px;
+    }
+    #stdId{
+        width: 100px;
+    }
+    #submit{
+        width: 70px;
+    }
+}
+@media screen and (min-width:411px) and (max-width:412px) {
+    #form{
+        margin-left: 8%;
+        height: 150px;
+        width: 350px;
+    }
+    #stdId{
+        width: 100px;
+    }
+    #submit{
+        width: 70px;
+    }
+
+}
+@media screen and (min-width:375px) and (max-width:376px) {
+    #form{
+        margin-left: 10%;
+        height: 150px;
+        width: 300px;
+    }
+    #stdId{
+        width: 100px;
+    }
+    #submit{
+        width: 70px;
+    }
+    #section2{
+        margin-left: 6%;
+    }
+}
+@media screen and (min-width:360px) and (max-width:361px) {
+    #form{
+        margin-left: 8%;
+        height: 150px;
+        width: 300px;
+    }
+    #stdId{
+        width: 100px;
+    }
+    #submit{
+        width: 70px;
+    }
+    #section2{
+        margin-left: 6%;
+    }
+}
+@media screen and (min-width:320px) and (max-width:321px) {
+    #form{
+        margin-left: 8%;
+        height: 150px;
+        width: 280px;
+    }
+    #stdId{
+        width: 100px;
+    }
+    #submit{
+        width: 70px;
+    }
+    #section2{
+        margin-left: 3%;
+    }
+}
+@media screen and (min-width:280px) and (max-width:281px) {
+    #form{
+        margin-left: 6%;
+        height: 150px;
+        width: 250px;
+    }
+    #stdId{
+        width: 80px;
+    }
+    #submit{
+        width: 70px;
+    }
+    #section2{
+        margin-left: 3%;
+    }
+}
