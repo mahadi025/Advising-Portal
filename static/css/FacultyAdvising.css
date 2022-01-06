@@ -17,12 +17,27 @@ body{
 #header{
     height:80px;
     background-color: #C70039;
+    display: flex;
+}
+#backbtn{
+    height: 40px;
+    width: 40px;
+}
+#backbtn:hover{
+
+    height: 50px;
+    width: 50px;
+    transition: 0.3s ease-in-out;
+}
+#back{
+    margin-top: 1.2%;
+    margin-left: 2%;
 }
 #Advising-header{
     color: white;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: bolder;
-    margin-top: 0%;
+    margin-top: 1%;
     margin-left: 2%;
     font-size: 30px;
 }
@@ -99,23 +114,7 @@ th{
     overflow: auto;
     overflow-x: hidden;
 }
-#printslip{
-    color: chartreuse;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: white;
-    margin-left: 1%;
-    height: 35px;
-    width: 100px;
-    border-radius: 20px;
-    border: 3px solid chartreuse;    
-}
-#printslip:hover{
-    color: white;
-    background-color: chartreuse;
-    transition: 0.3s ease-in;
-    animation: anim-shadow 0.3s forwards;
-    
-}
+
  ::-webkit-scrollbar{
     width: 15px;
 }
