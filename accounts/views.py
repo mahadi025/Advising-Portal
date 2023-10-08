@@ -61,7 +61,7 @@ def profile(request):
     if group=='instructor':
         return render(request,"InstructorProfile.html")
     else:
-        advisor=Advisor.objects.filter(s__studentId=request.user.username).first()
+        advisor=Advisor.objects.filter(student_id=request.user.username).first()
         contex={'advisor':advisor}
         return render(request, "StudentProfile.html",contex)
 

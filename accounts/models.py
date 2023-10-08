@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.postgres.fields import ArrayField
 from django.db.models import IntegerField, Model
 from django_mysql.models import ListCharField
 from decimal import Decimal
