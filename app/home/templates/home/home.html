@@ -1,0 +1,8 @@
+{% extends "main.html" %}
+{% block content %}
+
+<div class="container">
+    <h2 class="text-center">Welcome {{request.user.first_name}} {{request.user.last_name}}</h2>
+</div>
+
+{% endblock content %}

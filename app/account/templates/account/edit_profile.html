@@ -1,0 +1,38 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+    .profile-pic {
+        max-width: 150px;
+        max-height: 150px;
+        margin: 0 auto;
+        border-radius: 50%;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card card-body">
+                <a class="btn btn-danger" href="{% url 'profile' %}"> Back to Profile</a>
+                <hr>
+                <h3 style="text-align: center">Account Settings</h3>
+                <hr>
+                <img class="profile-pic" src="{{user.img.url}}">
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card card-body">
+
+                <form method="POST" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <input class="btn btn-success" type="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

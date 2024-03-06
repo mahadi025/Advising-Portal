@@ -1,0 +1,38 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    {% if takes %}
+    <div>
+        <h1>Student list for {{section.course.course_id}}-{{section.sec_id}}</h1>
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th scope="col">Student ID</th>
+                    <th scope="col">Student Name</th>
+                    <th scope="col">Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for take in takes %}
+                <tr>
+                    <td>{{take.takes_id.student_id}}</td>
+                    <td>{{take.takes_id.first_name}} {{take.takes_id.last_name}}</td>
+                    <td>{{take.grade}}</td>
+                    <td><a class="btn-sm btn-info" href="{% url 'edit-grade' take.id %}">Edit Grade</a></td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td><a class="btn btn-danger" href="{% url 'instructor-class-schedule' %}">Back</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div>
+        No student available
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

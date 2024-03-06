@@ -1,0 +1,45 @@
+{% load static %}
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'home' %}">Advising Portal</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'offered-courses' %}">Offered Courses</a>
+            </li>
+            {% if request.user.instructor %}
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'instructor-class-schedule' %}">Class Schedule</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'advisor-advising' %}">Advising</a>
+            </li>
+            {% endif %}
+            {% if request.user.student %}
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'student-class-schedule' %}">Class Schedule</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'advising' %}">Advising</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'student-grade-report' %}">Grade Report</a>
+            </li>
+            {% endif %}
+            {% if request.user.is_active %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

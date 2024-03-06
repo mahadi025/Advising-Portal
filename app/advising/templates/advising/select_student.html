@@ -1,0 +1,28 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+
+
+<div class="container">
+    <div class="mt-5">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="student_id">Student ID</label>
+                <input name="student_id" type="text">
+            </div>
+            <button class="btn btn-success">Submit</button>
+        </form>
+    </div>
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <div class="alert alert-danger">
+        <p>{{message}}</p>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+</div>
+
+{% endblock %}

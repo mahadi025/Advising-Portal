@@ -1,0 +1,85 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'styles/slip.css' %}" />
+<div id="sec0">
+    <div id="slip">
+        <div id="slip2">
+            <div id="sec1">
+                <img src="{% static 'images/ewu_logo.png' %}" id="logo">
+                <h3 id="ewu">East West University</h3>
+            </div>
+            <h4 id="addrs">A/2, Jahurul Islam Avenue, Jahurul Islam City, Aftabnagar, Dhaka-1212</h4>
+            <h4 id="phone">Tel: 09666775577 (Hunting), Ext-224,364,365</h4>
+
+            <div id="sec2">
+                <p id="date"><b>Date:</b>
+                <p id="d"></p>
+                </p>
+                <h3 id="heading"><u>Advising Slip</u></h3>
+            </div>
+            <br><br><br>
+            <div id="sec3">
+                <div id="name"><b>Name: {{student.first_name}} {{student.last_name}}</b></div>
+                <div id="ID"><b>Id: {{student.student_id}}</b></div>
+            </div>
+            <table id="Advised-course">
+                <tr>
+                    <th>Course</th>
+                    <th>Section</th>
+                    <th>Credits</th>
+                    <th>Time-Slot</th>
+                </tr>
+                {% for advised_section in advised_sections %}
+                <tr>
+                    <td>{{advised_section.section.course.course_id}}</td>
+                    <td>{{advised_section.section.sec_id}}</td>
+                    <td>{{advised_section.section.course.credits}}</td>
+                    <td>{{advised_section.section.time_slot.day}}{{advised_section.section.time_slot.start_hr}}:{{advised_section.section.time_slot.start_min}}
+                        -{{advised_section.section.time_slot.end_hr}}:{{advised_section.section.time_slot.end_min}}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            <br><br>
+            <p id="sign">Student Signature:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+                _ _ _ </p>
+        </div>
+    </div>
+    <div id="button-section">
+        <p onclick="generatePDF()"><img src="{% static 'images/download_icon.png' %}" id="download">
+        <p>
+        <p onclick="printing()"><img src="{% static 'images/print.png' %}" id="print">
+        <p>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+
+    var d = document.getElementById("d");
+    var currentDate = new Date()
+    d.innerHTML = currentDate.getDate() + "/" + currentDate.getMonth() + "/" + currentDate.getFullYear() + ",<br>" + currentDate.getHours() + ":" + currentDate.getMinutes();
+    function generatePDF() {
+        const element = document.getElementById("slip2");
+        var opt = {
+            margin: [0.5, 0.3, 1.09, 0],
+            filename: '{{student.student_id}}(Advising Slip)',
+            image: { type: 'jpeg', quality: .95 },
+            html2canvas: { scale: 2, },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+        };
+        html2pdf().from(element).set(opt).save();
+    }
+    function printing() {
+        var bup = document.body.innerHTML;
+        var content = document.getElementById("slip2").innerHTML;
+        document.body.innerHTML = content;
+        window.print();
+        document.body.innerHTML = bup
+    }
+</script>
+
+{% endblock %}

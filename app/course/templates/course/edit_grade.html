@@ -1,0 +1,19 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+
+
+<div class="container d-flex mt-5 justify-content-center aligin-items-center">
+    <div class="card card-body">
+        <form method="POST">
+            {% csrf_token %}
+            <p>Change grade for {{student.student_id}}</p>
+            {{form.as_p}}
+            <input class="btn btn-success" type="submit">
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock %}

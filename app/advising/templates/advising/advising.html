@@ -1,0 +1,93 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container my-2">
+    <h2 class="text-secondary text-center border">Welcome to Advising of {{semester}} {{year}}</h2>
+</div>
+
+<div class="container d-flex">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="text-center">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <h3>Offered Course</h3>
+                    </tr>
+                    <tr>
+                        <th>Courses</th>
+                        <th>Credits</th>
+                        <th>Section</th>
+                        <th>Time Slot</th>
+                        <th>Seat Remaining</th>
+                    </tr>
+                    {% for offered_section in offered_sections %}
+                    <tr>
+                        {% if offered_section.course.credits == 0.0%}
+                        <td>{{offered_section.course.course_id}}</td>
+                        {% else %}
+                        <td><a href="{% url 'add-course' offered_section.id %}">{{offered_section.course.course_id}}</a>
+                        </td>
+                        {% endif %}
+                        <td>{{offered_section.course.credits}}</td>
+                        <td>{{offered_section.sec_id}}</td>
+                        <td>{{offered_section.time_slot.day}}
+                            {{offered_section.time_slot.start_hr}}:{{offered_section.time_slot.start_min}}-{{offered_section.time_slot.end_hr}}:{{offered_section.time_slot.end_min}}
+                        </td>
+                        <td>{{offered_section.capacity}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-6">
+
+            <div class="text-center">
+                <table class="table table-bordered table-active">
+                    <tr>
+                        <h3>Advised Courses</h3>
+                    </tr>
+                    <tr>
+                        <th>Course</th>
+                        <th>Section</th>
+                        <th>Credits</th>
+                        <th>Time-Slot</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for advised_section in advised_sections %}
+                    <tr>
+                        <td>{{advised_section.section.course.course_id}}</td>
+                        <td>{{advised_section.section.sec_id}}</td>
+                        <td>{{advised_section.section.course.credits}}</td>
+                        <td>{{advised_section.section.time_slot.day}}
+                            {{advised_section.section.time_slot.start_hr}}:{{advised_section.section.time_slot.start_min}}
+                            -{{advised_section.section.time_slot.end_hr}}:{{advised_section.section.time_slot.end_min}}
+                        </td>
+                        <td><a class="btn-sm btn-danger" href="{% url 'delete-course' advised_section.id %}">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <br>
+                {% if advised_sections %}
+                <a class="btn btn-info mb-2" href="{% url 'print-slip' %}">Print Slip</a>
+                {% endif %}
+                {% if messages %}
+                {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <div class="alert alert-danger">
+                    <p>{{message}}</p>
+                </div>
+                {% else %}
+                <div class="alert alert-success">
+                    <p>{{message}}</p>
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

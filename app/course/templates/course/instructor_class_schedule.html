@@ -1,0 +1,61 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="mt-5">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Choose a semester</label>
+                <select class="form-control" id="exampleFormControlSelect1" name="semester">
+                    <option value="Summer">Summer</option>
+                    <option value="Fall">Fall</option>
+                    <option value="Spring">Spring</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect2">Choose a Year</label>
+                <select class="form-control" id="exampleFormControlSelect2" name="year">
+                    <option value=2019>2019</option>
+                    <option value=2020>2020</option>
+                    <option value=2021>2021</option>
+                </select>
+            </div>
+            <button class="btn btn-success">Submit</button>
+        </form>
+    </div>
+    {% if sections %}
+    <div>
+        <table class="table table-bordered table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Course</th>
+                    <th scope="col">Section</th>
+                    <th scope="col">Timing</th>
+                    <th scope="col">Room No</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for section in sections %}
+                <tr>
+                    <td>{{section.course.course_id}}</td>
+                    <td>{{section.sec_id}}</td>
+                    <td>{{section.time_slot.start_hr}}:{{section.time_slot.start_min}}-{{section.time_slot.end_hr}}:{{section.time_slot.end_min}}
+                    </td>
+                    <td>{{section.classroom}}</td>
+                    <td><a href="{% url 'instructor-section' section.id %}">View Section</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div>
+        Select a valid semester and year
+    </div>
+    {% endif %}
+</div>
+
+
+{% endblock %}

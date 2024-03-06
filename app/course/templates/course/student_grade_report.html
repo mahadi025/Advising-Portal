@@ -1,0 +1,69 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="mt-5">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Choose a semester</label>
+                <select class="form-control" id="exampleFormControlSelect1" name="semester">
+                    <option value="Summer">Summer</option>
+                    <option value="Fall">Fall</option>
+                    <option value="Spring">Spring</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect2">Choose a Year</label>
+                <select class="form-control" id="exampleFormControlSelect2" name="year">
+                    <option value=2019>2019</option>
+                    <option value=2020>2020</option>
+                    <option value=2021>2021</option>
+                </select>
+            </div>
+            <button class="btn btn-success">Submit</button>
+        </form>
+    </div>
+    {% if takes %}
+    <div>
+        <table class="table table-borderless table-striped">
+            <thead>
+                <tr>
+                    <h1>Grade Report for {{student.student_id}} {{semester}} {{year}}</h1>
+                </tr>
+                <tr>
+                    <th scope="col">Course</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Credits</th>
+                    <th scope="col">Grade</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for take in takes %}
+                <tr>
+                    <td>{{take.section.course.course_id}}</td>
+                    <td>{{take.section.course.title}}</td>
+                    <td>{{take.section.course.credits}}</td>
+                    {% if take.grade != "NONE" %}
+                    <td>{{take.grade}}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+                <tr style="background: none;">
+                    <td>
+                        <h3>Term CGPA: {{term_CGPA}}</h3>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div>
+        Select a valid semester and year
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
