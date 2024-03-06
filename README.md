@@ -116,3 +116,29 @@ instructor_id=imps3, password=PleaseUnlock
 Superuser
 username=admin, password=admin
 ```
+
+## How to use docker to run
+
+### 1. Make sure that you have docker installed on your pc.
+
+### 2. Go the project directory.
+
+### 3. Build the docker image
+
+```
+docker-compose build
+```
+
+### 4. Run the container.
+
+```
+docker-compose up
+```
+
+### 5 If you want to access the terminal for the running container run the following
+
+```
+docker-compose run --rm app sh -c "your command"
+Example
+docker-compose run --rm app sh -c "python manage.py flush"
+```
