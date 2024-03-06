@@ -2028,18 +2028,18 @@ class Command(BaseCommand):
             )
         else:
             self.stdout.write(self.style.ERROR("Unable to create section"))
-            section, created = Section.objects.get_or_create(
-                course=Course.objects.get(course_id="ENG102"),
-                sec_id="2",
-                semester="Summer",
-                year=2021,
-                classroom=Classroom.objects.get(
-                    building="Main Building", room_number="401"
-                ),
-                time_slot=TimeSlot.objects.get(time_slot_id="MW-2"),
-                capacity=35,
-                instructor=Instructor.objects.get(instructor_id="ieng3"),
-            )
+        section, created = Section.objects.get_or_create(
+            course=Course.objects.get(course_id="ENG102"),
+            sec_id="2",
+            semester="Summer",
+            year=2021,
+            classroom=Classroom.objects.get(
+                building="Main Building", room_number="401"
+            ),
+            time_slot=TimeSlot.objects.get(time_slot_id="MW-2"),
+            capacity=35,
+            instructor=Instructor.objects.get(instructor_id="ieng3"),
+        )
         if created:
             self.stdout.write(
                 self.style.SUCCESS(
@@ -2191,18 +2191,18 @@ class Command(BaseCommand):
             )
         else:
             self.stdout.write(self.style.ERROR("Unable to create section"))
-            section, created = Section.objects.get_or_create(
-                course=Course.objects.get(course_id="ENG102"),
-                sec_id="2",
-                semester="Fall",
-                year=2021,
-                classroom=Classroom.objects.get(
-                    building="Main Building", room_number="401"
-                ),
-                time_slot=TimeSlot.objects.get(time_slot_id="MW-2"),
-                capacity=35,
-                instructor=Instructor.objects.get(instructor_id="ieng3"),
-            )
+        section, created = Section.objects.get_or_create(
+            course=Course.objects.get(course_id="ENG102"),
+            sec_id="2",
+            semester="Fall",
+            year=2021,
+            classroom=Classroom.objects.get(
+                building="Main Building", room_number="401"
+            ),
+            time_slot=TimeSlot.objects.get(time_slot_id="MW-2"),
+            capacity=35,
+            instructor=Instructor.objects.get(instructor_id="ieng3"),
+        )
         if created:
             self.stdout.write(
                 self.style.SUCCESS(
@@ -2354,18 +2354,18 @@ class Command(BaseCommand):
             )
         else:
             self.stdout.write(self.style.ERROR("Unable to create section"))
-            section, created = Section.objects.get_or_create(
-                course=Course.objects.get(course_id="ENG102"),
-                sec_id="2",
-                semester="Spring",
-                year=2021,
-                classroom=Classroom.objects.get(
-                    building="Main Building", room_number="401"
-                ),
-                time_slot=TimeSlot.objects.get(time_slot_id="MW-2"),
-                capacity=35,
-                instructor=Instructor.objects.get(instructor_id="ieng3"),
-            )
+        section, created = Section.objects.get_or_create(
+            course=Course.objects.get(course_id="ENG102"),
+            sec_id="2",
+            semester="Spring",
+            year=2021,
+            classroom=Classroom.objects.get(
+                building="Main Building", room_number="401"
+            ),
+            time_slot=TimeSlot.objects.get(time_slot_id="MW-2"),
+            capacity=35,
+            instructor=Instructor.objects.get(instructor_id="ieng3"),
+        )
         if created:
             self.stdout.write(
                 self.style.SUCCESS(
