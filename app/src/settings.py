@@ -17,6 +17,8 @@ DEBUG = os.environ.get("DEBUG") == "1" if os.environ.get("DEBUG") else True
 
 ALLOWED_HOSTS = []
 
+YEAR = 2021
+SEMESTER = "Summer"
 
 # Application definition
 

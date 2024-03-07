@@ -9,9 +9,10 @@ from core.models import (
 )
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
+from django.conf import settings
 
-year = 2021
-semester = "Summer"
+year = settings.YEAR
+semester = settings.SEMESTER
 
 
 def is_instructor(user):
